@@ -268,7 +268,7 @@ var File_auth_v1_auth_proto protoreflect.FileDescriptor
 
 const file_auth_v1_auth_proto_rawDesc = "" +
 	"\n" +
-	"\x12auth/v1/auth.proto\x12\vapi.auth.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\x87\x01\n" +
+	"\x12auth/v1/auth.proto\x12\aauth.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\x87\x01\n" +
 	"\x04User\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1a\n" +
 	"\busername\x18\x02 \x01(\tR\busername\x12\x12\n" +
@@ -280,15 +280,15 @@ const file_auth_v1_auth_proto_rawDesc = "" +
 	"\busername\x18\x01 \x01(\tH\x00R\busername\x12\x16\n" +
 	"\x05email\x18\x02 \x01(\tH\x00R\x05email\x12\x1a\n" +
 	"\bpassword\x18\x03 \x01(\tR\bpasswordB\a\n" +
-	"\x05login\"\xa6\x02\n" +
+	"\x05login\"\xa2\x02\n" +
 	"\rLoginResponse\x12!\n" +
 	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\x12Q\n" +
 	"\x17access_token_expires_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x14accessTokenExpiresAt\x12#\n" +
 	"\rrefresh_token\x18\x03 \x01(\tR\frefreshToken\x12S\n" +
-	"\x18refresh_token_expires_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x15refreshTokenExpiresAt\x12%\n" +
-	"\x04user\x18\x05 \x01(\v2\x11.api.auth.v1.UserR\x04user2O\n" +
-	"\vAuthService\x12@\n" +
-	"\x05Login\x12\x19.api.auth.v1.LoginRequest\x1a\x1a.api.auth.v1.LoginResponse\"\x00B7Z5github.com/illiafox/inspire/api/gen/go/auth/v1;authv1b\x06proto3"
+	"\x18refresh_token_expires_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x15refreshTokenExpiresAt\x12!\n" +
+	"\x04user\x18\x05 \x01(\v2\r.auth.v1.UserR\x04user2G\n" +
+	"\vAuthService\x128\n" +
+	"\x05Login\x12\x15.auth.v1.LoginRequest\x1a\x16.auth.v1.LoginResponse\"\x00BAZ?github.com/tech-inspire/api-contracts/api/gen/go/auth/v1;authv1b\x06proto3"
 
 var (
 	file_auth_v1_auth_proto_rawDescOnce sync.Once
@@ -304,17 +304,17 @@ func file_auth_v1_auth_proto_rawDescGZIP() []byte {
 
 var file_auth_v1_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_auth_v1_auth_proto_goTypes = []any{
-	(*User)(nil),                  // 0: api.auth.v1.User
-	(*LoginRequest)(nil),          // 1: api.auth.v1.LoginRequest
-	(*LoginResponse)(nil),         // 2: api.auth.v1.LoginResponse
+	(*User)(nil),                  // 0: auth.v1.User
+	(*LoginRequest)(nil),          // 1: auth.v1.LoginRequest
+	(*LoginResponse)(nil),         // 2: auth.v1.LoginResponse
 	(*timestamppb.Timestamp)(nil), // 3: google.protobuf.Timestamp
 }
 var file_auth_v1_auth_proto_depIdxs = []int32{
-	3, // 0: api.auth.v1.LoginResponse.access_token_expires_at:type_name -> google.protobuf.Timestamp
-	3, // 1: api.auth.v1.LoginResponse.refresh_token_expires_at:type_name -> google.protobuf.Timestamp
-	0, // 2: api.auth.v1.LoginResponse.user:type_name -> api.auth.v1.User
-	1, // 3: api.auth.v1.AuthService.Login:input_type -> api.auth.v1.LoginRequest
-	2, // 4: api.auth.v1.AuthService.Login:output_type -> api.auth.v1.LoginResponse
+	3, // 0: auth.v1.LoginResponse.access_token_expires_at:type_name -> google.protobuf.Timestamp
+	3, // 1: auth.v1.LoginResponse.refresh_token_expires_at:type_name -> google.protobuf.Timestamp
+	0, // 2: auth.v1.LoginResponse.user:type_name -> auth.v1.User
+	1, // 3: auth.v1.AuthService.Login:input_type -> auth.v1.LoginRequest
+	2, // 4: auth.v1.AuthService.Login:output_type -> auth.v1.LoginResponse
 	4, // [4:5] is the sub-list for method output_type
 	3, // [3:4] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name
