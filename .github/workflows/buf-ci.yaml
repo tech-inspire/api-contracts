@@ -14,8 +14,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: bufbuild/buf-action@v1
         with:
+          # token: ${{ secrets.BUF_TOKEN }}
           input: "api"
-          token: ${{ secrets.BUF_TOKEN }}
           # Change setup_only to true if you only want to set up the Action and not execute other commands.
           # Otherwise, you can delete this line--the default is false.
           setup_only: false
