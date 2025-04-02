@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package api.auth.v1;
+package auth.v1;
 
 import "google/protobuf/timestamp.proto";
 

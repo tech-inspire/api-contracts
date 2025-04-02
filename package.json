@@ -1,5 +1,5 @@
 {
-  "name": "inspire-api-contracts-ts",
+  "name": "inspire-api-contracts",
   "version": "0.0.1",
   "devDependencies": {
     "@bufbuild/buf": "^1.51.0",
