@@ -1,0 +1,15 @@
+version: v2
+plugins:
+  - local: protoc-gen-go
+    out: gen/go
+    opt: paths=source_relative
+  - local: protoc-gen-connect-go
+    out: gen/go
+    opt: paths=source_relative
+  # This will invoke protoc-gen-es and write output to src/gen
+  - local: protoc-gen-es
+    out: gen/ts
+    # Also generate any imported dependencies
+    include_imports: true
+    # Add more plugin options here
+    opt: target=ts

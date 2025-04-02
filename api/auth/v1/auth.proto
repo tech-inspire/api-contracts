@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package api.auth.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/tech-inspire/api-contracts/api/gen/go/auth/v1;authv1";
+
+service AuthService {
+  rpc Login(LoginRequest) returns (LoginResponse) {}
+}
+
+message User {
+  string id = 1;
+  string username = 2;
+  string name = 3;
+  string avatar_url = 4;
+  string description = 5;
+}
+
+message LoginRequest {
+  oneof login {
+    string username = 1;
+    string email = 2;
+  }
+
+  string password = 3;
+}
+
+message LoginResponse {
+  string access_token = 1;
+  google.protobuf.Timestamp access_token_expires_at = 2;
+
+  string refresh_token = 3;
+  google.protobuf.Timestamp refresh_token_expires_at = 4;
+
+  User user = 5;
+}
+
