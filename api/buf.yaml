@@ -3,6 +3,9 @@ version: v2
 lint:
   use:
     - STANDARD
+deps:
+  - buf.build/googleapis/googleapis
+  - buf.build/bufbuild/protovalidate
 breaking:
   use:
     - FILE

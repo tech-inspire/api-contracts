@@ -3,6 +3,7 @@ syntax = "proto3";
 package auth.v1;
 
 import "google/protobuf/timestamp.proto";
+import "buf/validate/validate.proto";
 
 option go_package = "github.com/tech-inspire/api-contracts/api/gen/go/auth/v1;authv1";
 
@@ -13,18 +14,25 @@ service AuthService {
 message User {
   string id = 1;
   string username = 2;
-  string name = 3;
-  string avatar_url = 4;
+  string name = 3 [(buf.validate.field).string.min_len = 1];
+  optional string avatar_url = 4;
   string description = 5;
+}
+
+message RegisterRequest {
+  string email = 1;
+  string username = 2;
+  string name = 3 [(buf.validate.field).string.min_len = 1];
+  string password = 4;
 }
 
 message LoginRequest {
   oneof login {
-    string username = 1;
+    string username = 1 [(buf.validate.field).string.min_len = 1];
     string email = 2;
   }
 
-  string password = 3;
+  string password = 3 [(buf.validate.field).string.min_len = 1];
 }
 
 message LoginResponse {
@@ -36,4 +44,3 @@ message LoginResponse {
 
   User user = 5;
 }
-
