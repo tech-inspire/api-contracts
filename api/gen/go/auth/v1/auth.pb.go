@@ -1264,12 +1264,13 @@ const file_auth_v1_auth_proto_rawDesc = "" +
 	"\n" +
 	"avatar_url\x18\x04 \x01(\tH\x00R\tavatarUrl\x88\x01\x01\x12)\n" +
 	"\vdescription\x18\x05 \x01(\tB\a\xbaH\x04r\x02\x10\x01R\vdescriptionB\r\n" +
-	"\v_avatar_url\"\xf2\x01\n" +
+	"\v_avatar_url\"\x9a\x01\n" +
 	"\x0fRegisterRequest\x12\x1d\n" +
-	"\x05email\x18\x01 \x01(\tB\a\xbaH\x04r\x02`\x01R\x05email\x12G\n" +
-	"\busername\x18\x02 \x01(\tB+\xbaH(r&\x18(2\"^[a-zA-Z0-9]+([_.-]?[a-zA-Z0-9])*$R\busername\x12\x1b\n" +
-	"\x04name\x18\x03 \x01(\tB\a\xbaH\x04r\x02\x10\x01R\x04name\x12Z\n" +
-	"\bpassword\x18\x04 \x01(\tB>\xbaH;r9\x10\b\x18\x80\x0122^((?=\\S*?[A-Z])(?=\\S*?[a-z])(?=\\S*?[0-9]).{8,})\\S$R\bpassword\"\x1f\n" +
+	"\x05email\x18\x01 \x01(\tB\a\xbaH\x04r\x02`\x01R\x05email\x12#\n" +
+	"\busername\x18\x02 \x01(\tB\a\xbaH\x04r\x02\x18(R\busername\x12\x1b\n" +
+	"\x04name\x18\x03 \x01(\tB\a\xbaH\x04r\x02\x10\x01R\x04name\x12&\n" +
+	"\bpassword\x18\x04 \x01(\tB\n" +
+	"\xbaH\ar\x05\x10\b\x18\x80\x01R\bpassword\"\x1f\n" +
 	"\x1dEmailCodeConfirmationRequired\"\xcc\x01\n" +
 	"\x10RegisterResponse\x12F\n" +
 	"\x0elogin_response\x18\x01 \x01(\v2\x1d.auth.v1.SuccessLoginResponseH\x00R\rloginResponse\x12h\n" +
@@ -1278,11 +1279,12 @@ const file_auth_v1_auth_proto_rawDesc = "" +
 	"\x13ConfirmEmailRequest\x12\x1d\n" +
 	"\x05email\x18\x01 \x01(\tB\a\xbaH\x04r\x02`\x01R\x05email\x12%\n" +
 	"\x04code\x18\x02 \x01(\tB\x11\xbaH\x0er\f2\n" +
-	"^[0-9]{6}$R\x04code\"\xdf\x01\n" +
-	"\fLoginRequest\x12I\n" +
-	"\busername\x18\x01 \x01(\tB+\xbaH(r&\x18(2\"^[a-zA-Z0-9]+([_.-]?[a-zA-Z0-9])*$H\x00R\busername\x12\x1f\n" +
-	"\x05email\x18\x02 \x01(\tB\a\xbaH\x04r\x02`\x01H\x00R\x05email\x12Z\n" +
-	"\bpassword\x18\x03 \x01(\tB>\xbaH;r9\x10\b\x18\x80\x0122^((?=\\S*?[A-Z])(?=\\S*?[a-z])(?=\\S*?[0-9]).{8,})\\S$R\bpasswordB\a\n" +
+	"^[0-9]{6}$R\x04code\"\x87\x01\n" +
+	"\fLoginRequest\x12%\n" +
+	"\busername\x18\x01 \x01(\tB\a\xbaH\x04r\x02\x18(H\x00R\busername\x12\x1f\n" +
+	"\x05email\x18\x02 \x01(\tB\a\xbaH\x04r\x02`\x01H\x00R\x05email\x12&\n" +
+	"\bpassword\x18\x03 \x01(\tB\n" +
+	"\xbaH\ar\x05\x10\b\x18\x80\x01R\bpasswordB\a\n" +
 	"\x05login\"\xa9\x02\n" +
 	"\x14SuccessLoginResponse\x12!\n" +
 	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\x12Q\n" +
@@ -1302,12 +1304,13 @@ const file_auth_v1_auth_proto_rawDesc = "" +
 	"\x05email\x18\x01 \x01(\tB\a\xbaH\x04r\x02`\x01R\x05email\x12%\n" +
 	"\x04code\x18\x02 \x01(\tB\x11\xbaH\x0er\f2\n" +
 	"^[0-9]{6}$R\x04code\" \n" +
-	"\x1eCheckPasswordResetCodeResponse\"\xbf\x01\n" +
+	"\x1eCheckPasswordResetCodeResponse\"\x8b\x01\n" +
 	"\x1bConfirmPasswordResetRequest\x12\x1d\n" +
 	"\x05email\x18\x01 \x01(\tB\a\xbaH\x04r\x02`\x01R\x05email\x12%\n" +
 	"\x04code\x18\x02 \x01(\tB\x11\xbaH\x0er\f2\n" +
-	"^[0-9]{6}$R\x04code\x12Z\n" +
-	"\bpassword\x18\x03 \x01(\tB>\xbaH;r9\x10\b\x18\x80\x0122^((?=\\S*?[A-Z])(?=\\S*?[a-z])(?=\\S*?[0-9]).{8,})\\S$R\bpassword\"\x1e\n" +
+	"^[0-9]{6}$R\x04code\x12&\n" +
+	"\bpassword\x18\x03 \x01(\tB\n" +
+	"\xbaH\ar\x05\x10\b\x18\x80\x01R\bpassword\"\x1e\n" +
 	"\x1cConfirmPasswordResetResponse\"\x0e\n" +
 	"\fGetMeRequest\"4\n" +
 	"\x0fGetUserResponse\x12!\n" +

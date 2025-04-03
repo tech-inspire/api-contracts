@@ -43,12 +43,10 @@ message User {
 message RegisterRequest {
   string email = 1 [(buf.validate.field).string.email = true];
   string username = 2 [
-    (buf.validate.field).string.pattern = "^[a-zA-Z0-9]+([_.-]?[a-zA-Z0-9])*$",
     (buf.validate.field).string.max_len = 40
   ];
   string name = 3 [(buf.validate.field).string.min_len = 1];
   string password = 4 [
-    (buf.validate.field).string.pattern = "^((?=\\S*?[A-Z])(?=\\S*?[a-z])(?=\\S*?[0-9]).{8,})\\S$",
     (buf.validate.field).string.min_len = 8,
     (buf.validate.field).string.max_len = 128
   ];
@@ -71,14 +69,12 @@ message ConfirmEmailRequest {
 message LoginRequest {
   oneof login {
     string username = 1 [
-      (buf.validate.field).string.pattern = "^[a-zA-Z0-9]+([_.-]?[a-zA-Z0-9])*$",
       (buf.validate.field).string.max_len = 40
     ];
     string email = 2 [(buf.validate.field).string.email = true];
   }
 
   string password = 3 [
-    (buf.validate.field).string.pattern = "^((?=\\S*?[A-Z])(?=\\S*?[a-z])(?=\\S*?[0-9]).{8,})\\S$",
     (buf.validate.field).string.min_len = 8,
     (buf.validate.field).string.max_len = 128
   ];
@@ -119,7 +115,6 @@ message ConfirmPasswordResetRequest {
   string email = 1 [(buf.validate.field).string.email = true];
   string code = 2 [(buf.validate.field).string.pattern = "^[0-9]{6}$"];
   string password = 3 [
-    (buf.validate.field).string.pattern = "^((?=\\S*?[A-Z])(?=\\S*?[a-z])(?=\\S*?[0-9]).{8,})\\S$",
     (buf.validate.field).string.min_len = 8,
     (buf.validate.field).string.max_len = 128
   ];
