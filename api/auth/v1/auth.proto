@@ -4,6 +4,7 @@ package auth.v1;
 
 import "buf/validate/validate.proto";
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/field_mask.proto";
 
 option go_package = "github.com/tech-inspire/api-contracts/api/gen/go/auth/v1;authv1";
 
@@ -19,9 +20,13 @@ service AuthService {
   rpc ResetPassword(ResetPasswordRequest) returns (ResetPasswordResponse);
   rpc ConfirmPasswordReset(ConfirmPasswordResetRequest) returns (ConfirmPasswordResetResponse);
   rpc CheckPasswordResetCode(CheckPasswordResetCodeRequest) returns (CheckPasswordResetCodeResponse);
-  
+
   rpc GetMe(GetMeRequest) returns (GetUserResponse);
+  rpc UpdateUser(UpdateUserRequest) returns (User);
   rpc GetUser(GetUserRequest) returns (GetUserResponse);
+
+  rpc UploadUserAvatar(UploadUserAvatarRequest)returns (UploadUserAvatarResponse);
+  rpc CompleteUserAvatarUpload(CompleteUserAvatarUploadRequest) returns (CompleteUserAvatarUploadResponse);
 }
 
 message User {
@@ -130,4 +135,27 @@ message GetUserResponse {
 
 message GetUserRequest {
   string id = 1 [(buf.validate.field).string.uuid = true];
+}
+
+message UpdateUserRequest {
+  User user = 1;
+
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message UploadUserAvatarRequest {
+  int32 file_size = 1;
+  string content_type = 2;
+}
+
+message UploadUserAvatarResponse {
+  string presigned_upload_url = 1;
+}
+
+message CompleteUserAvatarUploadRequest {
+  string etag = 1;
+}
+
+message CompleteUserAvatarUploadResponse {
+  string avatar_url = 1;
 }

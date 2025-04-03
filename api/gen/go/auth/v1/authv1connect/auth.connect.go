@@ -56,8 +56,16 @@ const (
 	AuthServiceCheckPasswordResetCodeProcedure = "/auth.v1.AuthService/CheckPasswordResetCode"
 	// AuthServiceGetMeProcedure is the fully-qualified name of the AuthService's GetMe RPC.
 	AuthServiceGetMeProcedure = "/auth.v1.AuthService/GetMe"
+	// AuthServiceUpdateUserProcedure is the fully-qualified name of the AuthService's UpdateUser RPC.
+	AuthServiceUpdateUserProcedure = "/auth.v1.AuthService/UpdateUser"
 	// AuthServiceGetUserProcedure is the fully-qualified name of the AuthService's GetUser RPC.
 	AuthServiceGetUserProcedure = "/auth.v1.AuthService/GetUser"
+	// AuthServiceUploadUserAvatarProcedure is the fully-qualified name of the AuthService's
+	// UploadUserAvatar RPC.
+	AuthServiceUploadUserAvatarProcedure = "/auth.v1.AuthService/UploadUserAvatar"
+	// AuthServiceCompleteUserAvatarUploadProcedure is the fully-qualified name of the AuthService's
+	// CompleteUserAvatarUpload RPC.
+	AuthServiceCompleteUserAvatarUploadProcedure = "/auth.v1.AuthService/CompleteUserAvatarUpload"
 )
 
 // AuthServiceClient is a client for the auth.v1.AuthService service.
@@ -71,7 +79,10 @@ type AuthServiceClient interface {
 	ConfirmPasswordReset(context.Context, *connect.Request[v1.ConfirmPasswordResetRequest]) (*connect.Response[v1.ConfirmPasswordResetResponse], error)
 	CheckPasswordResetCode(context.Context, *connect.Request[v1.CheckPasswordResetCodeRequest]) (*connect.Response[v1.CheckPasswordResetCodeResponse], error)
 	GetMe(context.Context, *connect.Request[v1.GetMeRequest]) (*connect.Response[v1.GetUserResponse], error)
+	UpdateUser(context.Context, *connect.Request[v1.UpdateUserRequest]) (*connect.Response[v1.User], error)
 	GetUser(context.Context, *connect.Request[v1.GetUserRequest]) (*connect.Response[v1.GetUserResponse], error)
+	UploadUserAvatar(context.Context, *connect.Request[v1.UploadUserAvatarRequest]) (*connect.Response[v1.UploadUserAvatarResponse], error)
+	CompleteUserAvatarUpload(context.Context, *connect.Request[v1.CompleteUserAvatarUploadRequest]) (*connect.Response[v1.CompleteUserAvatarUploadResponse], error)
 }
 
 // NewAuthServiceClient constructs a client for the auth.v1.AuthService service. By default, it uses
@@ -139,10 +150,28 @@ func NewAuthServiceClient(httpClient connect.HTTPClient, baseURL string, opts ..
 			connect.WithSchema(authServiceMethods.ByName("GetMe")),
 			connect.WithClientOptions(opts...),
 		),
+		updateUser: connect.NewClient[v1.UpdateUserRequest, v1.User](
+			httpClient,
+			baseURL+AuthServiceUpdateUserProcedure,
+			connect.WithSchema(authServiceMethods.ByName("UpdateUser")),
+			connect.WithClientOptions(opts...),
+		),
 		getUser: connect.NewClient[v1.GetUserRequest, v1.GetUserResponse](
 			httpClient,
 			baseURL+AuthServiceGetUserProcedure,
 			connect.WithSchema(authServiceMethods.ByName("GetUser")),
+			connect.WithClientOptions(opts...),
+		),
+		uploadUserAvatar: connect.NewClient[v1.UploadUserAvatarRequest, v1.UploadUserAvatarResponse](
+			httpClient,
+			baseURL+AuthServiceUploadUserAvatarProcedure,
+			connect.WithSchema(authServiceMethods.ByName("UploadUserAvatar")),
+			connect.WithClientOptions(opts...),
+		),
+		completeUserAvatarUpload: connect.NewClient[v1.CompleteUserAvatarUploadRequest, v1.CompleteUserAvatarUploadResponse](
+			httpClient,
+			baseURL+AuthServiceCompleteUserAvatarUploadProcedure,
+			connect.WithSchema(authServiceMethods.ByName("CompleteUserAvatarUpload")),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -150,16 +179,19 @@ func NewAuthServiceClient(httpClient connect.HTTPClient, baseURL string, opts ..
 
 // authServiceClient implements AuthServiceClient.
 type authServiceClient struct {
-	login                  *connect.Client[v1.LoginRequest, v1.SuccessLoginResponse]
-	register               *connect.Client[v1.RegisterRequest, v1.RegisterResponse]
-	confirmEmail           *connect.Client[v1.ConfirmEmailRequest, v1.SuccessLoginResponse]
-	refreshToken           *connect.Client[v1.RefreshTokenRequest, v1.SuccessLoginResponse]
-	logout                 *connect.Client[v1.LogoutRequest, v1.LogoutResponse]
-	resetPassword          *connect.Client[v1.ResetPasswordRequest, v1.ResetPasswordResponse]
-	confirmPasswordReset   *connect.Client[v1.ConfirmPasswordResetRequest, v1.ConfirmPasswordResetResponse]
-	checkPasswordResetCode *connect.Client[v1.CheckPasswordResetCodeRequest, v1.CheckPasswordResetCodeResponse]
-	getMe                  *connect.Client[v1.GetMeRequest, v1.GetUserResponse]
-	getUser                *connect.Client[v1.GetUserRequest, v1.GetUserResponse]
+	login                    *connect.Client[v1.LoginRequest, v1.SuccessLoginResponse]
+	register                 *connect.Client[v1.RegisterRequest, v1.RegisterResponse]
+	confirmEmail             *connect.Client[v1.ConfirmEmailRequest, v1.SuccessLoginResponse]
+	refreshToken             *connect.Client[v1.RefreshTokenRequest, v1.SuccessLoginResponse]
+	logout                   *connect.Client[v1.LogoutRequest, v1.LogoutResponse]
+	resetPassword            *connect.Client[v1.ResetPasswordRequest, v1.ResetPasswordResponse]
+	confirmPasswordReset     *connect.Client[v1.ConfirmPasswordResetRequest, v1.ConfirmPasswordResetResponse]
+	checkPasswordResetCode   *connect.Client[v1.CheckPasswordResetCodeRequest, v1.CheckPasswordResetCodeResponse]
+	getMe                    *connect.Client[v1.GetMeRequest, v1.GetUserResponse]
+	updateUser               *connect.Client[v1.UpdateUserRequest, v1.User]
+	getUser                  *connect.Client[v1.GetUserRequest, v1.GetUserResponse]
+	uploadUserAvatar         *connect.Client[v1.UploadUserAvatarRequest, v1.UploadUserAvatarResponse]
+	completeUserAvatarUpload *connect.Client[v1.CompleteUserAvatarUploadRequest, v1.CompleteUserAvatarUploadResponse]
 }
 
 // Login calls auth.v1.AuthService.Login.
@@ -207,9 +239,24 @@ func (c *authServiceClient) GetMe(ctx context.Context, req *connect.Request[v1.G
 	return c.getMe.CallUnary(ctx, req)
 }
 
+// UpdateUser calls auth.v1.AuthService.UpdateUser.
+func (c *authServiceClient) UpdateUser(ctx context.Context, req *connect.Request[v1.UpdateUserRequest]) (*connect.Response[v1.User], error) {
+	return c.updateUser.CallUnary(ctx, req)
+}
+
 // GetUser calls auth.v1.AuthService.GetUser.
 func (c *authServiceClient) GetUser(ctx context.Context, req *connect.Request[v1.GetUserRequest]) (*connect.Response[v1.GetUserResponse], error) {
 	return c.getUser.CallUnary(ctx, req)
+}
+
+// UploadUserAvatar calls auth.v1.AuthService.UploadUserAvatar.
+func (c *authServiceClient) UploadUserAvatar(ctx context.Context, req *connect.Request[v1.UploadUserAvatarRequest]) (*connect.Response[v1.UploadUserAvatarResponse], error) {
+	return c.uploadUserAvatar.CallUnary(ctx, req)
+}
+
+// CompleteUserAvatarUpload calls auth.v1.AuthService.CompleteUserAvatarUpload.
+func (c *authServiceClient) CompleteUserAvatarUpload(ctx context.Context, req *connect.Request[v1.CompleteUserAvatarUploadRequest]) (*connect.Response[v1.CompleteUserAvatarUploadResponse], error) {
+	return c.completeUserAvatarUpload.CallUnary(ctx, req)
 }
 
 // AuthServiceHandler is an implementation of the auth.v1.AuthService service.
@@ -223,7 +270,10 @@ type AuthServiceHandler interface {
 	ConfirmPasswordReset(context.Context, *connect.Request[v1.ConfirmPasswordResetRequest]) (*connect.Response[v1.ConfirmPasswordResetResponse], error)
 	CheckPasswordResetCode(context.Context, *connect.Request[v1.CheckPasswordResetCodeRequest]) (*connect.Response[v1.CheckPasswordResetCodeResponse], error)
 	GetMe(context.Context, *connect.Request[v1.GetMeRequest]) (*connect.Response[v1.GetUserResponse], error)
+	UpdateUser(context.Context, *connect.Request[v1.UpdateUserRequest]) (*connect.Response[v1.User], error)
 	GetUser(context.Context, *connect.Request[v1.GetUserRequest]) (*connect.Response[v1.GetUserResponse], error)
+	UploadUserAvatar(context.Context, *connect.Request[v1.UploadUserAvatarRequest]) (*connect.Response[v1.UploadUserAvatarResponse], error)
+	CompleteUserAvatarUpload(context.Context, *connect.Request[v1.CompleteUserAvatarUploadRequest]) (*connect.Response[v1.CompleteUserAvatarUploadResponse], error)
 }
 
 // NewAuthServiceHandler builds an HTTP handler from the service implementation. It returns the path
@@ -287,10 +337,28 @@ func NewAuthServiceHandler(svc AuthServiceHandler, opts ...connect.HandlerOption
 		connect.WithSchema(authServiceMethods.ByName("GetMe")),
 		connect.WithHandlerOptions(opts...),
 	)
+	authServiceUpdateUserHandler := connect.NewUnaryHandler(
+		AuthServiceUpdateUserProcedure,
+		svc.UpdateUser,
+		connect.WithSchema(authServiceMethods.ByName("UpdateUser")),
+		connect.WithHandlerOptions(opts...),
+	)
 	authServiceGetUserHandler := connect.NewUnaryHandler(
 		AuthServiceGetUserProcedure,
 		svc.GetUser,
 		connect.WithSchema(authServiceMethods.ByName("GetUser")),
+		connect.WithHandlerOptions(opts...),
+	)
+	authServiceUploadUserAvatarHandler := connect.NewUnaryHandler(
+		AuthServiceUploadUserAvatarProcedure,
+		svc.UploadUserAvatar,
+		connect.WithSchema(authServiceMethods.ByName("UploadUserAvatar")),
+		connect.WithHandlerOptions(opts...),
+	)
+	authServiceCompleteUserAvatarUploadHandler := connect.NewUnaryHandler(
+		AuthServiceCompleteUserAvatarUploadProcedure,
+		svc.CompleteUserAvatarUpload,
+		connect.WithSchema(authServiceMethods.ByName("CompleteUserAvatarUpload")),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/auth.v1.AuthService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -313,8 +381,14 @@ func NewAuthServiceHandler(svc AuthServiceHandler, opts ...connect.HandlerOption
 			authServiceCheckPasswordResetCodeHandler.ServeHTTP(w, r)
 		case AuthServiceGetMeProcedure:
 			authServiceGetMeHandler.ServeHTTP(w, r)
+		case AuthServiceUpdateUserProcedure:
+			authServiceUpdateUserHandler.ServeHTTP(w, r)
 		case AuthServiceGetUserProcedure:
 			authServiceGetUserHandler.ServeHTTP(w, r)
+		case AuthServiceUploadUserAvatarProcedure:
+			authServiceUploadUserAvatarHandler.ServeHTTP(w, r)
+		case AuthServiceCompleteUserAvatarUploadProcedure:
+			authServiceCompleteUserAvatarUploadHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -360,6 +434,18 @@ func (UnimplementedAuthServiceHandler) GetMe(context.Context, *connect.Request[v
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("auth.v1.AuthService.GetMe is not implemented"))
 }
 
+func (UnimplementedAuthServiceHandler) UpdateUser(context.Context, *connect.Request[v1.UpdateUserRequest]) (*connect.Response[v1.User], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("auth.v1.AuthService.UpdateUser is not implemented"))
+}
+
 func (UnimplementedAuthServiceHandler) GetUser(context.Context, *connect.Request[v1.GetUserRequest]) (*connect.Response[v1.GetUserResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("auth.v1.AuthService.GetUser is not implemented"))
+}
+
+func (UnimplementedAuthServiceHandler) UploadUserAvatar(context.Context, *connect.Request[v1.UploadUserAvatarRequest]) (*connect.Response[v1.UploadUserAvatarResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("auth.v1.AuthService.UploadUserAvatar is not implemented"))
+}
+
+func (UnimplementedAuthServiceHandler) CompleteUserAvatarUpload(context.Context, *connect.Request[v1.CompleteUserAvatarUploadRequest]) (*connect.Response[v1.CompleteUserAvatarUploadResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("auth.v1.AuthService.CompleteUserAvatarUpload is not implemented"))
 }
