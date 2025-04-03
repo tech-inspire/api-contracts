@@ -35,11 +35,43 @@ const (
 const (
 	// AuthServiceLoginProcedure is the fully-qualified name of the AuthService's Login RPC.
 	AuthServiceLoginProcedure = "/auth.v1.AuthService/Login"
+	// AuthServiceRegisterProcedure is the fully-qualified name of the AuthService's Register RPC.
+	AuthServiceRegisterProcedure = "/auth.v1.AuthService/Register"
+	// AuthServiceConfirmEmailProcedure is the fully-qualified name of the AuthService's ConfirmEmail
+	// RPC.
+	AuthServiceConfirmEmailProcedure = "/auth.v1.AuthService/ConfirmEmail"
+	// AuthServiceRefreshTokenProcedure is the fully-qualified name of the AuthService's RefreshToken
+	// RPC.
+	AuthServiceRefreshTokenProcedure = "/auth.v1.AuthService/RefreshToken"
+	// AuthServiceLogoutProcedure is the fully-qualified name of the AuthService's Logout RPC.
+	AuthServiceLogoutProcedure = "/auth.v1.AuthService/Logout"
+	// AuthServiceResetPasswordProcedure is the fully-qualified name of the AuthService's ResetPassword
+	// RPC.
+	AuthServiceResetPasswordProcedure = "/auth.v1.AuthService/ResetPassword"
+	// AuthServiceConfirmPasswordResetProcedure is the fully-qualified name of the AuthService's
+	// ConfirmPasswordReset RPC.
+	AuthServiceConfirmPasswordResetProcedure = "/auth.v1.AuthService/ConfirmPasswordReset"
+	// AuthServiceCheckPasswordResetCodeProcedure is the fully-qualified name of the AuthService's
+	// CheckPasswordResetCode RPC.
+	AuthServiceCheckPasswordResetCodeProcedure = "/auth.v1.AuthService/CheckPasswordResetCode"
+	// AuthServiceGetMeProcedure is the fully-qualified name of the AuthService's GetMe RPC.
+	AuthServiceGetMeProcedure = "/auth.v1.AuthService/GetMe"
+	// AuthServiceGetUserProcedure is the fully-qualified name of the AuthService's GetUser RPC.
+	AuthServiceGetUserProcedure = "/auth.v1.AuthService/GetUser"
 )
 
 // AuthServiceClient is a client for the auth.v1.AuthService service.
 type AuthServiceClient interface {
-	Login(context.Context, *connect.Request[v1.LoginRequest]) (*connect.Response[v1.LoginResponse], error)
+	Login(context.Context, *connect.Request[v1.LoginRequest]) (*connect.Response[v1.SuccessLoginResponse], error)
+	Register(context.Context, *connect.Request[v1.RegisterRequest]) (*connect.Response[v1.RegisterResponse], error)
+	ConfirmEmail(context.Context, *connect.Request[v1.ConfirmEmailRequest]) (*connect.Response[v1.SuccessLoginResponse], error)
+	RefreshToken(context.Context, *connect.Request[v1.RefreshTokenRequest]) (*connect.Response[v1.SuccessLoginResponse], error)
+	Logout(context.Context, *connect.Request[v1.LogoutRequest]) (*connect.Response[v1.LogoutResponse], error)
+	ResetPassword(context.Context, *connect.Request[v1.ResetPasswordRequest]) (*connect.Response[v1.ResetPasswordResponse], error)
+	ConfirmPasswordReset(context.Context, *connect.Request[v1.ConfirmPasswordResetRequest]) (*connect.Response[v1.ConfirmPasswordResetResponse], error)
+	CheckPasswordResetCode(context.Context, *connect.Request[v1.CheckPasswordResetCodeRequest]) (*connect.Response[v1.CheckPasswordResetCodeResponse], error)
+	GetMe(context.Context, *connect.Request[v1.GetMeRequest]) (*connect.Response[v1.GetUserResponse], error)
+	GetUser(context.Context, *connect.Request[v1.GetUserRequest]) (*connect.Response[v1.GetUserResponse], error)
 }
 
 // NewAuthServiceClient constructs a client for the auth.v1.AuthService service. By default, it uses
@@ -53,10 +85,64 @@ func NewAuthServiceClient(httpClient connect.HTTPClient, baseURL string, opts ..
 	baseURL = strings.TrimRight(baseURL, "/")
 	authServiceMethods := v1.File_auth_v1_auth_proto.Services().ByName("AuthService").Methods()
 	return &authServiceClient{
-		login: connect.NewClient[v1.LoginRequest, v1.LoginResponse](
+		login: connect.NewClient[v1.LoginRequest, v1.SuccessLoginResponse](
 			httpClient,
 			baseURL+AuthServiceLoginProcedure,
 			connect.WithSchema(authServiceMethods.ByName("Login")),
+			connect.WithClientOptions(opts...),
+		),
+		register: connect.NewClient[v1.RegisterRequest, v1.RegisterResponse](
+			httpClient,
+			baseURL+AuthServiceRegisterProcedure,
+			connect.WithSchema(authServiceMethods.ByName("Register")),
+			connect.WithClientOptions(opts...),
+		),
+		confirmEmail: connect.NewClient[v1.ConfirmEmailRequest, v1.SuccessLoginResponse](
+			httpClient,
+			baseURL+AuthServiceConfirmEmailProcedure,
+			connect.WithSchema(authServiceMethods.ByName("ConfirmEmail")),
+			connect.WithClientOptions(opts...),
+		),
+		refreshToken: connect.NewClient[v1.RefreshTokenRequest, v1.SuccessLoginResponse](
+			httpClient,
+			baseURL+AuthServiceRefreshTokenProcedure,
+			connect.WithSchema(authServiceMethods.ByName("RefreshToken")),
+			connect.WithClientOptions(opts...),
+		),
+		logout: connect.NewClient[v1.LogoutRequest, v1.LogoutResponse](
+			httpClient,
+			baseURL+AuthServiceLogoutProcedure,
+			connect.WithSchema(authServiceMethods.ByName("Logout")),
+			connect.WithClientOptions(opts...),
+		),
+		resetPassword: connect.NewClient[v1.ResetPasswordRequest, v1.ResetPasswordResponse](
+			httpClient,
+			baseURL+AuthServiceResetPasswordProcedure,
+			connect.WithSchema(authServiceMethods.ByName("ResetPassword")),
+			connect.WithClientOptions(opts...),
+		),
+		confirmPasswordReset: connect.NewClient[v1.ConfirmPasswordResetRequest, v1.ConfirmPasswordResetResponse](
+			httpClient,
+			baseURL+AuthServiceConfirmPasswordResetProcedure,
+			connect.WithSchema(authServiceMethods.ByName("ConfirmPasswordReset")),
+			connect.WithClientOptions(opts...),
+		),
+		checkPasswordResetCode: connect.NewClient[v1.CheckPasswordResetCodeRequest, v1.CheckPasswordResetCodeResponse](
+			httpClient,
+			baseURL+AuthServiceCheckPasswordResetCodeProcedure,
+			connect.WithSchema(authServiceMethods.ByName("CheckPasswordResetCode")),
+			connect.WithClientOptions(opts...),
+		),
+		getMe: connect.NewClient[v1.GetMeRequest, v1.GetUserResponse](
+			httpClient,
+			baseURL+AuthServiceGetMeProcedure,
+			connect.WithSchema(authServiceMethods.ByName("GetMe")),
+			connect.WithClientOptions(opts...),
+		),
+		getUser: connect.NewClient[v1.GetUserRequest, v1.GetUserResponse](
+			httpClient,
+			baseURL+AuthServiceGetUserProcedure,
+			connect.WithSchema(authServiceMethods.ByName("GetUser")),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -64,17 +150,80 @@ func NewAuthServiceClient(httpClient connect.HTTPClient, baseURL string, opts ..
 
 // authServiceClient implements AuthServiceClient.
 type authServiceClient struct {
-	login *connect.Client[v1.LoginRequest, v1.LoginResponse]
+	login                  *connect.Client[v1.LoginRequest, v1.SuccessLoginResponse]
+	register               *connect.Client[v1.RegisterRequest, v1.RegisterResponse]
+	confirmEmail           *connect.Client[v1.ConfirmEmailRequest, v1.SuccessLoginResponse]
+	refreshToken           *connect.Client[v1.RefreshTokenRequest, v1.SuccessLoginResponse]
+	logout                 *connect.Client[v1.LogoutRequest, v1.LogoutResponse]
+	resetPassword          *connect.Client[v1.ResetPasswordRequest, v1.ResetPasswordResponse]
+	confirmPasswordReset   *connect.Client[v1.ConfirmPasswordResetRequest, v1.ConfirmPasswordResetResponse]
+	checkPasswordResetCode *connect.Client[v1.CheckPasswordResetCodeRequest, v1.CheckPasswordResetCodeResponse]
+	getMe                  *connect.Client[v1.GetMeRequest, v1.GetUserResponse]
+	getUser                *connect.Client[v1.GetUserRequest, v1.GetUserResponse]
 }
 
 // Login calls auth.v1.AuthService.Login.
-func (c *authServiceClient) Login(ctx context.Context, req *connect.Request[v1.LoginRequest]) (*connect.Response[v1.LoginResponse], error) {
+func (c *authServiceClient) Login(ctx context.Context, req *connect.Request[v1.LoginRequest]) (*connect.Response[v1.SuccessLoginResponse], error) {
 	return c.login.CallUnary(ctx, req)
+}
+
+// Register calls auth.v1.AuthService.Register.
+func (c *authServiceClient) Register(ctx context.Context, req *connect.Request[v1.RegisterRequest]) (*connect.Response[v1.RegisterResponse], error) {
+	return c.register.CallUnary(ctx, req)
+}
+
+// ConfirmEmail calls auth.v1.AuthService.ConfirmEmail.
+func (c *authServiceClient) ConfirmEmail(ctx context.Context, req *connect.Request[v1.ConfirmEmailRequest]) (*connect.Response[v1.SuccessLoginResponse], error) {
+	return c.confirmEmail.CallUnary(ctx, req)
+}
+
+// RefreshToken calls auth.v1.AuthService.RefreshToken.
+func (c *authServiceClient) RefreshToken(ctx context.Context, req *connect.Request[v1.RefreshTokenRequest]) (*connect.Response[v1.SuccessLoginResponse], error) {
+	return c.refreshToken.CallUnary(ctx, req)
+}
+
+// Logout calls auth.v1.AuthService.Logout.
+func (c *authServiceClient) Logout(ctx context.Context, req *connect.Request[v1.LogoutRequest]) (*connect.Response[v1.LogoutResponse], error) {
+	return c.logout.CallUnary(ctx, req)
+}
+
+// ResetPassword calls auth.v1.AuthService.ResetPassword.
+func (c *authServiceClient) ResetPassword(ctx context.Context, req *connect.Request[v1.ResetPasswordRequest]) (*connect.Response[v1.ResetPasswordResponse], error) {
+	return c.resetPassword.CallUnary(ctx, req)
+}
+
+// ConfirmPasswordReset calls auth.v1.AuthService.ConfirmPasswordReset.
+func (c *authServiceClient) ConfirmPasswordReset(ctx context.Context, req *connect.Request[v1.ConfirmPasswordResetRequest]) (*connect.Response[v1.ConfirmPasswordResetResponse], error) {
+	return c.confirmPasswordReset.CallUnary(ctx, req)
+}
+
+// CheckPasswordResetCode calls auth.v1.AuthService.CheckPasswordResetCode.
+func (c *authServiceClient) CheckPasswordResetCode(ctx context.Context, req *connect.Request[v1.CheckPasswordResetCodeRequest]) (*connect.Response[v1.CheckPasswordResetCodeResponse], error) {
+	return c.checkPasswordResetCode.CallUnary(ctx, req)
+}
+
+// GetMe calls auth.v1.AuthService.GetMe.
+func (c *authServiceClient) GetMe(ctx context.Context, req *connect.Request[v1.GetMeRequest]) (*connect.Response[v1.GetUserResponse], error) {
+	return c.getMe.CallUnary(ctx, req)
+}
+
+// GetUser calls auth.v1.AuthService.GetUser.
+func (c *authServiceClient) GetUser(ctx context.Context, req *connect.Request[v1.GetUserRequest]) (*connect.Response[v1.GetUserResponse], error) {
+	return c.getUser.CallUnary(ctx, req)
 }
 
 // AuthServiceHandler is an implementation of the auth.v1.AuthService service.
 type AuthServiceHandler interface {
-	Login(context.Context, *connect.Request[v1.LoginRequest]) (*connect.Response[v1.LoginResponse], error)
+	Login(context.Context, *connect.Request[v1.LoginRequest]) (*connect.Response[v1.SuccessLoginResponse], error)
+	Register(context.Context, *connect.Request[v1.RegisterRequest]) (*connect.Response[v1.RegisterResponse], error)
+	ConfirmEmail(context.Context, *connect.Request[v1.ConfirmEmailRequest]) (*connect.Response[v1.SuccessLoginResponse], error)
+	RefreshToken(context.Context, *connect.Request[v1.RefreshTokenRequest]) (*connect.Response[v1.SuccessLoginResponse], error)
+	Logout(context.Context, *connect.Request[v1.LogoutRequest]) (*connect.Response[v1.LogoutResponse], error)
+	ResetPassword(context.Context, *connect.Request[v1.ResetPasswordRequest]) (*connect.Response[v1.ResetPasswordResponse], error)
+	ConfirmPasswordReset(context.Context, *connect.Request[v1.ConfirmPasswordResetRequest]) (*connect.Response[v1.ConfirmPasswordResetResponse], error)
+	CheckPasswordResetCode(context.Context, *connect.Request[v1.CheckPasswordResetCodeRequest]) (*connect.Response[v1.CheckPasswordResetCodeResponse], error)
+	GetMe(context.Context, *connect.Request[v1.GetMeRequest]) (*connect.Response[v1.GetUserResponse], error)
+	GetUser(context.Context, *connect.Request[v1.GetUserRequest]) (*connect.Response[v1.GetUserResponse], error)
 }
 
 // NewAuthServiceHandler builds an HTTP handler from the service implementation. It returns the path
@@ -90,10 +239,82 @@ func NewAuthServiceHandler(svc AuthServiceHandler, opts ...connect.HandlerOption
 		connect.WithSchema(authServiceMethods.ByName("Login")),
 		connect.WithHandlerOptions(opts...),
 	)
+	authServiceRegisterHandler := connect.NewUnaryHandler(
+		AuthServiceRegisterProcedure,
+		svc.Register,
+		connect.WithSchema(authServiceMethods.ByName("Register")),
+		connect.WithHandlerOptions(opts...),
+	)
+	authServiceConfirmEmailHandler := connect.NewUnaryHandler(
+		AuthServiceConfirmEmailProcedure,
+		svc.ConfirmEmail,
+		connect.WithSchema(authServiceMethods.ByName("ConfirmEmail")),
+		connect.WithHandlerOptions(opts...),
+	)
+	authServiceRefreshTokenHandler := connect.NewUnaryHandler(
+		AuthServiceRefreshTokenProcedure,
+		svc.RefreshToken,
+		connect.WithSchema(authServiceMethods.ByName("RefreshToken")),
+		connect.WithHandlerOptions(opts...),
+	)
+	authServiceLogoutHandler := connect.NewUnaryHandler(
+		AuthServiceLogoutProcedure,
+		svc.Logout,
+		connect.WithSchema(authServiceMethods.ByName("Logout")),
+		connect.WithHandlerOptions(opts...),
+	)
+	authServiceResetPasswordHandler := connect.NewUnaryHandler(
+		AuthServiceResetPasswordProcedure,
+		svc.ResetPassword,
+		connect.WithSchema(authServiceMethods.ByName("ResetPassword")),
+		connect.WithHandlerOptions(opts...),
+	)
+	authServiceConfirmPasswordResetHandler := connect.NewUnaryHandler(
+		AuthServiceConfirmPasswordResetProcedure,
+		svc.ConfirmPasswordReset,
+		connect.WithSchema(authServiceMethods.ByName("ConfirmPasswordReset")),
+		connect.WithHandlerOptions(opts...),
+	)
+	authServiceCheckPasswordResetCodeHandler := connect.NewUnaryHandler(
+		AuthServiceCheckPasswordResetCodeProcedure,
+		svc.CheckPasswordResetCode,
+		connect.WithSchema(authServiceMethods.ByName("CheckPasswordResetCode")),
+		connect.WithHandlerOptions(opts...),
+	)
+	authServiceGetMeHandler := connect.NewUnaryHandler(
+		AuthServiceGetMeProcedure,
+		svc.GetMe,
+		connect.WithSchema(authServiceMethods.ByName("GetMe")),
+		connect.WithHandlerOptions(opts...),
+	)
+	authServiceGetUserHandler := connect.NewUnaryHandler(
+		AuthServiceGetUserProcedure,
+		svc.GetUser,
+		connect.WithSchema(authServiceMethods.ByName("GetUser")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/auth.v1.AuthService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case AuthServiceLoginProcedure:
 			authServiceLoginHandler.ServeHTTP(w, r)
+		case AuthServiceRegisterProcedure:
+			authServiceRegisterHandler.ServeHTTP(w, r)
+		case AuthServiceConfirmEmailProcedure:
+			authServiceConfirmEmailHandler.ServeHTTP(w, r)
+		case AuthServiceRefreshTokenProcedure:
+			authServiceRefreshTokenHandler.ServeHTTP(w, r)
+		case AuthServiceLogoutProcedure:
+			authServiceLogoutHandler.ServeHTTP(w, r)
+		case AuthServiceResetPasswordProcedure:
+			authServiceResetPasswordHandler.ServeHTTP(w, r)
+		case AuthServiceConfirmPasswordResetProcedure:
+			authServiceConfirmPasswordResetHandler.ServeHTTP(w, r)
+		case AuthServiceCheckPasswordResetCodeProcedure:
+			authServiceCheckPasswordResetCodeHandler.ServeHTTP(w, r)
+		case AuthServiceGetMeProcedure:
+			authServiceGetMeHandler.ServeHTTP(w, r)
+		case AuthServiceGetUserProcedure:
+			authServiceGetUserHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -103,6 +324,42 @@ func NewAuthServiceHandler(svc AuthServiceHandler, opts ...connect.HandlerOption
 // UnimplementedAuthServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedAuthServiceHandler struct{}
 
-func (UnimplementedAuthServiceHandler) Login(context.Context, *connect.Request[v1.LoginRequest]) (*connect.Response[v1.LoginResponse], error) {
+func (UnimplementedAuthServiceHandler) Login(context.Context, *connect.Request[v1.LoginRequest]) (*connect.Response[v1.SuccessLoginResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("auth.v1.AuthService.Login is not implemented"))
+}
+
+func (UnimplementedAuthServiceHandler) Register(context.Context, *connect.Request[v1.RegisterRequest]) (*connect.Response[v1.RegisterResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("auth.v1.AuthService.Register is not implemented"))
+}
+
+func (UnimplementedAuthServiceHandler) ConfirmEmail(context.Context, *connect.Request[v1.ConfirmEmailRequest]) (*connect.Response[v1.SuccessLoginResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("auth.v1.AuthService.ConfirmEmail is not implemented"))
+}
+
+func (UnimplementedAuthServiceHandler) RefreshToken(context.Context, *connect.Request[v1.RefreshTokenRequest]) (*connect.Response[v1.SuccessLoginResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("auth.v1.AuthService.RefreshToken is not implemented"))
+}
+
+func (UnimplementedAuthServiceHandler) Logout(context.Context, *connect.Request[v1.LogoutRequest]) (*connect.Response[v1.LogoutResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("auth.v1.AuthService.Logout is not implemented"))
+}
+
+func (UnimplementedAuthServiceHandler) ResetPassword(context.Context, *connect.Request[v1.ResetPasswordRequest]) (*connect.Response[v1.ResetPasswordResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("auth.v1.AuthService.ResetPassword is not implemented"))
+}
+
+func (UnimplementedAuthServiceHandler) ConfirmPasswordReset(context.Context, *connect.Request[v1.ConfirmPasswordResetRequest]) (*connect.Response[v1.ConfirmPasswordResetResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("auth.v1.AuthService.ConfirmPasswordReset is not implemented"))
+}
+
+func (UnimplementedAuthServiceHandler) CheckPasswordResetCode(context.Context, *connect.Request[v1.CheckPasswordResetCodeRequest]) (*connect.Response[v1.CheckPasswordResetCodeResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("auth.v1.AuthService.CheckPasswordResetCode is not implemented"))
+}
+
+func (UnimplementedAuthServiceHandler) GetMe(context.Context, *connect.Request[v1.GetMeRequest]) (*connect.Response[v1.GetUserResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("auth.v1.AuthService.GetMe is not implemented"))
+}
+
+func (UnimplementedAuthServiceHandler) GetUser(context.Context, *connect.Request[v1.GetUserRequest]) (*connect.Response[v1.GetUserResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("auth.v1.AuthService.GetUser is not implemented"))
 }

@@ -2,45 +2,132 @@ syntax = "proto3";
 
 package auth.v1;
 
-import "google/protobuf/timestamp.proto";
 import "buf/validate/validate.proto";
+import "google/protobuf/timestamp.proto";
 
 option go_package = "github.com/tech-inspire/api-contracts/api/gen/go/auth/v1;authv1";
 
 service AuthService {
-  rpc Login(LoginRequest) returns (LoginResponse) {}
+  rpc Login(LoginRequest) returns (SuccessLoginResponse);
+
+  rpc Register(RegisterRequest) returns (RegisterResponse);
+  rpc ConfirmEmail(ConfirmEmailRequest) returns (SuccessLoginResponse);
+
+  rpc RefreshToken(RefreshTokenRequest) returns (SuccessLoginResponse);
+  rpc Logout(LogoutRequest) returns (LogoutResponse);
+
+  rpc ResetPassword(ResetPasswordRequest) returns (ResetPasswordResponse);
+  rpc ConfirmPasswordReset(ConfirmPasswordResetRequest) returns (ConfirmPasswordResetResponse);
+  rpc CheckPasswordResetCode(CheckPasswordResetCodeRequest) returns (CheckPasswordResetCodeResponse);
+  
+  rpc GetMe(GetMeRequest) returns (GetUserResponse);
+  rpc GetUser(GetUserRequest) returns (GetUserResponse);
 }
 
 message User {
-  string id = 1;
-  string username = 2;
+  string id = 1 [(buf.validate.field).string.uuid = true];
+  string username = 2 [
+    (buf.validate.field).string.pattern = "^[a-zA-Z0-9]+([_.-]?[a-zA-Z0-9])*$",
+    (buf.validate.field).string.max_len = 40
+  ];
   string name = 3 [(buf.validate.field).string.min_len = 1];
   optional string avatar_url = 4;
-  string description = 5;
+  string description = 5 [(buf.validate.field).string.min_len = 1];
 }
 
 message RegisterRequest {
-  string email = 1;
-  string username = 2;
+  string email = 1 [(buf.validate.field).string.email = true];
+  string username = 2 [
+    (buf.validate.field).string.pattern = "^[a-zA-Z0-9]+([_.-]?[a-zA-Z0-9])*$",
+    (buf.validate.field).string.max_len = 40
+  ];
   string name = 3 [(buf.validate.field).string.min_len = 1];
-  string password = 4;
+  string password = 4 [
+    (buf.validate.field).string.pattern = "^((?=\\S*?[A-Z])(?=\\S*?[a-z])(?=\\S*?[0-9]).{8,})\\S$",
+    (buf.validate.field).string.min_len = 8,
+    (buf.validate.field).string.max_len = 128
+  ];
+}
+
+message EmailCodeConfirmationRequired {}
+
+message RegisterResponse {
+  oneof flow {
+    SuccessLoginResponse login_response = 1;
+    EmailCodeConfirmationRequired email_confirmation_required = 2;
+  }
+}
+
+message ConfirmEmailRequest {
+  string email = 1 [(buf.validate.field).string.email = true];
+  string code = 2 [(buf.validate.field).string.pattern = "^[0-9]{6}$"];
 }
 
 message LoginRequest {
   oneof login {
-    string username = 1 [(buf.validate.field).string.min_len = 1];
-    string email = 2;
+    string username = 1 [
+      (buf.validate.field).string.pattern = "^[a-zA-Z0-9]+([_.-]?[a-zA-Z0-9])*$",
+      (buf.validate.field).string.max_len = 40
+    ];
+    string email = 2 [(buf.validate.field).string.email = true];
   }
 
-  string password = 3 [(buf.validate.field).string.min_len = 1];
+  string password = 3 [
+    (buf.validate.field).string.pattern = "^((?=\\S*?[A-Z])(?=\\S*?[a-z])(?=\\S*?[0-9]).{8,})\\S$",
+    (buf.validate.field).string.min_len = 8,
+    (buf.validate.field).string.max_len = 128
+  ];
 }
 
-message LoginResponse {
+message SuccessLoginResponse {
   string access_token = 1;
   google.protobuf.Timestamp access_token_expires_at = 2;
-
   string refresh_token = 3;
   google.protobuf.Timestamp refresh_token_expires_at = 4;
-
   User user = 5;
+}
+
+message RefreshTokenRequest {
+  string refresh_token = 1 [(buf.validate.field).string.min_len = 1];
+}
+
+message LogoutRequest {
+  string refresh_token = 1 [(buf.validate.field).string.min_len = 1];
+}
+
+message LogoutResponse {}
+
+message ResetPasswordRequest {
+  string email = 1 [(buf.validate.field).string.email = true];
+}
+
+message ResetPasswordResponse {}
+
+message CheckPasswordResetCodeRequest {
+  string email = 1 [(buf.validate.field).string.email = true];
+  string code = 2 [(buf.validate.field).string.pattern = "^[0-9]{6}$"];
+}
+
+message CheckPasswordResetCodeResponse {}
+
+message ConfirmPasswordResetRequest {
+  string email = 1 [(buf.validate.field).string.email = true];
+  string code = 2 [(buf.validate.field).string.pattern = "^[0-9]{6}$"];
+  string password = 3 [
+    (buf.validate.field).string.pattern = "^((?=\\S*?[A-Z])(?=\\S*?[a-z])(?=\\S*?[0-9]).{8,})\\S$",
+    (buf.validate.field).string.min_len = 8,
+    (buf.validate.field).string.max_len = 128
+  ];
+}
+
+message ConfirmPasswordResetResponse {}
+
+message GetMeRequest {}
+
+message GetUserResponse {
+  User user = 1;
+}
+
+message GetUserRequest {
+  string id = 1 [(buf.validate.field).string.uuid = true];
 }

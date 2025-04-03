@@ -1,15 +1,13 @@
 version: v2
 plugins:
-  - remote: buf.build/protocolbuffers/go
+  - local: protoc-gen-go
     out: gen/go
     opt: paths=source_relative
-
-  - remote: buf.build/connectrpc/go
+  - local: protoc-gen-connect-go
     out: gen/go
     opt: paths=source_relative
-
   # This will invoke protoc-gen-es and write output to src/gen
-  - remote: buf.build/bufbuild/es
+  - local: protoc-gen-es
     out: gen/ts
     # Also generate any imported dependencies
     include_imports: true
