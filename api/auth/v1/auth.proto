@@ -3,8 +3,8 @@ syntax = "proto3";
 package auth.v1;
 
 import "buf/validate/validate.proto";
-import "google/protobuf/timestamp.proto";
 import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
 
 option go_package = "github.com/tech-inspire/api-contracts/api/gen/go/auth/v1;authv1";
 
@@ -25,8 +25,7 @@ service AuthService {
   rpc UpdateUser(UpdateUserRequest) returns (User);
   rpc GetUser(GetUserRequest) returns (GetUserResponse);
 
-  rpc UploadUserAvatar(UploadUserAvatarRequest)returns (UploadUserAvatarResponse);
-  rpc CompleteUserAvatarUpload(CompleteUserAvatarUploadRequest) returns (CompleteUserAvatarUploadResponse);
+  rpc UploadAvatar(UploadUserAvatarRequest) returns (UploadUserAvatarResponse);
 }
 
 message User {
@@ -42,9 +41,7 @@ message User {
 
 message RegisterRequest {
   string email = 1 [(buf.validate.field).string.email = true];
-  string username = 2 [
-    (buf.validate.field).string.max_len = 40
-  ];
+  string username = 2 [(buf.validate.field).string.max_len = 40];
   string name = 3 [(buf.validate.field).string.min_len = 1];
   string password = 4 [
     (buf.validate.field).string.min_len = 8,
@@ -68,9 +65,7 @@ message ConfirmEmailRequest {
 
 message LoginRequest {
   oneof login {
-    string username = 1 [
-      (buf.validate.field).string.max_len = 40
-    ];
+    string username = 1 [(buf.validate.field).string.max_len = 40];
     string email = 2 [(buf.validate.field).string.email = true];
   }
 
@@ -139,18 +134,8 @@ message UpdateUserRequest {
 }
 
 message UploadUserAvatarRequest {
-  int32 file_size = 1;
-  string content_type = 2;
+  string content_type = 1;
+  bytes content = 2;
 }
 
-message UploadUserAvatarResponse {
-  string presigned_upload_url = 1;
-}
-
-message CompleteUserAvatarUploadRequest {
-  string etag = 1;
-}
-
-message CompleteUserAvatarUploadResponse {
-  string avatar_url = 1;
-}
+message UploadUserAvatarResponse {}

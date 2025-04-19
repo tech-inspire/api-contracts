@@ -1070,8 +1070,8 @@ func (x *UpdateUserRequest) GetUpdateMask() *fieldmaskpb.FieldMask {
 
 type UploadUserAvatarRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	FileSize      int32                  `protobuf:"varint,1,opt,name=file_size,json=fileSize,proto3" json:"file_size,omitempty"`
-	ContentType   string                 `protobuf:"bytes,2,opt,name=content_type,json=contentType,proto3" json:"content_type,omitempty"`
+	ContentType   string                 `protobuf:"bytes,1,opt,name=content_type,json=contentType,proto3" json:"content_type,omitempty"`
+	Content       []byte                 `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1106,13 +1106,6 @@ func (*UploadUserAvatarRequest) Descriptor() ([]byte, []int) {
 	return file_auth_v1_auth_proto_rawDescGZIP(), []int{20}
 }
 
-func (x *UploadUserAvatarRequest) GetFileSize() int32 {
-	if x != nil {
-		return x.FileSize
-	}
-	return 0
-}
-
 func (x *UploadUserAvatarRequest) GetContentType() string {
 	if x != nil {
 		return x.ContentType
@@ -1120,11 +1113,17 @@ func (x *UploadUserAvatarRequest) GetContentType() string {
 	return ""
 }
 
+func (x *UploadUserAvatarRequest) GetContent() []byte {
+	if x != nil {
+		return x.Content
+	}
+	return nil
+}
+
 type UploadUserAvatarResponse struct {
-	state              protoimpl.MessageState `protogen:"open.v1"`
-	PresignedUploadUrl string                 `protobuf:"bytes,1,opt,name=presigned_upload_url,json=presignedUploadUrl,proto3" json:"presigned_upload_url,omitempty"`
-	unknownFields      protoimpl.UnknownFields
-	sizeCache          protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *UploadUserAvatarResponse) Reset() {
@@ -1157,106 +1156,11 @@ func (*UploadUserAvatarResponse) Descriptor() ([]byte, []int) {
 	return file_auth_v1_auth_proto_rawDescGZIP(), []int{21}
 }
 
-func (x *UploadUserAvatarResponse) GetPresignedUploadUrl() string {
-	if x != nil {
-		return x.PresignedUploadUrl
-	}
-	return ""
-}
-
-type CompleteUserAvatarUploadRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Etag          string                 `protobuf:"bytes,1,opt,name=etag,proto3" json:"etag,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CompleteUserAvatarUploadRequest) Reset() {
-	*x = CompleteUserAvatarUploadRequest{}
-	mi := &file_auth_v1_auth_proto_msgTypes[22]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CompleteUserAvatarUploadRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CompleteUserAvatarUploadRequest) ProtoMessage() {}
-
-func (x *CompleteUserAvatarUploadRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_v1_auth_proto_msgTypes[22]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CompleteUserAvatarUploadRequest.ProtoReflect.Descriptor instead.
-func (*CompleteUserAvatarUploadRequest) Descriptor() ([]byte, []int) {
-	return file_auth_v1_auth_proto_rawDescGZIP(), []int{22}
-}
-
-func (x *CompleteUserAvatarUploadRequest) GetEtag() string {
-	if x != nil {
-		return x.Etag
-	}
-	return ""
-}
-
-type CompleteUserAvatarUploadResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	AvatarUrl     string                 `protobuf:"bytes,1,opt,name=avatar_url,json=avatarUrl,proto3" json:"avatar_url,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CompleteUserAvatarUploadResponse) Reset() {
-	*x = CompleteUserAvatarUploadResponse{}
-	mi := &file_auth_v1_auth_proto_msgTypes[23]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CompleteUserAvatarUploadResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CompleteUserAvatarUploadResponse) ProtoMessage() {}
-
-func (x *CompleteUserAvatarUploadResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_v1_auth_proto_msgTypes[23]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CompleteUserAvatarUploadResponse.ProtoReflect.Descriptor instead.
-func (*CompleteUserAvatarUploadResponse) Descriptor() ([]byte, []int) {
-	return file_auth_v1_auth_proto_rawDescGZIP(), []int{23}
-}
-
-func (x *CompleteUserAvatarUploadResponse) GetAvatarUrl() string {
-	if x != nil {
-		return x.AvatarUrl
-	}
-	return ""
-}
-
 var File_auth_v1_auth_proto protoreflect.FileDescriptor
 
 const file_auth_v1_auth_proto_rawDesc = "" +
 	"\n" +
-	"\x12auth/v1/auth.proto\x12\aauth.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a google/protobuf/field_mask.proto\"\xe4\x01\n" +
+	"\x12auth/v1/auth.proto\x12\aauth.v1\x1a\x1bbuf/validate/validate.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe4\x01\n" +
 	"\x04User\x12\x18\n" +
 	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12G\n" +
 	"\busername\x18\x02 \x01(\tB+\xbaH(r&\x18(2\"^[a-zA-Z0-9]+([_.-]?[a-zA-Z0-9])*$R\busername\x12\x1b\n" +
@@ -1320,17 +1224,11 @@ const file_auth_v1_auth_proto_rawDesc = "" +
 	"\x11UpdateUserRequest\x12!\n" +
 	"\x04user\x18\x01 \x01(\v2\r.auth.v1.UserR\x04user\x12;\n" +
 	"\vupdate_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskR\n" +
-	"updateMask\"Y\n" +
-	"\x17UploadUserAvatarRequest\x12\x1b\n" +
-	"\tfile_size\x18\x01 \x01(\x05R\bfileSize\x12!\n" +
-	"\fcontent_type\x18\x02 \x01(\tR\vcontentType\"L\n" +
-	"\x18UploadUserAvatarResponse\x120\n" +
-	"\x14presigned_upload_url\x18\x01 \x01(\tR\x12presignedUploadUrl\"5\n" +
-	"\x1fCompleteUserAvatarUploadRequest\x12\x12\n" +
-	"\x04etag\x18\x01 \x01(\tR\x04etag\"A\n" +
-	" CompleteUserAvatarUploadResponse\x12\x1d\n" +
-	"\n" +
-	"avatar_url\x18\x01 \x01(\tR\tavatarUrl2\xfd\a\n" +
+	"updateMask\"V\n" +
+	"\x17UploadUserAvatarRequest\x12!\n" +
+	"\fcontent_type\x18\x01 \x01(\tR\vcontentType\x12\x18\n" +
+	"\acontent\x18\x02 \x01(\fR\acontent\"\x1a\n" +
+	"\x18UploadUserAvatarResponse2\x88\a\n" +
 	"\vAuthService\x12=\n" +
 	"\x05Login\x12\x15.auth.v1.LoginRequest\x1a\x1d.auth.v1.SuccessLoginResponse\x12?\n" +
 	"\bRegister\x12\x18.auth.v1.RegisterRequest\x1a\x19.auth.v1.RegisterResponse\x12K\n" +
@@ -1343,9 +1241,8 @@ const file_auth_v1_auth_proto_rawDesc = "" +
 	"\x05GetMe\x12\x15.auth.v1.GetMeRequest\x1a\x18.auth.v1.GetUserResponse\x127\n" +
 	"\n" +
 	"UpdateUser\x12\x1a.auth.v1.UpdateUserRequest\x1a\r.auth.v1.User\x12<\n" +
-	"\aGetUser\x12\x17.auth.v1.GetUserRequest\x1a\x18.auth.v1.GetUserResponse\x12W\n" +
-	"\x10UploadUserAvatar\x12 .auth.v1.UploadUserAvatarRequest\x1a!.auth.v1.UploadUserAvatarResponse\x12o\n" +
-	"\x18CompleteUserAvatarUpload\x12(.auth.v1.CompleteUserAvatarUploadRequest\x1a).auth.v1.CompleteUserAvatarUploadResponseBAZ?github.com/tech-inspire/api-contracts/api/gen/go/auth/v1;authv1b\x06proto3"
+	"\aGetUser\x12\x17.auth.v1.GetUserRequest\x1a\x18.auth.v1.GetUserResponse\x12S\n" +
+	"\fUploadAvatar\x12 .auth.v1.UploadUserAvatarRequest\x1a!.auth.v1.UploadUserAvatarResponseBAZ?github.com/tech-inspire/api-contracts/api/gen/go/auth/v1;authv1b\x06proto3"
 
 var (
 	file_auth_v1_auth_proto_rawDescOnce sync.Once
@@ -1359,44 +1256,42 @@ func file_auth_v1_auth_proto_rawDescGZIP() []byte {
 	return file_auth_v1_auth_proto_rawDescData
 }
 
-var file_auth_v1_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
+var file_auth_v1_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
 var file_auth_v1_auth_proto_goTypes = []any{
-	(*User)(nil),                             // 0: auth.v1.User
-	(*RegisterRequest)(nil),                  // 1: auth.v1.RegisterRequest
-	(*EmailCodeConfirmationRequired)(nil),    // 2: auth.v1.EmailCodeConfirmationRequired
-	(*RegisterResponse)(nil),                 // 3: auth.v1.RegisterResponse
-	(*ConfirmEmailRequest)(nil),              // 4: auth.v1.ConfirmEmailRequest
-	(*LoginRequest)(nil),                     // 5: auth.v1.LoginRequest
-	(*SuccessLoginResponse)(nil),             // 6: auth.v1.SuccessLoginResponse
-	(*RefreshTokenRequest)(nil),              // 7: auth.v1.RefreshTokenRequest
-	(*LogoutRequest)(nil),                    // 8: auth.v1.LogoutRequest
-	(*LogoutResponse)(nil),                   // 9: auth.v1.LogoutResponse
-	(*ResetPasswordRequest)(nil),             // 10: auth.v1.ResetPasswordRequest
-	(*ResetPasswordResponse)(nil),            // 11: auth.v1.ResetPasswordResponse
-	(*CheckPasswordResetCodeRequest)(nil),    // 12: auth.v1.CheckPasswordResetCodeRequest
-	(*CheckPasswordResetCodeResponse)(nil),   // 13: auth.v1.CheckPasswordResetCodeResponse
-	(*ConfirmPasswordResetRequest)(nil),      // 14: auth.v1.ConfirmPasswordResetRequest
-	(*ConfirmPasswordResetResponse)(nil),     // 15: auth.v1.ConfirmPasswordResetResponse
-	(*GetMeRequest)(nil),                     // 16: auth.v1.GetMeRequest
-	(*GetUserResponse)(nil),                  // 17: auth.v1.GetUserResponse
-	(*GetUserRequest)(nil),                   // 18: auth.v1.GetUserRequest
-	(*UpdateUserRequest)(nil),                // 19: auth.v1.UpdateUserRequest
-	(*UploadUserAvatarRequest)(nil),          // 20: auth.v1.UploadUserAvatarRequest
-	(*UploadUserAvatarResponse)(nil),         // 21: auth.v1.UploadUserAvatarResponse
-	(*CompleteUserAvatarUploadRequest)(nil),  // 22: auth.v1.CompleteUserAvatarUploadRequest
-	(*CompleteUserAvatarUploadResponse)(nil), // 23: auth.v1.CompleteUserAvatarUploadResponse
-	(*timestamppb.Timestamp)(nil),            // 24: google.protobuf.Timestamp
-	(*fieldmaskpb.FieldMask)(nil),            // 25: google.protobuf.FieldMask
+	(*User)(nil),                           // 0: auth.v1.User
+	(*RegisterRequest)(nil),                // 1: auth.v1.RegisterRequest
+	(*EmailCodeConfirmationRequired)(nil),  // 2: auth.v1.EmailCodeConfirmationRequired
+	(*RegisterResponse)(nil),               // 3: auth.v1.RegisterResponse
+	(*ConfirmEmailRequest)(nil),            // 4: auth.v1.ConfirmEmailRequest
+	(*LoginRequest)(nil),                   // 5: auth.v1.LoginRequest
+	(*SuccessLoginResponse)(nil),           // 6: auth.v1.SuccessLoginResponse
+	(*RefreshTokenRequest)(nil),            // 7: auth.v1.RefreshTokenRequest
+	(*LogoutRequest)(nil),                  // 8: auth.v1.LogoutRequest
+	(*LogoutResponse)(nil),                 // 9: auth.v1.LogoutResponse
+	(*ResetPasswordRequest)(nil),           // 10: auth.v1.ResetPasswordRequest
+	(*ResetPasswordResponse)(nil),          // 11: auth.v1.ResetPasswordResponse
+	(*CheckPasswordResetCodeRequest)(nil),  // 12: auth.v1.CheckPasswordResetCodeRequest
+	(*CheckPasswordResetCodeResponse)(nil), // 13: auth.v1.CheckPasswordResetCodeResponse
+	(*ConfirmPasswordResetRequest)(nil),    // 14: auth.v1.ConfirmPasswordResetRequest
+	(*ConfirmPasswordResetResponse)(nil),   // 15: auth.v1.ConfirmPasswordResetResponse
+	(*GetMeRequest)(nil),                   // 16: auth.v1.GetMeRequest
+	(*GetUserResponse)(nil),                // 17: auth.v1.GetUserResponse
+	(*GetUserRequest)(nil),                 // 18: auth.v1.GetUserRequest
+	(*UpdateUserRequest)(nil),              // 19: auth.v1.UpdateUserRequest
+	(*UploadUserAvatarRequest)(nil),        // 20: auth.v1.UploadUserAvatarRequest
+	(*UploadUserAvatarResponse)(nil),       // 21: auth.v1.UploadUserAvatarResponse
+	(*timestamppb.Timestamp)(nil),          // 22: google.protobuf.Timestamp
+	(*fieldmaskpb.FieldMask)(nil),          // 23: google.protobuf.FieldMask
 }
 var file_auth_v1_auth_proto_depIdxs = []int32{
 	6,  // 0: auth.v1.RegisterResponse.login_response:type_name -> auth.v1.SuccessLoginResponse
 	2,  // 1: auth.v1.RegisterResponse.email_confirmation_required:type_name -> auth.v1.EmailCodeConfirmationRequired
-	24, // 2: auth.v1.SuccessLoginResponse.access_token_expires_at:type_name -> google.protobuf.Timestamp
-	24, // 3: auth.v1.SuccessLoginResponse.refresh_token_expires_at:type_name -> google.protobuf.Timestamp
+	22, // 2: auth.v1.SuccessLoginResponse.access_token_expires_at:type_name -> google.protobuf.Timestamp
+	22, // 3: auth.v1.SuccessLoginResponse.refresh_token_expires_at:type_name -> google.protobuf.Timestamp
 	0,  // 4: auth.v1.SuccessLoginResponse.user:type_name -> auth.v1.User
 	0,  // 5: auth.v1.GetUserResponse.user:type_name -> auth.v1.User
 	0,  // 6: auth.v1.UpdateUserRequest.user:type_name -> auth.v1.User
-	25, // 7: auth.v1.UpdateUserRequest.update_mask:type_name -> google.protobuf.FieldMask
+	23, // 7: auth.v1.UpdateUserRequest.update_mask:type_name -> google.protobuf.FieldMask
 	5,  // 8: auth.v1.AuthService.Login:input_type -> auth.v1.LoginRequest
 	1,  // 9: auth.v1.AuthService.Register:input_type -> auth.v1.RegisterRequest
 	4,  // 10: auth.v1.AuthService.ConfirmEmail:input_type -> auth.v1.ConfirmEmailRequest
@@ -1408,23 +1303,21 @@ var file_auth_v1_auth_proto_depIdxs = []int32{
 	16, // 16: auth.v1.AuthService.GetMe:input_type -> auth.v1.GetMeRequest
 	19, // 17: auth.v1.AuthService.UpdateUser:input_type -> auth.v1.UpdateUserRequest
 	18, // 18: auth.v1.AuthService.GetUser:input_type -> auth.v1.GetUserRequest
-	20, // 19: auth.v1.AuthService.UploadUserAvatar:input_type -> auth.v1.UploadUserAvatarRequest
-	22, // 20: auth.v1.AuthService.CompleteUserAvatarUpload:input_type -> auth.v1.CompleteUserAvatarUploadRequest
-	6,  // 21: auth.v1.AuthService.Login:output_type -> auth.v1.SuccessLoginResponse
-	3,  // 22: auth.v1.AuthService.Register:output_type -> auth.v1.RegisterResponse
-	6,  // 23: auth.v1.AuthService.ConfirmEmail:output_type -> auth.v1.SuccessLoginResponse
-	6,  // 24: auth.v1.AuthService.RefreshToken:output_type -> auth.v1.SuccessLoginResponse
-	9,  // 25: auth.v1.AuthService.Logout:output_type -> auth.v1.LogoutResponse
-	11, // 26: auth.v1.AuthService.ResetPassword:output_type -> auth.v1.ResetPasswordResponse
-	15, // 27: auth.v1.AuthService.ConfirmPasswordReset:output_type -> auth.v1.ConfirmPasswordResetResponse
-	13, // 28: auth.v1.AuthService.CheckPasswordResetCode:output_type -> auth.v1.CheckPasswordResetCodeResponse
-	17, // 29: auth.v1.AuthService.GetMe:output_type -> auth.v1.GetUserResponse
-	0,  // 30: auth.v1.AuthService.UpdateUser:output_type -> auth.v1.User
-	17, // 31: auth.v1.AuthService.GetUser:output_type -> auth.v1.GetUserResponse
-	21, // 32: auth.v1.AuthService.UploadUserAvatar:output_type -> auth.v1.UploadUserAvatarResponse
-	23, // 33: auth.v1.AuthService.CompleteUserAvatarUpload:output_type -> auth.v1.CompleteUserAvatarUploadResponse
-	21, // [21:34] is the sub-list for method output_type
-	8,  // [8:21] is the sub-list for method input_type
+	20, // 19: auth.v1.AuthService.UploadAvatar:input_type -> auth.v1.UploadUserAvatarRequest
+	6,  // 20: auth.v1.AuthService.Login:output_type -> auth.v1.SuccessLoginResponse
+	3,  // 21: auth.v1.AuthService.Register:output_type -> auth.v1.RegisterResponse
+	6,  // 22: auth.v1.AuthService.ConfirmEmail:output_type -> auth.v1.SuccessLoginResponse
+	6,  // 23: auth.v1.AuthService.RefreshToken:output_type -> auth.v1.SuccessLoginResponse
+	9,  // 24: auth.v1.AuthService.Logout:output_type -> auth.v1.LogoutResponse
+	11, // 25: auth.v1.AuthService.ResetPassword:output_type -> auth.v1.ResetPasswordResponse
+	15, // 26: auth.v1.AuthService.ConfirmPasswordReset:output_type -> auth.v1.ConfirmPasswordResetResponse
+	13, // 27: auth.v1.AuthService.CheckPasswordResetCode:output_type -> auth.v1.CheckPasswordResetCodeResponse
+	17, // 28: auth.v1.AuthService.GetMe:output_type -> auth.v1.GetUserResponse
+	0,  // 29: auth.v1.AuthService.UpdateUser:output_type -> auth.v1.User
+	17, // 30: auth.v1.AuthService.GetUser:output_type -> auth.v1.GetUserResponse
+	21, // 31: auth.v1.AuthService.UploadAvatar:output_type -> auth.v1.UploadUserAvatarResponse
+	20, // [20:32] is the sub-list for method output_type
+	8,  // [8:20] is the sub-list for method input_type
 	8,  // [8:8] is the sub-list for extension type_name
 	8,  // [8:8] is the sub-list for extension extendee
 	0,  // [0:8] is the sub-list for field type_name
@@ -1450,7 +1343,7 @@ func file_auth_v1_auth_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_auth_v1_auth_proto_rawDesc), len(file_auth_v1_auth_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   24,
+			NumMessages:   22,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
