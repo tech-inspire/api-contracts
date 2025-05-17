@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package auth.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/tech-inspire/api-contracts/api/gen/go/embeddings/v1;embeddingsv1";
+
+service EmbeddingsService {
+  rpc GenerateTextEmbeddings(GenerateTextEmbeddingsRequest) returns (GenerateTextEmbeddingsResponse);
+}
+
+message GenerateTextEmbeddingsRequest {
+  string text = 1;
+}
+
+message GenerateTextEmbeddingsResponse {
+  repeated float embedding_vector = 1;
+}

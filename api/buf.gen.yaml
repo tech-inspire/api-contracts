@@ -13,3 +13,5 @@ plugins:
     include_imports: true
     # Add more plugin options here
     opt: target=ts
+  - remote: buf.build/protocolbuffers/python:v31.0
+    out: gen/python

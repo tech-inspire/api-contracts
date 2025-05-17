@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package auth.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/tech-inspire/api-contracts/api/gen/go/embeddings/v1;embeddingsv1";
+
+message GeneratePostEmbeddingsEvent {
+  string post_id = 1;
+  string image_url = 2;
+}
+
+message PostEmbeddingsUpdatedEvent {
+  string post_id = 1;
+  repeated float embedding_vector = 2;
+  google.protobuf.Timestamp updated_at = 3;
+}

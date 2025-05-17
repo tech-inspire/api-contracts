@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+# 📝 CHANGE "yourprojectname" to the name you want exposed on PyPI
+name = "inspire-protobuf"
+version = "0.1.0"
+description = "Protobuf‑generated Python stubs for the auth and embeddings APIs."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.8"
+dependencies = [
+    "protobuf>=4.23",
+    "grpcio>=1.64",
+]
+
+[project.urls]
+Homepage = "https://github.com/tech-inspire/api-contracts"
+Issues = "https://github.com/tech-inspire/api-contracts/issues"
+
+[tool.setuptools]
+# Treat the generated directory as the package root
+package-dir = { "" = "api/gen/python" }
+
+[tool.setuptools.packages.find]
+where = ["api/gen/python"]
+include = ["auth*", "embeddings*"]
+exclude = ["tests*"]
