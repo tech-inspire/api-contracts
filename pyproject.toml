@@ -11,7 +11,7 @@ readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.8"
 dependencies = [
-    "protobuf>=4.23",
+    "protobuf>=6.31.0",
     "grpcio>=1.64",
 ]
 
