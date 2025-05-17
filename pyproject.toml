@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 # 📝 CHANGE "yourprojectname" to the name you want exposed on PyPI
-name = "inspire-protobuf"
+name = "inspire_protobuf"
 version = "0.1.0"
 description = "Protobuf‑generated Python stubs for the auth and embeddings APIs."
 readme = "README.md"
