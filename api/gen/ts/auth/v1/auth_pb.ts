@@ -4,6 +4,8 @@
 
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
+import type { ConfirmationCode, Email, Name, Password, Username } from "./fields_pb";
+import { file_auth_v1_fields } from "./fields_pb";
 import { file_buf_validate_validate } from "../../buf/validate/validate_pb";
 import type { FieldMask, Timestamp } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_field_mask, file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
@@ -13,7 +15,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file auth/v1/auth.proto.
  */
 export const file_auth_v1_auth: GenFile = /*@__PURE__*/
-  fileDesc("ChJhdXRoL3YxL2F1dGgucHJvdG8SB2F1dGgudjEiuAEKBFVzZXISFAoCaWQYASABKAlCCLpIBXIDsAEBEj0KCHVzZXJuYW1lGAIgASgJQiu6SChyJhgoMiJeW2EtekEtWjAtOV0rKFtfLi1dP1thLXpBLVowLTldKSokEhUKBG5hbWUYAyABKAlCB7pIBHICEAESFwoKYXZhdGFyX3VybBgEIAEoCUgAiAEBEhwKC2Rlc2NyaXB0aW9uGAUgASgJQge6SARyAhABQg0KC19hdmF0YXJfdXJsInkKD1JlZ2lzdGVyUmVxdWVzdBIWCgVlbWFpbBgBIAEoCUIHukgEcgJgARIZCgh1c2VybmFtZRgCIAEoCUIHukgEcgIYKBIVCgRuYW1lGAMgASgJQge6SARyAhABEhwKCHBhc3N3b3JkGAQgASgJQgq6SAdyBRAIGIABIh8KHUVtYWlsQ29kZUNvbmZpcm1hdGlvblJlcXVpcmVkIqIBChBSZWdpc3RlclJlc3BvbnNlEjcKDmxvZ2luX3Jlc3BvbnNlGAEgASgLMh0uYXV0aC52MS5TdWNjZXNzTG9naW5SZXNwb25zZUgAEk0KG2VtYWlsX2NvbmZpcm1hdGlvbl9yZXF1aXJlZBgCIAEoCzImLmF1dGgudjEuRW1haWxDb2RlQ29uZmlybWF0aW9uUmVxdWlyZWRIAEIGCgRmbG93Ik4KE0NvbmZpcm1FbWFpbFJlcXVlc3QSFgoFZW1haWwYASABKAlCB7pIBHICYAESHwoEY29kZRgCIAEoCUIRukgOcgwyCl5bMC05XXs2fSQibAoMTG9naW5SZXF1ZXN0EhsKCHVzZXJuYW1lGAEgASgJQge6SARyAhgoSAASGAoFZW1haWwYAiABKAlCB7pIBHICYAFIABIcCghwYXNzd29yZBgDIAEoCUIKukgHcgUQCBiAAUIHCgVsb2dpbiLbAQoUU3VjY2Vzc0xvZ2luUmVzcG9uc2USFAoMYWNjZXNzX3Rva2VuGAEgASgJEjsKF2FjY2Vzc190b2tlbl9leHBpcmVzX2F0GAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIVCg1yZWZyZXNoX3Rva2VuGAMgASgJEjwKGHJlZnJlc2hfdG9rZW5fZXhwaXJlc19hdBgEIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASGwoEdXNlchgFIAEoCzINLmF1dGgudjEuVXNlciI1ChNSZWZyZXNoVG9rZW5SZXF1ZXN0Eh4KDXJlZnJlc2hfdG9rZW4YASABKAlCB7pIBHICEAEiLwoNTG9nb3V0UmVxdWVzdBIeCg1yZWZyZXNoX3Rva2VuGAEgASgJQge6SARyAhABIhAKDkxvZ291dFJlc3BvbnNlIi4KFFJlc2V0UGFzc3dvcmRSZXF1ZXN0EhYKBWVtYWlsGAEgASgJQge6SARyAmABIhcKFVJlc2V0UGFzc3dvcmRSZXNwb25zZSJYCh1DaGVja1Bhc3N3b3JkUmVzZXRDb2RlUmVxdWVzdBIWCgVlbWFpbBgBIAEoCUIHukgEcgJgARIfCgRjb2RlGAIgASgJQhG6SA5yDDIKXlswLTldezZ9JCIgCh5DaGVja1Bhc3N3b3JkUmVzZXRDb2RlUmVzcG9uc2UidAobQ29uZmlybVBhc3N3b3JkUmVzZXRSZXF1ZXN0EhYKBWVtYWlsGAEgASgJQge6SARyAmABEh8KBGNvZGUYAiABKAlCEbpIDnIMMgpeWzAtOV17Nn0kEhwKCHBhc3N3b3JkGAMgASgJQgq6SAdyBRAIGIABIh4KHENvbmZpcm1QYXNzd29yZFJlc2V0UmVzcG9uc2UiDgoMR2V0TWVSZXF1ZXN0Ii4KD0dldFVzZXJSZXNwb25zZRIbCgR1c2VyGAEgASgLMg0uYXV0aC52MS5Vc2VyIiYKDkdldFVzZXJSZXF1ZXN0EhQKAmlkGAEgASgJQgi6SAVyA7ABASJhChFVcGRhdGVVc2VyUmVxdWVzdBIbCgR1c2VyGAEgASgLMg0uYXV0aC52MS5Vc2VyEi8KC3VwZGF0ZV9tYXNrGAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLkZpZWxkTWFzayJAChdVcGxvYWRVc2VyQXZhdGFyUmVxdWVzdBIUCgxjb250ZW50X3R5cGUYASABKAkSDwoHY29udGVudBgCIAEoDCIaChhVcGxvYWRVc2VyQXZhdGFyUmVzcG9uc2UyiAcKC0F1dGhTZXJ2aWNlEj0KBUxvZ2luEhUuYXV0aC52MS5Mb2dpblJlcXVlc3QaHS5hdXRoLnYxLlN1Y2Nlc3NMb2dpblJlc3BvbnNlEj8KCFJlZ2lzdGVyEhguYXV0aC52MS5SZWdpc3RlclJlcXVlc3QaGS5hdXRoLnYxLlJlZ2lzdGVyUmVzcG9uc2USSwoMQ29uZmlybUVtYWlsEhwuYXV0aC52MS5Db25maXJtRW1haWxSZXF1ZXN0Gh0uYXV0aC52MS5TdWNjZXNzTG9naW5SZXNwb25zZRJLCgxSZWZyZXNoVG9rZW4SHC5hdXRoLnYxLlJlZnJlc2hUb2tlblJlcXVlc3QaHS5hdXRoLnYxLlN1Y2Nlc3NMb2dpblJlc3BvbnNlEjkKBkxvZ291dBIWLmF1dGgudjEuTG9nb3V0UmVxdWVzdBoXLmF1dGgudjEuTG9nb3V0UmVzcG9uc2USTgoNUmVzZXRQYXNzd29yZBIdLmF1dGgudjEuUmVzZXRQYXNzd29yZFJlcXVlc3QaHi5hdXRoLnYxLlJlc2V0UGFzc3dvcmRSZXNwb25zZRJjChRDb25maXJtUGFzc3dvcmRSZXNldBIkLmF1dGgudjEuQ29uZmlybVBhc3N3b3JkUmVzZXRSZXF1ZXN0GiUuYXV0aC52MS5Db25maXJtUGFzc3dvcmRSZXNldFJlc3BvbnNlEmkKFkNoZWNrUGFzc3dvcmRSZXNldENvZGUSJi5hdXRoLnYxLkNoZWNrUGFzc3dvcmRSZXNldENvZGVSZXF1ZXN0GicuYXV0aC52MS5DaGVja1Bhc3N3b3JkUmVzZXRDb2RlUmVzcG9uc2USOAoFR2V0TWUSFS5hdXRoLnYxLkdldE1lUmVxdWVzdBoYLmF1dGgudjEuR2V0VXNlclJlc3BvbnNlEjcKClVwZGF0ZVVzZXISGi5hdXRoLnYxLlVwZGF0ZVVzZXJSZXF1ZXN0Gg0uYXV0aC52MS5Vc2VyEjwKB0dldFVzZXISFy5hdXRoLnYxLkdldFVzZXJSZXF1ZXN0GhguYXV0aC52MS5HZXRVc2VyUmVzcG9uc2USUwoMVXBsb2FkQXZhdGFyEiAuYXV0aC52MS5VcGxvYWRVc2VyQXZhdGFyUmVxdWVzdBohLmF1dGgudjEuVXBsb2FkVXNlckF2YXRhclJlc3BvbnNlQkFaP2dpdGh1Yi5jb20vdGVjaC1pbnNwaXJlL2FwaS1jb250cmFjdHMvYXBpL2dlbi9nby9hdXRoL3YxO2F1dGh2MWIGcHJvdG8z", [file_buf_validate_validate, file_google_protobuf_field_mask, file_google_protobuf_timestamp]);
+  fileDesc("ChJhdXRoL3YxL2F1dGgucHJvdG8SB2F1dGgudjEipAEKBFVzZXISFAoCaWQYASABKAlCCLpIBXIDsAEBEiMKCHVzZXJuYW1lGAIgASgLMhEuYXV0aC52MS5Vc2VybmFtZRIbCgRuYW1lGAMgASgLMg0uYXV0aC52MS5OYW1lEhcKCmF2YXRhcl91cmwYBCABKAlIAIgBARIcCgtkZXNjcmlwdGlvbhgFIAEoCUIHukgEcgIQAUINCgtfYXZhdGFyX3VybCKXAQoPUmVnaXN0ZXJSZXF1ZXN0Eh0KBWVtYWlsGAEgASgLMg4uYXV0aC52MS5FbWFpbBIjCgh1c2VybmFtZRgCIAEoCzIRLmF1dGgudjEuVXNlcm5hbWUSGwoEbmFtZRgDIAEoCzINLmF1dGgudjEuTmFtZRIjCghwYXNzd29yZBgEIAEoCzIRLmF1dGgudjEuUGFzc3dvcmQiHwodRW1haWxDb2RlQ29uZmlybWF0aW9uUmVxdWlyZWQiogEKEFJlZ2lzdGVyUmVzcG9uc2USNwoObG9naW5fcmVzcG9uc2UYASABKAsyHS5hdXRoLnYxLlN1Y2Nlc3NMb2dpblJlc3BvbnNlSAASTQobZW1haWxfY29uZmlybWF0aW9uX3JlcXVpcmVkGAIgASgLMiYuYXV0aC52MS5FbWFpbENvZGVDb25maXJtYXRpb25SZXF1aXJlZEgAQgYKBGZsb3ciXQoTQ29uZmlybUVtYWlsUmVxdWVzdBIdCgVlbWFpbBgBIAEoCzIOLmF1dGgudjEuRW1haWwSJwoEY29kZRgCIAEoCzIZLmF1dGgudjEuQ29uZmlybWF0aW9uQ29kZSJ9CgxMb2dpblJlcXVlc3QSJQoIdXNlcm5hbWUYASABKAsyES5hdXRoLnYxLlVzZXJuYW1lSAASHwoFZW1haWwYAiABKAsyDi5hdXRoLnYxLkVtYWlsSAASHAoIcGFzc3dvcmQYAyABKAlCCrpIB3IFEAgYgAFCBwoFbG9naW4i2wEKFFN1Y2Nlc3NMb2dpblJlc3BvbnNlEhQKDGFjY2Vzc190b2tlbhgBIAEoCRI7ChdhY2Nlc3NfdG9rZW5fZXhwaXJlc19hdBgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASFQoNcmVmcmVzaF90b2tlbhgDIAEoCRI8ChhyZWZyZXNoX3Rva2VuX2V4cGlyZXNfYXQYBCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEhsKBHVzZXIYBSABKAsyDS5hdXRoLnYxLlVzZXIiNQoTUmVmcmVzaFRva2VuUmVxdWVzdBIeCg1yZWZyZXNoX3Rva2VuGAEgASgJQge6SARyAhABIi8KDUxvZ291dFJlcXVlc3QSHgoNcmVmcmVzaF90b2tlbhgBIAEoCUIHukgEcgIQASIQCg5Mb2dvdXRSZXNwb25zZSI1ChRSZXNldFBhc3N3b3JkUmVxdWVzdBIdCgVlbWFpbBgBIAEoCzIOLmF1dGgudjEuRW1haWwiFwoVUmVzZXRQYXNzd29yZFJlc3BvbnNlImcKHUNoZWNrUGFzc3dvcmRSZXNldENvZGVSZXF1ZXN0Eh0KBWVtYWlsGAEgASgLMg4uYXV0aC52MS5FbWFpbBInCgRjb2RlGAIgASgLMhkuYXV0aC52MS5Db25maXJtYXRpb25Db2RlIiAKHkNoZWNrUGFzc3dvcmRSZXNldENvZGVSZXNwb25zZSKKAQobQ29uZmlybVBhc3N3b3JkUmVzZXRSZXF1ZXN0Eh0KBWVtYWlsGAEgASgLMg4uYXV0aC52MS5FbWFpbBInCgRjb2RlGAIgASgLMhkuYXV0aC52MS5Db25maXJtYXRpb25Db2RlEiMKCHBhc3N3b3JkGAMgASgLMhEuYXV0aC52MS5QYXNzd29yZCIeChxDb25maXJtUGFzc3dvcmRSZXNldFJlc3BvbnNlIg4KDEdldE1lUmVxdWVzdCIuCg9HZXRVc2VyUmVzcG9uc2USGwoEdXNlchgBIAEoCzINLmF1dGgudjEuVXNlciImCg5HZXRVc2VyUmVxdWVzdBIUCgJpZBgBIAEoCUIIukgFcgOwAQEiYQoRVXBkYXRlVXNlclJlcXVlc3QSGwoEdXNlchgBIAEoCzINLmF1dGgudjEuVXNlchIvCgt1cGRhdGVfbWFzaxgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5GaWVsZE1hc2siQAoXVXBsb2FkVXNlckF2YXRhclJlcXVlc3QSFAoMY29udGVudF90eXBlGAEgASgJEg8KB2NvbnRlbnQYAiABKAwiGgoYVXBsb2FkVXNlckF2YXRhclJlc3BvbnNlMogHCgtBdXRoU2VydmljZRI9CgVMb2dpbhIVLmF1dGgudjEuTG9naW5SZXF1ZXN0Gh0uYXV0aC52MS5TdWNjZXNzTG9naW5SZXNwb25zZRI/CghSZWdpc3RlchIYLmF1dGgudjEuUmVnaXN0ZXJSZXF1ZXN0GhkuYXV0aC52MS5SZWdpc3RlclJlc3BvbnNlEksKDENvbmZpcm1FbWFpbBIcLmF1dGgudjEuQ29uZmlybUVtYWlsUmVxdWVzdBodLmF1dGgudjEuU3VjY2Vzc0xvZ2luUmVzcG9uc2USSwoMUmVmcmVzaFRva2VuEhwuYXV0aC52MS5SZWZyZXNoVG9rZW5SZXF1ZXN0Gh0uYXV0aC52MS5TdWNjZXNzTG9naW5SZXNwb25zZRI5CgZMb2dvdXQSFi5hdXRoLnYxLkxvZ291dFJlcXVlc3QaFy5hdXRoLnYxLkxvZ291dFJlc3BvbnNlEk4KDVJlc2V0UGFzc3dvcmQSHS5hdXRoLnYxLlJlc2V0UGFzc3dvcmRSZXF1ZXN0Gh4uYXV0aC52MS5SZXNldFBhc3N3b3JkUmVzcG9uc2USYwoUQ29uZmlybVBhc3N3b3JkUmVzZXQSJC5hdXRoLnYxLkNvbmZpcm1QYXNzd29yZFJlc2V0UmVxdWVzdBolLmF1dGgudjEuQ29uZmlybVBhc3N3b3JkUmVzZXRSZXNwb25zZRJpChZDaGVja1Bhc3N3b3JkUmVzZXRDb2RlEiYuYXV0aC52MS5DaGVja1Bhc3N3b3JkUmVzZXRDb2RlUmVxdWVzdBonLmF1dGgudjEuQ2hlY2tQYXNzd29yZFJlc2V0Q29kZVJlc3BvbnNlEjgKBUdldE1lEhUuYXV0aC52MS5HZXRNZVJlcXVlc3QaGC5hdXRoLnYxLkdldFVzZXJSZXNwb25zZRI3CgpVcGRhdGVVc2VyEhouYXV0aC52MS5VcGRhdGVVc2VyUmVxdWVzdBoNLmF1dGgudjEuVXNlchI8CgdHZXRVc2VyEhcuYXV0aC52MS5HZXRVc2VyUmVxdWVzdBoYLmF1dGgudjEuR2V0VXNlclJlc3BvbnNlElMKDFVwbG9hZEF2YXRhchIgLmF1dGgudjEuVXBsb2FkVXNlckF2YXRhclJlcXVlc3QaIS5hdXRoLnYxLlVwbG9hZFVzZXJBdmF0YXJSZXNwb25zZUJBWj9naXRodWIuY29tL3RlY2gtaW5zcGlyZS9hcGktY29udHJhY3RzL2FwaS9nZW4vZ28vYXV0aC92MTthdXRodjFiBnByb3RvMw", [file_auth_v1_fields, file_buf_validate_validate, file_google_protobuf_field_mask, file_google_protobuf_timestamp]);
 
 /**
  * @generated from message auth.v1.User
@@ -25,14 +27,14 @@ export type User = Message<"auth.v1.User"> & {
   id: string;
 
   /**
-   * @generated from field: string username = 2;
+   * @generated from field: auth.v1.Username username = 2;
    */
-  username: string;
+  username?: Username;
 
   /**
-   * @generated from field: string name = 3;
+   * @generated from field: auth.v1.Name name = 3;
    */
-  name: string;
+  name?: Name;
 
   /**
    * @generated from field: optional string avatar_url = 4;
@@ -57,24 +59,24 @@ export const UserSchema: GenMessage<User> = /*@__PURE__*/
  */
 export type RegisterRequest = Message<"auth.v1.RegisterRequest"> & {
   /**
-   * @generated from field: string email = 1;
+   * @generated from field: auth.v1.Email email = 1;
    */
-  email: string;
+  email?: Email;
 
   /**
-   * @generated from field: string username = 2;
+   * @generated from field: auth.v1.Username username = 2;
    */
-  username: string;
+  username?: Username;
 
   /**
-   * @generated from field: string name = 3;
+   * @generated from field: auth.v1.Name name = 3;
    */
-  name: string;
+  name?: Name;
 
   /**
-   * @generated from field: string password = 4;
+   * @generated from field: auth.v1.Password password = 4;
    */
-  password: string;
+  password?: Password;
 };
 
 /**
@@ -131,14 +133,14 @@ export const RegisterResponseSchema: GenMessage<RegisterResponse> = /*@__PURE__*
  */
 export type ConfirmEmailRequest = Message<"auth.v1.ConfirmEmailRequest"> & {
   /**
-   * @generated from field: string email = 1;
+   * @generated from field: auth.v1.Email email = 1;
    */
-  email: string;
+  email?: Email;
 
   /**
-   * @generated from field: string code = 2;
+   * @generated from field: auth.v1.ConfirmationCode code = 2;
    */
-  code: string;
+  code?: ConfirmationCode;
 };
 
 /**
@@ -157,15 +159,15 @@ export type LoginRequest = Message<"auth.v1.LoginRequest"> & {
    */
   login: {
     /**
-     * @generated from field: string username = 1;
+     * @generated from field: auth.v1.Username username = 1;
      */
-    value: string;
+    value: Username;
     case: "username";
   } | {
     /**
-     * @generated from field: string email = 2;
+     * @generated from field: auth.v1.Email email = 2;
      */
-    value: string;
+    value: Email;
     case: "email";
   } | { case: undefined; value?: undefined };
 
@@ -271,9 +273,9 @@ export const LogoutResponseSchema: GenMessage<LogoutResponse> = /*@__PURE__*/
  */
 export type ResetPasswordRequest = Message<"auth.v1.ResetPasswordRequest"> & {
   /**
-   * @generated from field: string email = 1;
+   * @generated from field: auth.v1.Email email = 1;
    */
-  email: string;
+  email?: Email;
 };
 
 /**
@@ -301,14 +303,14 @@ export const ResetPasswordResponseSchema: GenMessage<ResetPasswordResponse> = /*
  */
 export type CheckPasswordResetCodeRequest = Message<"auth.v1.CheckPasswordResetCodeRequest"> & {
   /**
-   * @generated from field: string email = 1;
+   * @generated from field: auth.v1.Email email = 1;
    */
-  email: string;
+  email?: Email;
 
   /**
-   * @generated from field: string code = 2;
+   * @generated from field: auth.v1.ConfirmationCode code = 2;
    */
-  code: string;
+  code?: ConfirmationCode;
 };
 
 /**
@@ -336,19 +338,19 @@ export const CheckPasswordResetCodeResponseSchema: GenMessage<CheckPasswordReset
  */
 export type ConfirmPasswordResetRequest = Message<"auth.v1.ConfirmPasswordResetRequest"> & {
   /**
-   * @generated from field: string email = 1;
+   * @generated from field: auth.v1.Email email = 1;
    */
-  email: string;
+  email?: Email;
 
   /**
-   * @generated from field: string code = 2;
+   * @generated from field: auth.v1.ConfirmationCode code = 2;
    */
-  code: string;
+  code?: ConfirmationCode;
 
   /**
-   * @generated from field: string password = 3;
+   * @generated from field: auth.v1.Password password = 3;
    */
-  password: string;
+  password?: Password;
 };
 
 /**

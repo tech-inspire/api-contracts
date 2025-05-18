@@ -22,12 +22,13 @@ _runtime_version.ValidateProtobufRuntimeVersion(
 _sym_db = _symbol_database.Default()
 
 
+from auth.v1 import fields_pb2 as auth_dot_v1_dot_fields__pb2
 from buf.validate import validate_pb2 as buf_dot_validate_dot_validate__pb2
 from google.protobuf import field_mask_pb2 as google_dot_protobuf_dot_field__mask__pb2
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12\x61uth/v1/auth.proto\x12\x07\x61uth.v1\x1a\x1b\x62uf/validate/validate.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe4\x01\n\x04User\x12\x18\n\x02id\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12G\n\x08username\x18\x02 \x01(\tB+\xbaH(r&\x18(2\"^[a-zA-Z0-9]+([_.-]?[a-zA-Z0-9])*$R\x08username\x12\x1b\n\x04name\x18\x03 \x01(\tB\x07\xbaH\x04r\x02\x10\x01R\x04name\x12\"\n\navatar_url\x18\x04 \x01(\tH\x00R\tavatarUrl\x88\x01\x01\x12)\n\x0b\x64\x65scription\x18\x05 \x01(\tB\x07\xbaH\x04r\x02\x10\x01R\x0b\x64\x65scriptionB\r\n\x0b_avatar_url\"\x9a\x01\n\x0fRegisterRequest\x12\x1d\n\x05\x65mail\x18\x01 \x01(\tB\x07\xbaH\x04r\x02`\x01R\x05\x65mail\x12#\n\x08username\x18\x02 \x01(\tB\x07\xbaH\x04r\x02\x18(R\x08username\x12\x1b\n\x04name\x18\x03 \x01(\tB\x07\xbaH\x04r\x02\x10\x01R\x04name\x12&\n\x08password\x18\x04 \x01(\tB\n\xbaH\x07r\x05\x10\x08\x18\x80\x01R\x08password\"\x1f\n\x1d\x45mailCodeConfirmationRequired\"\xcc\x01\n\x10RegisterResponse\x12\x46\n\x0elogin_response\x18\x01 \x01(\x0b\x32\x1d.auth.v1.SuccessLoginResponseH\x00R\rloginResponse\x12h\n\x1b\x65mail_confirmation_required\x18\x02 \x01(\x0b\x32&.auth.v1.EmailCodeConfirmationRequiredH\x00R\x19\x65mailConfirmationRequiredB\x06\n\x04\x66low\"[\n\x13\x43onfirmEmailRequest\x12\x1d\n\x05\x65mail\x18\x01 \x01(\tB\x07\xbaH\x04r\x02`\x01R\x05\x65mail\x12%\n\x04\x63ode\x18\x02 \x01(\tB\x11\xbaH\x0er\x0c\x32\n^[0-9]{6}$R\x04\x63ode\"\x87\x01\n\x0cLoginRequest\x12%\n\x08username\x18\x01 \x01(\tB\x07\xbaH\x04r\x02\x18(H\x00R\x08username\x12\x1f\n\x05\x65mail\x18\x02 \x01(\tB\x07\xbaH\x04r\x02`\x01H\x00R\x05\x65mail\x12&\n\x08password\x18\x03 \x01(\tB\n\xbaH\x07r\x05\x10\x08\x18\x80\x01R\x08passwordB\x07\n\x05login\"\xa9\x02\n\x14SuccessLoginResponse\x12!\n\x0c\x61\x63\x63\x65ss_token\x18\x01 \x01(\tR\x0b\x61\x63\x63\x65ssToken\x12Q\n\x17\x61\x63\x63\x65ss_token_expires_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x14\x61\x63\x63\x65ssTokenExpiresAt\x12#\n\rrefresh_token\x18\x03 \x01(\tR\x0crefreshToken\x12S\n\x18refresh_token_expires_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x15refreshTokenExpiresAt\x12!\n\x04user\x18\x05 \x01(\x0b\x32\r.auth.v1.UserR\x04user\"C\n\x13RefreshTokenRequest\x12,\n\rrefresh_token\x18\x01 \x01(\tB\x07\xbaH\x04r\x02\x10\x01R\x0crefreshToken\"=\n\rLogoutRequest\x12,\n\rrefresh_token\x18\x01 \x01(\tB\x07\xbaH\x04r\x02\x10\x01R\x0crefreshToken\"\x10\n\x0eLogoutResponse\"5\n\x14ResetPasswordRequest\x12\x1d\n\x05\x65mail\x18\x01 \x01(\tB\x07\xbaH\x04r\x02`\x01R\x05\x65mail\"\x17\n\x15ResetPasswordResponse\"e\n\x1d\x43heckPasswordResetCodeRequest\x12\x1d\n\x05\x65mail\x18\x01 \x01(\tB\x07\xbaH\x04r\x02`\x01R\x05\x65mail\x12%\n\x04\x63ode\x18\x02 \x01(\tB\x11\xbaH\x0er\x0c\x32\n^[0-9]{6}$R\x04\x63ode\" \n\x1e\x43heckPasswordResetCodeResponse\"\x8b\x01\n\x1b\x43onfirmPasswordResetRequest\x12\x1d\n\x05\x65mail\x18\x01 \x01(\tB\x07\xbaH\x04r\x02`\x01R\x05\x65mail\x12%\n\x04\x63ode\x18\x02 \x01(\tB\x11\xbaH\x0er\x0c\x32\n^[0-9]{6}$R\x04\x63ode\x12&\n\x08password\x18\x03 \x01(\tB\n\xbaH\x07r\x05\x10\x08\x18\x80\x01R\x08password\"\x1e\n\x1c\x43onfirmPasswordResetResponse\"\x0e\n\x0cGetMeRequest\"4\n\x0fGetUserResponse\x12!\n\x04user\x18\x01 \x01(\x0b\x32\r.auth.v1.UserR\x04user\"*\n\x0eGetUserRequest\x12\x18\n\x02id\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x02id\"s\n\x11UpdateUserRequest\x12!\n\x04user\x18\x01 \x01(\x0b\x32\r.auth.v1.UserR\x04user\x12;\n\x0bupdate_mask\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.FieldMaskR\nupdateMask\"V\n\x17UploadUserAvatarRequest\x12!\n\x0c\x63ontent_type\x18\x01 \x01(\tR\x0b\x63ontentType\x12\x18\n\x07\x63ontent\x18\x02 \x01(\x0cR\x07\x63ontent\"\x1a\n\x18UploadUserAvatarResponse2\x88\x07\n\x0b\x41uthService\x12=\n\x05Login\x12\x15.auth.v1.LoginRequest\x1a\x1d.auth.v1.SuccessLoginResponse\x12?\n\x08Register\x12\x18.auth.v1.RegisterRequest\x1a\x19.auth.v1.RegisterResponse\x12K\n\x0c\x43onfirmEmail\x12\x1c.auth.v1.ConfirmEmailRequest\x1a\x1d.auth.v1.SuccessLoginResponse\x12K\n\x0cRefreshToken\x12\x1c.auth.v1.RefreshTokenRequest\x1a\x1d.auth.v1.SuccessLoginResponse\x12\x39\n\x06Logout\x12\x16.auth.v1.LogoutRequest\x1a\x17.auth.v1.LogoutResponse\x12N\n\rResetPassword\x12\x1d.auth.v1.ResetPasswordRequest\x1a\x1e.auth.v1.ResetPasswordResponse\x12\x63\n\x14\x43onfirmPasswordReset\x12$.auth.v1.ConfirmPasswordResetRequest\x1a%.auth.v1.ConfirmPasswordResetResponse\x12i\n\x16\x43heckPasswordResetCode\x12&.auth.v1.CheckPasswordResetCodeRequest\x1a\'.auth.v1.CheckPasswordResetCodeResponse\x12\x38\n\x05GetMe\x12\x15.auth.v1.GetMeRequest\x1a\x18.auth.v1.GetUserResponse\x12\x37\n\nUpdateUser\x12\x1a.auth.v1.UpdateUserRequest\x1a\r.auth.v1.User\x12<\n\x07GetUser\x12\x17.auth.v1.GetUserRequest\x1a\x18.auth.v1.GetUserResponse\x12S\n\x0cUploadAvatar\x12 .auth.v1.UploadUserAvatarRequest\x1a!.auth.v1.UploadUserAvatarResponseBAZ?github.com/tech-inspire/api-contracts/api/gen/go/auth/v1;authv1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12\x61uth/v1/auth.proto\x12\x07\x61uth.v1\x1a\x14\x61uth/v1/fields.proto\x1a\x1b\x62uf/validate/validate.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd0\x01\n\x04User\x12\x18\n\x02id\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12-\n\x08username\x18\x02 \x01(\x0b\x32\x11.auth.v1.UsernameR\x08username\x12!\n\x04name\x18\x03 \x01(\x0b\x32\r.auth.v1.NameR\x04name\x12\"\n\navatar_url\x18\x04 \x01(\tH\x00R\tavatarUrl\x88\x01\x01\x12)\n\x0b\x64\x65scription\x18\x05 \x01(\tB\x07\xbaH\x04r\x02\x10\x01R\x0b\x64\x65scriptionB\r\n\x0b_avatar_url\"\xb8\x01\n\x0fRegisterRequest\x12$\n\x05\x65mail\x18\x01 \x01(\x0b\x32\x0e.auth.v1.EmailR\x05\x65mail\x12-\n\x08username\x18\x02 \x01(\x0b\x32\x11.auth.v1.UsernameR\x08username\x12!\n\x04name\x18\x03 \x01(\x0b\x32\r.auth.v1.NameR\x04name\x12-\n\x08password\x18\x04 \x01(\x0b\x32\x11.auth.v1.PasswordR\x08password\"\x1f\n\x1d\x45mailCodeConfirmationRequired\"\xcc\x01\n\x10RegisterResponse\x12\x46\n\x0elogin_response\x18\x01 \x01(\x0b\x32\x1d.auth.v1.SuccessLoginResponseH\x00R\rloginResponse\x12h\n\x1b\x65mail_confirmation_required\x18\x02 \x01(\x0b\x32&.auth.v1.EmailCodeConfirmationRequiredH\x00R\x19\x65mailConfirmationRequiredB\x06\n\x04\x66low\"j\n\x13\x43onfirmEmailRequest\x12$\n\x05\x65mail\x18\x01 \x01(\x0b\x32\x0e.auth.v1.EmailR\x05\x65mail\x12-\n\x04\x63ode\x18\x02 \x01(\x0b\x32\x19.auth.v1.ConfirmationCodeR\x04\x63ode\"\x98\x01\n\x0cLoginRequest\x12/\n\x08username\x18\x01 \x01(\x0b\x32\x11.auth.v1.UsernameH\x00R\x08username\x12&\n\x05\x65mail\x18\x02 \x01(\x0b\x32\x0e.auth.v1.EmailH\x00R\x05\x65mail\x12&\n\x08password\x18\x03 \x01(\tB\n\xbaH\x07r\x05\x10\x08\x18\x80\x01R\x08passwordB\x07\n\x05login\"\xa9\x02\n\x14SuccessLoginResponse\x12!\n\x0c\x61\x63\x63\x65ss_token\x18\x01 \x01(\tR\x0b\x61\x63\x63\x65ssToken\x12Q\n\x17\x61\x63\x63\x65ss_token_expires_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x14\x61\x63\x63\x65ssTokenExpiresAt\x12#\n\rrefresh_token\x18\x03 \x01(\tR\x0crefreshToken\x12S\n\x18refresh_token_expires_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x15refreshTokenExpiresAt\x12!\n\x04user\x18\x05 \x01(\x0b\x32\r.auth.v1.UserR\x04user\"C\n\x13RefreshTokenRequest\x12,\n\rrefresh_token\x18\x01 \x01(\tB\x07\xbaH\x04r\x02\x10\x01R\x0crefreshToken\"=\n\rLogoutRequest\x12,\n\rrefresh_token\x18\x01 \x01(\tB\x07\xbaH\x04r\x02\x10\x01R\x0crefreshToken\"\x10\n\x0eLogoutResponse\"<\n\x14ResetPasswordRequest\x12$\n\x05\x65mail\x18\x01 \x01(\x0b\x32\x0e.auth.v1.EmailR\x05\x65mail\"\x17\n\x15ResetPasswordResponse\"t\n\x1d\x43heckPasswordResetCodeRequest\x12$\n\x05\x65mail\x18\x01 \x01(\x0b\x32\x0e.auth.v1.EmailR\x05\x65mail\x12-\n\x04\x63ode\x18\x02 \x01(\x0b\x32\x19.auth.v1.ConfirmationCodeR\x04\x63ode\" \n\x1e\x43heckPasswordResetCodeResponse\"\xa1\x01\n\x1b\x43onfirmPasswordResetRequest\x12$\n\x05\x65mail\x18\x01 \x01(\x0b\x32\x0e.auth.v1.EmailR\x05\x65mail\x12-\n\x04\x63ode\x18\x02 \x01(\x0b\x32\x19.auth.v1.ConfirmationCodeR\x04\x63ode\x12-\n\x08password\x18\x03 \x01(\x0b\x32\x11.auth.v1.PasswordR\x08password\"\x1e\n\x1c\x43onfirmPasswordResetResponse\"\x0e\n\x0cGetMeRequest\"4\n\x0fGetUserResponse\x12!\n\x04user\x18\x01 \x01(\x0b\x32\r.auth.v1.UserR\x04user\"*\n\x0eGetUserRequest\x12\x18\n\x02id\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x02id\"s\n\x11UpdateUserRequest\x12!\n\x04user\x18\x01 \x01(\x0b\x32\r.auth.v1.UserR\x04user\x12;\n\x0bupdate_mask\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.FieldMaskR\nupdateMask\"V\n\x17UploadUserAvatarRequest\x12!\n\x0c\x63ontent_type\x18\x01 \x01(\tR\x0b\x63ontentType\x12\x18\n\x07\x63ontent\x18\x02 \x01(\x0cR\x07\x63ontent\"\x1a\n\x18UploadUserAvatarResponse2\x88\x07\n\x0b\x41uthService\x12=\n\x05Login\x12\x15.auth.v1.LoginRequest\x1a\x1d.auth.v1.SuccessLoginResponse\x12?\n\x08Register\x12\x18.auth.v1.RegisterRequest\x1a\x19.auth.v1.RegisterResponse\x12K\n\x0c\x43onfirmEmail\x12\x1c.auth.v1.ConfirmEmailRequest\x1a\x1d.auth.v1.SuccessLoginResponse\x12K\n\x0cRefreshToken\x12\x1c.auth.v1.RefreshTokenRequest\x1a\x1d.auth.v1.SuccessLoginResponse\x12\x39\n\x06Logout\x12\x16.auth.v1.LogoutRequest\x1a\x17.auth.v1.LogoutResponse\x12N\n\rResetPassword\x12\x1d.auth.v1.ResetPasswordRequest\x1a\x1e.auth.v1.ResetPasswordResponse\x12\x63\n\x14\x43onfirmPasswordReset\x12$.auth.v1.ConfirmPasswordResetRequest\x1a%.auth.v1.ConfirmPasswordResetResponse\x12i\n\x16\x43heckPasswordResetCode\x12&.auth.v1.CheckPasswordResetCodeRequest\x1a\'.auth.v1.CheckPasswordResetCodeResponse\x12\x38\n\x05GetMe\x12\x15.auth.v1.GetMeRequest\x1a\x18.auth.v1.GetUserResponse\x12\x37\n\nUpdateUser\x12\x1a.auth.v1.UpdateUserRequest\x1a\r.auth.v1.User\x12<\n\x07GetUser\x12\x17.auth.v1.GetUserRequest\x1a\x18.auth.v1.GetUserResponse\x12S\n\x0cUploadAvatar\x12 .auth.v1.UploadUserAvatarRequest\x1a!.auth.v1.UploadUserAvatarResponseBAZ?github.com/tech-inspire/api-contracts/api/gen/go/auth/v1;authv1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -37,92 +38,60 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._serialized_options = b'Z?github.com/tech-inspire/api-contracts/api/gen/go/auth/v1;authv1'
   _globals['_USER'].fields_by_name['id']._loaded_options = None
   _globals['_USER'].fields_by_name['id']._serialized_options = b'\272H\005r\003\260\001\001'
-  _globals['_USER'].fields_by_name['username']._loaded_options = None
-  _globals['_USER'].fields_by_name['username']._serialized_options = b'\272H(r&\030(2\"^[a-zA-Z0-9]+([_.-]?[a-zA-Z0-9])*$'
-  _globals['_USER'].fields_by_name['name']._loaded_options = None
-  _globals['_USER'].fields_by_name['name']._serialized_options = b'\272H\004r\002\020\001'
   _globals['_USER'].fields_by_name['description']._loaded_options = None
   _globals['_USER'].fields_by_name['description']._serialized_options = b'\272H\004r\002\020\001'
-  _globals['_REGISTERREQUEST'].fields_by_name['email']._loaded_options = None
-  _globals['_REGISTERREQUEST'].fields_by_name['email']._serialized_options = b'\272H\004r\002`\001'
-  _globals['_REGISTERREQUEST'].fields_by_name['username']._loaded_options = None
-  _globals['_REGISTERREQUEST'].fields_by_name['username']._serialized_options = b'\272H\004r\002\030('
-  _globals['_REGISTERREQUEST'].fields_by_name['name']._loaded_options = None
-  _globals['_REGISTERREQUEST'].fields_by_name['name']._serialized_options = b'\272H\004r\002\020\001'
-  _globals['_REGISTERREQUEST'].fields_by_name['password']._loaded_options = None
-  _globals['_REGISTERREQUEST'].fields_by_name['password']._serialized_options = b'\272H\007r\005\020\010\030\200\001'
-  _globals['_CONFIRMEMAILREQUEST'].fields_by_name['email']._loaded_options = None
-  _globals['_CONFIRMEMAILREQUEST'].fields_by_name['email']._serialized_options = b'\272H\004r\002`\001'
-  _globals['_CONFIRMEMAILREQUEST'].fields_by_name['code']._loaded_options = None
-  _globals['_CONFIRMEMAILREQUEST'].fields_by_name['code']._serialized_options = b'\272H\016r\0142\n^[0-9]{6}$'
-  _globals['_LOGINREQUEST'].fields_by_name['username']._loaded_options = None
-  _globals['_LOGINREQUEST'].fields_by_name['username']._serialized_options = b'\272H\004r\002\030('
-  _globals['_LOGINREQUEST'].fields_by_name['email']._loaded_options = None
-  _globals['_LOGINREQUEST'].fields_by_name['email']._serialized_options = b'\272H\004r\002`\001'
   _globals['_LOGINREQUEST'].fields_by_name['password']._loaded_options = None
   _globals['_LOGINREQUEST'].fields_by_name['password']._serialized_options = b'\272H\007r\005\020\010\030\200\001'
   _globals['_REFRESHTOKENREQUEST'].fields_by_name['refresh_token']._loaded_options = None
   _globals['_REFRESHTOKENREQUEST'].fields_by_name['refresh_token']._serialized_options = b'\272H\004r\002\020\001'
   _globals['_LOGOUTREQUEST'].fields_by_name['refresh_token']._loaded_options = None
   _globals['_LOGOUTREQUEST'].fields_by_name['refresh_token']._serialized_options = b'\272H\004r\002\020\001'
-  _globals['_RESETPASSWORDREQUEST'].fields_by_name['email']._loaded_options = None
-  _globals['_RESETPASSWORDREQUEST'].fields_by_name['email']._serialized_options = b'\272H\004r\002`\001'
-  _globals['_CHECKPASSWORDRESETCODEREQUEST'].fields_by_name['email']._loaded_options = None
-  _globals['_CHECKPASSWORDRESETCODEREQUEST'].fields_by_name['email']._serialized_options = b'\272H\004r\002`\001'
-  _globals['_CHECKPASSWORDRESETCODEREQUEST'].fields_by_name['code']._loaded_options = None
-  _globals['_CHECKPASSWORDRESETCODEREQUEST'].fields_by_name['code']._serialized_options = b'\272H\016r\0142\n^[0-9]{6}$'
-  _globals['_CONFIRMPASSWORDRESETREQUEST'].fields_by_name['email']._loaded_options = None
-  _globals['_CONFIRMPASSWORDRESETREQUEST'].fields_by_name['email']._serialized_options = b'\272H\004r\002`\001'
-  _globals['_CONFIRMPASSWORDRESETREQUEST'].fields_by_name['code']._loaded_options = None
-  _globals['_CONFIRMPASSWORDRESETREQUEST'].fields_by_name['code']._serialized_options = b'\272H\016r\0142\n^[0-9]{6}$'
-  _globals['_CONFIRMPASSWORDRESETREQUEST'].fields_by_name['password']._loaded_options = None
-  _globals['_CONFIRMPASSWORDRESETREQUEST'].fields_by_name['password']._serialized_options = b'\272H\007r\005\020\010\030\200\001'
   _globals['_GETUSERREQUEST'].fields_by_name['id']._loaded_options = None
   _globals['_GETUSERREQUEST'].fields_by_name['id']._serialized_options = b'\272H\005r\003\260\001\001'
-  _globals['_USER']._serialized_start=128
-  _globals['_USER']._serialized_end=356
-  _globals['_REGISTERREQUEST']._serialized_start=359
-  _globals['_REGISTERREQUEST']._serialized_end=513
-  _globals['_EMAILCODECONFIRMATIONREQUIRED']._serialized_start=515
-  _globals['_EMAILCODECONFIRMATIONREQUIRED']._serialized_end=546
-  _globals['_REGISTERRESPONSE']._serialized_start=549
-  _globals['_REGISTERRESPONSE']._serialized_end=753
-  _globals['_CONFIRMEMAILREQUEST']._serialized_start=755
-  _globals['_CONFIRMEMAILREQUEST']._serialized_end=846
-  _globals['_LOGINREQUEST']._serialized_start=849
-  _globals['_LOGINREQUEST']._serialized_end=984
-  _globals['_SUCCESSLOGINRESPONSE']._serialized_start=987
-  _globals['_SUCCESSLOGINRESPONSE']._serialized_end=1284
-  _globals['_REFRESHTOKENREQUEST']._serialized_start=1286
-  _globals['_REFRESHTOKENREQUEST']._serialized_end=1353
-  _globals['_LOGOUTREQUEST']._serialized_start=1355
-  _globals['_LOGOUTREQUEST']._serialized_end=1416
-  _globals['_LOGOUTRESPONSE']._serialized_start=1418
-  _globals['_LOGOUTRESPONSE']._serialized_end=1434
-  _globals['_RESETPASSWORDREQUEST']._serialized_start=1436
-  _globals['_RESETPASSWORDREQUEST']._serialized_end=1489
-  _globals['_RESETPASSWORDRESPONSE']._serialized_start=1491
-  _globals['_RESETPASSWORDRESPONSE']._serialized_end=1514
-  _globals['_CHECKPASSWORDRESETCODEREQUEST']._serialized_start=1516
-  _globals['_CHECKPASSWORDRESETCODEREQUEST']._serialized_end=1617
-  _globals['_CHECKPASSWORDRESETCODERESPONSE']._serialized_start=1619
-  _globals['_CHECKPASSWORDRESETCODERESPONSE']._serialized_end=1651
-  _globals['_CONFIRMPASSWORDRESETREQUEST']._serialized_start=1654
-  _globals['_CONFIRMPASSWORDRESETREQUEST']._serialized_end=1793
-  _globals['_CONFIRMPASSWORDRESETRESPONSE']._serialized_start=1795
-  _globals['_CONFIRMPASSWORDRESETRESPONSE']._serialized_end=1825
-  _globals['_GETMEREQUEST']._serialized_start=1827
-  _globals['_GETMEREQUEST']._serialized_end=1841
-  _globals['_GETUSERRESPONSE']._serialized_start=1843
-  _globals['_GETUSERRESPONSE']._serialized_end=1895
-  _globals['_GETUSERREQUEST']._serialized_start=1897
-  _globals['_GETUSERREQUEST']._serialized_end=1939
-  _globals['_UPDATEUSERREQUEST']._serialized_start=1941
-  _globals['_UPDATEUSERREQUEST']._serialized_end=2056
-  _globals['_UPLOADUSERAVATARREQUEST']._serialized_start=2058
-  _globals['_UPLOADUSERAVATARREQUEST']._serialized_end=2144
-  _globals['_UPLOADUSERAVATARRESPONSE']._serialized_start=2146
-  _globals['_UPLOADUSERAVATARRESPONSE']._serialized_end=2172
-  _globals['_AUTHSERVICE']._serialized_start=2175
-  _globals['_AUTHSERVICE']._serialized_end=3079
+  _globals['_USER']._serialized_start=150
+  _globals['_USER']._serialized_end=358
+  _globals['_REGISTERREQUEST']._serialized_start=361
+  _globals['_REGISTERREQUEST']._serialized_end=545
+  _globals['_EMAILCODECONFIRMATIONREQUIRED']._serialized_start=547
+  _globals['_EMAILCODECONFIRMATIONREQUIRED']._serialized_end=578
+  _globals['_REGISTERRESPONSE']._serialized_start=581
+  _globals['_REGISTERRESPONSE']._serialized_end=785
+  _globals['_CONFIRMEMAILREQUEST']._serialized_start=787
+  _globals['_CONFIRMEMAILREQUEST']._serialized_end=893
+  _globals['_LOGINREQUEST']._serialized_start=896
+  _globals['_LOGINREQUEST']._serialized_end=1048
+  _globals['_SUCCESSLOGINRESPONSE']._serialized_start=1051
+  _globals['_SUCCESSLOGINRESPONSE']._serialized_end=1348
+  _globals['_REFRESHTOKENREQUEST']._serialized_start=1350
+  _globals['_REFRESHTOKENREQUEST']._serialized_end=1417
+  _globals['_LOGOUTREQUEST']._serialized_start=1419
+  _globals['_LOGOUTREQUEST']._serialized_end=1480
+  _globals['_LOGOUTRESPONSE']._serialized_start=1482
+  _globals['_LOGOUTRESPONSE']._serialized_end=1498
+  _globals['_RESETPASSWORDREQUEST']._serialized_start=1500
+  _globals['_RESETPASSWORDREQUEST']._serialized_end=1560
+  _globals['_RESETPASSWORDRESPONSE']._serialized_start=1562
+  _globals['_RESETPASSWORDRESPONSE']._serialized_end=1585
+  _globals['_CHECKPASSWORDRESETCODEREQUEST']._serialized_start=1587
+  _globals['_CHECKPASSWORDRESETCODEREQUEST']._serialized_end=1703
+  _globals['_CHECKPASSWORDRESETCODERESPONSE']._serialized_start=1705
+  _globals['_CHECKPASSWORDRESETCODERESPONSE']._serialized_end=1737
+  _globals['_CONFIRMPASSWORDRESETREQUEST']._serialized_start=1740
+  _globals['_CONFIRMPASSWORDRESETREQUEST']._serialized_end=1901
+  _globals['_CONFIRMPASSWORDRESETRESPONSE']._serialized_start=1903
+  _globals['_CONFIRMPASSWORDRESETRESPONSE']._serialized_end=1933
+  _globals['_GETMEREQUEST']._serialized_start=1935
+  _globals['_GETMEREQUEST']._serialized_end=1949
+  _globals['_GETUSERRESPONSE']._serialized_start=1951
+  _globals['_GETUSERRESPONSE']._serialized_end=2003
+  _globals['_GETUSERREQUEST']._serialized_start=2005
+  _globals['_GETUSERREQUEST']._serialized_end=2047
+  _globals['_UPDATEUSERREQUEST']._serialized_start=2049
+  _globals['_UPDATEUSERREQUEST']._serialized_end=2164
+  _globals['_UPLOADUSERAVATARREQUEST']._serialized_start=2166
+  _globals['_UPLOADUSERAVATARREQUEST']._serialized_end=2252
+  _globals['_UPLOADUSERAVATARRESPONSE']._serialized_start=2254
+  _globals['_UPLOADUSERAVATARRESPONSE']._serialized_end=2280
+  _globals['_AUTHSERVICE']._serialized_start=2283
+  _globals['_AUTHSERVICE']._serialized_end=3187
 # @@protoc_insertion_point(module_scope)

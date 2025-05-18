@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package auth.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/tech-inspire/api-contracts/api/gen/go/auth/v1;authv1";
+
+
+// Reusable validated username
+message Username {
+  string value = 1 [
+    (buf.validate.field).string = {
+      min_len: 1,
+      max_len: 30,
+      pattern: "^(?!.*[._]{2})(?![._])[a-zA-Z0-9._]{1,30}(?<![._])$"
+    }
+  ];
+}
+
+// Reusable validated name
+message Name {
+  string value = 1 [
+    (buf.validate.field).string = {
+      min_len: 1,
+      max_len: 50,
+      pattern: "^(?!.*[ .'\\-]{2})(?![ .''\\-])[ \\p{L}\\p{N}'\\-.]{1,50}(?<![ .'\\-])$"
+    }
+  ];
+}
+
+// Reusable validated email
+message Email {
+  string value = 1 [(buf.validate.field).string.email = true];
+}
+
+message Password {
+  string value = 1 [
+    (buf.validate.field).string.min_len = 8,
+    (buf.validate.field).string.max_len = 128
+  ];
+}
+
+message ConfirmationCode {
+  string value = 1 [(buf.validate.field).string.pattern = "^[0-9]{6}$"];
+}

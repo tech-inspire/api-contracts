@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 # 📝 CHANGE "yourprojectname" to the name you want exposed on PyPI
 name = "inspire_protobuf"
-version = "0.1.0"
+version = "0.1.1"
 description = "Protobuf‑generated Python stubs for the auth and embeddings APIs."
 readme = "README.md"
 license = { file = "LICENSE" }
@@ -13,7 +13,6 @@ requires-python = ">=3.8"
 dependencies = [
     "protobuf>=6.31.0",
     "grpcio>=1.64",
-    "protovalidate>=0.8.0"
 ]
 
 [project.urls]

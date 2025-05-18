@@ -27,8 +27,8 @@ const (
 type User struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Username      string                 `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
-	Name          string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	Username      *Username              `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
+	Name          *Name                  `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
 	AvatarUrl     *string                `protobuf:"bytes,4,opt,name=avatar_url,json=avatarUrl,proto3,oneof" json:"avatar_url,omitempty"`
 	Description   string                 `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -72,18 +72,18 @@ func (x *User) GetId() string {
 	return ""
 }
 
-func (x *User) GetUsername() string {
+func (x *User) GetUsername() *Username {
 	if x != nil {
 		return x.Username
 	}
-	return ""
+	return nil
 }
 
-func (x *User) GetName() string {
+func (x *User) GetName() *Name {
 	if x != nil {
 		return x.Name
 	}
-	return ""
+	return nil
 }
 
 func (x *User) GetAvatarUrl() string {
@@ -102,10 +102,10 @@ func (x *User) GetDescription() string {
 
 type RegisterRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
-	Username      string                 `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
-	Name          string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	Password      string                 `protobuf:"bytes,4,opt,name=password,proto3" json:"password,omitempty"`
+	Email         *Email                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
+	Username      *Username              `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
+	Name          *Name                  `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	Password      *Password              `protobuf:"bytes,4,opt,name=password,proto3" json:"password,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -140,32 +140,32 @@ func (*RegisterRequest) Descriptor() ([]byte, []int) {
 	return file_auth_v1_auth_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *RegisterRequest) GetEmail() string {
+func (x *RegisterRequest) GetEmail() *Email {
 	if x != nil {
 		return x.Email
 	}
-	return ""
+	return nil
 }
 
-func (x *RegisterRequest) GetUsername() string {
+func (x *RegisterRequest) GetUsername() *Username {
 	if x != nil {
 		return x.Username
 	}
-	return ""
+	return nil
 }
 
-func (x *RegisterRequest) GetName() string {
+func (x *RegisterRequest) GetName() *Name {
 	if x != nil {
 		return x.Name
 	}
-	return ""
+	return nil
 }
 
-func (x *RegisterRequest) GetPassword() string {
+func (x *RegisterRequest) GetPassword() *Password {
 	if x != nil {
 		return x.Password
 	}
-	return ""
+	return nil
 }
 
 type EmailCodeConfirmationRequired struct {
@@ -288,8 +288,8 @@ func (*RegisterResponse_EmailConfirmationRequired) isRegisterResponse_Flow() {}
 
 type ConfirmEmailRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
-	Code          string                 `protobuf:"bytes,2,opt,name=code,proto3" json:"code,omitempty"`
+	Email         *Email                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
+	Code          *ConfirmationCode      `protobuf:"bytes,2,opt,name=code,proto3" json:"code,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -324,18 +324,18 @@ func (*ConfirmEmailRequest) Descriptor() ([]byte, []int) {
 	return file_auth_v1_auth_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *ConfirmEmailRequest) GetEmail() string {
+func (x *ConfirmEmailRequest) GetEmail() *Email {
 	if x != nil {
 		return x.Email
 	}
-	return ""
+	return nil
 }
 
-func (x *ConfirmEmailRequest) GetCode() string {
+func (x *ConfirmEmailRequest) GetCode() *ConfirmationCode {
 	if x != nil {
 		return x.Code
 	}
-	return ""
+	return nil
 }
 
 type LoginRequest struct {
@@ -387,22 +387,22 @@ func (x *LoginRequest) GetLogin() isLoginRequest_Login {
 	return nil
 }
 
-func (x *LoginRequest) GetUsername() string {
+func (x *LoginRequest) GetUsername() *Username {
 	if x != nil {
 		if x, ok := x.Login.(*LoginRequest_Username); ok {
 			return x.Username
 		}
 	}
-	return ""
+	return nil
 }
 
-func (x *LoginRequest) GetEmail() string {
+func (x *LoginRequest) GetEmail() *Email {
 	if x != nil {
 		if x, ok := x.Login.(*LoginRequest_Email); ok {
 			return x.Email
 		}
 	}
-	return ""
+	return nil
 }
 
 func (x *LoginRequest) GetPassword() string {
@@ -417,11 +417,11 @@ type isLoginRequest_Login interface {
 }
 
 type LoginRequest_Username struct {
-	Username string `protobuf:"bytes,1,opt,name=username,proto3,oneof"`
+	Username *Username `protobuf:"bytes,1,opt,name=username,proto3,oneof"`
 }
 
 type LoginRequest_Email struct {
-	Email string `protobuf:"bytes,2,opt,name=email,proto3,oneof"`
+	Email *Email `protobuf:"bytes,2,opt,name=email,proto3,oneof"`
 }
 
 func (*LoginRequest_Username) isLoginRequest_Login() {}
@@ -630,7 +630,7 @@ func (*LogoutResponse) Descriptor() ([]byte, []int) {
 
 type ResetPasswordRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
+	Email         *Email                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -665,11 +665,11 @@ func (*ResetPasswordRequest) Descriptor() ([]byte, []int) {
 	return file_auth_v1_auth_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *ResetPasswordRequest) GetEmail() string {
+func (x *ResetPasswordRequest) GetEmail() *Email {
 	if x != nil {
 		return x.Email
 	}
-	return ""
+	return nil
 }
 
 type ResetPasswordResponse struct {
@@ -710,8 +710,8 @@ func (*ResetPasswordResponse) Descriptor() ([]byte, []int) {
 
 type CheckPasswordResetCodeRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
-	Code          string                 `protobuf:"bytes,2,opt,name=code,proto3" json:"code,omitempty"`
+	Email         *Email                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
+	Code          *ConfirmationCode      `protobuf:"bytes,2,opt,name=code,proto3" json:"code,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -746,18 +746,18 @@ func (*CheckPasswordResetCodeRequest) Descriptor() ([]byte, []int) {
 	return file_auth_v1_auth_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *CheckPasswordResetCodeRequest) GetEmail() string {
+func (x *CheckPasswordResetCodeRequest) GetEmail() *Email {
 	if x != nil {
 		return x.Email
 	}
-	return ""
+	return nil
 }
 
-func (x *CheckPasswordResetCodeRequest) GetCode() string {
+func (x *CheckPasswordResetCodeRequest) GetCode() *ConfirmationCode {
 	if x != nil {
 		return x.Code
 	}
-	return ""
+	return nil
 }
 
 type CheckPasswordResetCodeResponse struct {
@@ -798,9 +798,9 @@ func (*CheckPasswordResetCodeResponse) Descriptor() ([]byte, []int) {
 
 type ConfirmPasswordResetRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
-	Code          string                 `protobuf:"bytes,2,opt,name=code,proto3" json:"code,omitempty"`
-	Password      string                 `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty"`
+	Email         *Email                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
+	Code          *ConfirmationCode      `protobuf:"bytes,2,opt,name=code,proto3" json:"code,omitempty"`
+	Password      *Password              `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -835,25 +835,25 @@ func (*ConfirmPasswordResetRequest) Descriptor() ([]byte, []int) {
 	return file_auth_v1_auth_proto_rawDescGZIP(), []int{14}
 }
 
-func (x *ConfirmPasswordResetRequest) GetEmail() string {
+func (x *ConfirmPasswordResetRequest) GetEmail() *Email {
 	if x != nil {
 		return x.Email
 	}
-	return ""
+	return nil
 }
 
-func (x *ConfirmPasswordResetRequest) GetCode() string {
+func (x *ConfirmPasswordResetRequest) GetCode() *ConfirmationCode {
 	if x != nil {
 		return x.Code
 	}
-	return ""
+	return nil
 }
 
-func (x *ConfirmPasswordResetRequest) GetPassword() string {
+func (x *ConfirmPasswordResetRequest) GetPassword() *Password {
 	if x != nil {
 		return x.Password
 	}
-	return ""
+	return nil
 }
 
 type ConfirmPasswordResetResponse struct {
@@ -1160,33 +1160,31 @@ var File_auth_v1_auth_proto protoreflect.FileDescriptor
 
 const file_auth_v1_auth_proto_rawDesc = "" +
 	"\n" +
-	"\x12auth/v1/auth.proto\x12\aauth.v1\x1a\x1bbuf/validate/validate.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe4\x01\n" +
+	"\x12auth/v1/auth.proto\x12\aauth.v1\x1a\x14auth/v1/fields.proto\x1a\x1bbuf/validate/validate.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd0\x01\n" +
 	"\x04User\x12\x18\n" +
-	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12G\n" +
-	"\busername\x18\x02 \x01(\tB+\xbaH(r&\x18(2\"^[a-zA-Z0-9]+([_.-]?[a-zA-Z0-9])*$R\busername\x12\x1b\n" +
-	"\x04name\x18\x03 \x01(\tB\a\xbaH\x04r\x02\x10\x01R\x04name\x12\"\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12-\n" +
+	"\busername\x18\x02 \x01(\v2\x11.auth.v1.UsernameR\busername\x12!\n" +
+	"\x04name\x18\x03 \x01(\v2\r.auth.v1.NameR\x04name\x12\"\n" +
 	"\n" +
 	"avatar_url\x18\x04 \x01(\tH\x00R\tavatarUrl\x88\x01\x01\x12)\n" +
 	"\vdescription\x18\x05 \x01(\tB\a\xbaH\x04r\x02\x10\x01R\vdescriptionB\r\n" +
-	"\v_avatar_url\"\x9a\x01\n" +
-	"\x0fRegisterRequest\x12\x1d\n" +
-	"\x05email\x18\x01 \x01(\tB\a\xbaH\x04r\x02`\x01R\x05email\x12#\n" +
-	"\busername\x18\x02 \x01(\tB\a\xbaH\x04r\x02\x18(R\busername\x12\x1b\n" +
-	"\x04name\x18\x03 \x01(\tB\a\xbaH\x04r\x02\x10\x01R\x04name\x12&\n" +
-	"\bpassword\x18\x04 \x01(\tB\n" +
-	"\xbaH\ar\x05\x10\b\x18\x80\x01R\bpassword\"\x1f\n" +
+	"\v_avatar_url\"\xb8\x01\n" +
+	"\x0fRegisterRequest\x12$\n" +
+	"\x05email\x18\x01 \x01(\v2\x0e.auth.v1.EmailR\x05email\x12-\n" +
+	"\busername\x18\x02 \x01(\v2\x11.auth.v1.UsernameR\busername\x12!\n" +
+	"\x04name\x18\x03 \x01(\v2\r.auth.v1.NameR\x04name\x12-\n" +
+	"\bpassword\x18\x04 \x01(\v2\x11.auth.v1.PasswordR\bpassword\"\x1f\n" +
 	"\x1dEmailCodeConfirmationRequired\"\xcc\x01\n" +
 	"\x10RegisterResponse\x12F\n" +
 	"\x0elogin_response\x18\x01 \x01(\v2\x1d.auth.v1.SuccessLoginResponseH\x00R\rloginResponse\x12h\n" +
 	"\x1bemail_confirmation_required\x18\x02 \x01(\v2&.auth.v1.EmailCodeConfirmationRequiredH\x00R\x19emailConfirmationRequiredB\x06\n" +
-	"\x04flow\"[\n" +
-	"\x13ConfirmEmailRequest\x12\x1d\n" +
-	"\x05email\x18\x01 \x01(\tB\a\xbaH\x04r\x02`\x01R\x05email\x12%\n" +
-	"\x04code\x18\x02 \x01(\tB\x11\xbaH\x0er\f2\n" +
-	"^[0-9]{6}$R\x04code\"\x87\x01\n" +
-	"\fLoginRequest\x12%\n" +
-	"\busername\x18\x01 \x01(\tB\a\xbaH\x04r\x02\x18(H\x00R\busername\x12\x1f\n" +
-	"\x05email\x18\x02 \x01(\tB\a\xbaH\x04r\x02`\x01H\x00R\x05email\x12&\n" +
+	"\x04flow\"j\n" +
+	"\x13ConfirmEmailRequest\x12$\n" +
+	"\x05email\x18\x01 \x01(\v2\x0e.auth.v1.EmailR\x05email\x12-\n" +
+	"\x04code\x18\x02 \x01(\v2\x19.auth.v1.ConfirmationCodeR\x04code\"\x98\x01\n" +
+	"\fLoginRequest\x12/\n" +
+	"\busername\x18\x01 \x01(\v2\x11.auth.v1.UsernameH\x00R\busername\x12&\n" +
+	"\x05email\x18\x02 \x01(\v2\x0e.auth.v1.EmailH\x00R\x05email\x12&\n" +
 	"\bpassword\x18\x03 \x01(\tB\n" +
 	"\xbaH\ar\x05\x10\b\x18\x80\x01R\bpasswordB\a\n" +
 	"\x05login\"\xa9\x02\n" +
@@ -1200,21 +1198,18 @@ const file_auth_v1_auth_proto_rawDesc = "" +
 	"\rrefresh_token\x18\x01 \x01(\tB\a\xbaH\x04r\x02\x10\x01R\frefreshToken\"=\n" +
 	"\rLogoutRequest\x12,\n" +
 	"\rrefresh_token\x18\x01 \x01(\tB\a\xbaH\x04r\x02\x10\x01R\frefreshToken\"\x10\n" +
-	"\x0eLogoutResponse\"5\n" +
-	"\x14ResetPasswordRequest\x12\x1d\n" +
-	"\x05email\x18\x01 \x01(\tB\a\xbaH\x04r\x02`\x01R\x05email\"\x17\n" +
-	"\x15ResetPasswordResponse\"e\n" +
-	"\x1dCheckPasswordResetCodeRequest\x12\x1d\n" +
-	"\x05email\x18\x01 \x01(\tB\a\xbaH\x04r\x02`\x01R\x05email\x12%\n" +
-	"\x04code\x18\x02 \x01(\tB\x11\xbaH\x0er\f2\n" +
-	"^[0-9]{6}$R\x04code\" \n" +
-	"\x1eCheckPasswordResetCodeResponse\"\x8b\x01\n" +
-	"\x1bConfirmPasswordResetRequest\x12\x1d\n" +
-	"\x05email\x18\x01 \x01(\tB\a\xbaH\x04r\x02`\x01R\x05email\x12%\n" +
-	"\x04code\x18\x02 \x01(\tB\x11\xbaH\x0er\f2\n" +
-	"^[0-9]{6}$R\x04code\x12&\n" +
-	"\bpassword\x18\x03 \x01(\tB\n" +
-	"\xbaH\ar\x05\x10\b\x18\x80\x01R\bpassword\"\x1e\n" +
+	"\x0eLogoutResponse\"<\n" +
+	"\x14ResetPasswordRequest\x12$\n" +
+	"\x05email\x18\x01 \x01(\v2\x0e.auth.v1.EmailR\x05email\"\x17\n" +
+	"\x15ResetPasswordResponse\"t\n" +
+	"\x1dCheckPasswordResetCodeRequest\x12$\n" +
+	"\x05email\x18\x01 \x01(\v2\x0e.auth.v1.EmailR\x05email\x12-\n" +
+	"\x04code\x18\x02 \x01(\v2\x19.auth.v1.ConfirmationCodeR\x04code\" \n" +
+	"\x1eCheckPasswordResetCodeResponse\"\xa1\x01\n" +
+	"\x1bConfirmPasswordResetRequest\x12$\n" +
+	"\x05email\x18\x01 \x01(\v2\x0e.auth.v1.EmailR\x05email\x12-\n" +
+	"\x04code\x18\x02 \x01(\v2\x19.auth.v1.ConfirmationCodeR\x04code\x12-\n" +
+	"\bpassword\x18\x03 \x01(\v2\x11.auth.v1.PasswordR\bpassword\"\x1e\n" +
 	"\x1cConfirmPasswordResetResponse\"\x0e\n" +
 	"\fGetMeRequest\"4\n" +
 	"\x0fGetUserResponse\x12!\n" +
@@ -1280,47 +1275,68 @@ var file_auth_v1_auth_proto_goTypes = []any{
 	(*UpdateUserRequest)(nil),              // 19: auth.v1.UpdateUserRequest
 	(*UploadUserAvatarRequest)(nil),        // 20: auth.v1.UploadUserAvatarRequest
 	(*UploadUserAvatarResponse)(nil),       // 21: auth.v1.UploadUserAvatarResponse
-	(*timestamppb.Timestamp)(nil),          // 22: google.protobuf.Timestamp
-	(*fieldmaskpb.FieldMask)(nil),          // 23: google.protobuf.FieldMask
+	(*Username)(nil),                       // 22: auth.v1.Username
+	(*Name)(nil),                           // 23: auth.v1.Name
+	(*Email)(nil),                          // 24: auth.v1.Email
+	(*Password)(nil),                       // 25: auth.v1.Password
+	(*ConfirmationCode)(nil),               // 26: auth.v1.ConfirmationCode
+	(*timestamppb.Timestamp)(nil),          // 27: google.protobuf.Timestamp
+	(*fieldmaskpb.FieldMask)(nil),          // 28: google.protobuf.FieldMask
 }
 var file_auth_v1_auth_proto_depIdxs = []int32{
-	6,  // 0: auth.v1.RegisterResponse.login_response:type_name -> auth.v1.SuccessLoginResponse
-	2,  // 1: auth.v1.RegisterResponse.email_confirmation_required:type_name -> auth.v1.EmailCodeConfirmationRequired
-	22, // 2: auth.v1.SuccessLoginResponse.access_token_expires_at:type_name -> google.protobuf.Timestamp
-	22, // 3: auth.v1.SuccessLoginResponse.refresh_token_expires_at:type_name -> google.protobuf.Timestamp
-	0,  // 4: auth.v1.SuccessLoginResponse.user:type_name -> auth.v1.User
-	0,  // 5: auth.v1.GetUserResponse.user:type_name -> auth.v1.User
-	0,  // 6: auth.v1.UpdateUserRequest.user:type_name -> auth.v1.User
-	23, // 7: auth.v1.UpdateUserRequest.update_mask:type_name -> google.protobuf.FieldMask
-	5,  // 8: auth.v1.AuthService.Login:input_type -> auth.v1.LoginRequest
-	1,  // 9: auth.v1.AuthService.Register:input_type -> auth.v1.RegisterRequest
-	4,  // 10: auth.v1.AuthService.ConfirmEmail:input_type -> auth.v1.ConfirmEmailRequest
-	7,  // 11: auth.v1.AuthService.RefreshToken:input_type -> auth.v1.RefreshTokenRequest
-	8,  // 12: auth.v1.AuthService.Logout:input_type -> auth.v1.LogoutRequest
-	10, // 13: auth.v1.AuthService.ResetPassword:input_type -> auth.v1.ResetPasswordRequest
-	14, // 14: auth.v1.AuthService.ConfirmPasswordReset:input_type -> auth.v1.ConfirmPasswordResetRequest
-	12, // 15: auth.v1.AuthService.CheckPasswordResetCode:input_type -> auth.v1.CheckPasswordResetCodeRequest
-	16, // 16: auth.v1.AuthService.GetMe:input_type -> auth.v1.GetMeRequest
-	19, // 17: auth.v1.AuthService.UpdateUser:input_type -> auth.v1.UpdateUserRequest
-	18, // 18: auth.v1.AuthService.GetUser:input_type -> auth.v1.GetUserRequest
-	20, // 19: auth.v1.AuthService.UploadAvatar:input_type -> auth.v1.UploadUserAvatarRequest
-	6,  // 20: auth.v1.AuthService.Login:output_type -> auth.v1.SuccessLoginResponse
-	3,  // 21: auth.v1.AuthService.Register:output_type -> auth.v1.RegisterResponse
-	6,  // 22: auth.v1.AuthService.ConfirmEmail:output_type -> auth.v1.SuccessLoginResponse
-	6,  // 23: auth.v1.AuthService.RefreshToken:output_type -> auth.v1.SuccessLoginResponse
-	9,  // 24: auth.v1.AuthService.Logout:output_type -> auth.v1.LogoutResponse
-	11, // 25: auth.v1.AuthService.ResetPassword:output_type -> auth.v1.ResetPasswordResponse
-	15, // 26: auth.v1.AuthService.ConfirmPasswordReset:output_type -> auth.v1.ConfirmPasswordResetResponse
-	13, // 27: auth.v1.AuthService.CheckPasswordResetCode:output_type -> auth.v1.CheckPasswordResetCodeResponse
-	17, // 28: auth.v1.AuthService.GetMe:output_type -> auth.v1.GetUserResponse
-	0,  // 29: auth.v1.AuthService.UpdateUser:output_type -> auth.v1.User
-	17, // 30: auth.v1.AuthService.GetUser:output_type -> auth.v1.GetUserResponse
-	21, // 31: auth.v1.AuthService.UploadAvatar:output_type -> auth.v1.UploadUserAvatarResponse
-	20, // [20:32] is the sub-list for method output_type
-	8,  // [8:20] is the sub-list for method input_type
-	8,  // [8:8] is the sub-list for extension type_name
-	8,  // [8:8] is the sub-list for extension extendee
-	0,  // [0:8] is the sub-list for field type_name
+	22, // 0: auth.v1.User.username:type_name -> auth.v1.Username
+	23, // 1: auth.v1.User.name:type_name -> auth.v1.Name
+	24, // 2: auth.v1.RegisterRequest.email:type_name -> auth.v1.Email
+	22, // 3: auth.v1.RegisterRequest.username:type_name -> auth.v1.Username
+	23, // 4: auth.v1.RegisterRequest.name:type_name -> auth.v1.Name
+	25, // 5: auth.v1.RegisterRequest.password:type_name -> auth.v1.Password
+	6,  // 6: auth.v1.RegisterResponse.login_response:type_name -> auth.v1.SuccessLoginResponse
+	2,  // 7: auth.v1.RegisterResponse.email_confirmation_required:type_name -> auth.v1.EmailCodeConfirmationRequired
+	24, // 8: auth.v1.ConfirmEmailRequest.email:type_name -> auth.v1.Email
+	26, // 9: auth.v1.ConfirmEmailRequest.code:type_name -> auth.v1.ConfirmationCode
+	22, // 10: auth.v1.LoginRequest.username:type_name -> auth.v1.Username
+	24, // 11: auth.v1.LoginRequest.email:type_name -> auth.v1.Email
+	27, // 12: auth.v1.SuccessLoginResponse.access_token_expires_at:type_name -> google.protobuf.Timestamp
+	27, // 13: auth.v1.SuccessLoginResponse.refresh_token_expires_at:type_name -> google.protobuf.Timestamp
+	0,  // 14: auth.v1.SuccessLoginResponse.user:type_name -> auth.v1.User
+	24, // 15: auth.v1.ResetPasswordRequest.email:type_name -> auth.v1.Email
+	24, // 16: auth.v1.CheckPasswordResetCodeRequest.email:type_name -> auth.v1.Email
+	26, // 17: auth.v1.CheckPasswordResetCodeRequest.code:type_name -> auth.v1.ConfirmationCode
+	24, // 18: auth.v1.ConfirmPasswordResetRequest.email:type_name -> auth.v1.Email
+	26, // 19: auth.v1.ConfirmPasswordResetRequest.code:type_name -> auth.v1.ConfirmationCode
+	25, // 20: auth.v1.ConfirmPasswordResetRequest.password:type_name -> auth.v1.Password
+	0,  // 21: auth.v1.GetUserResponse.user:type_name -> auth.v1.User
+	0,  // 22: auth.v1.UpdateUserRequest.user:type_name -> auth.v1.User
+	28, // 23: auth.v1.UpdateUserRequest.update_mask:type_name -> google.protobuf.FieldMask
+	5,  // 24: auth.v1.AuthService.Login:input_type -> auth.v1.LoginRequest
+	1,  // 25: auth.v1.AuthService.Register:input_type -> auth.v1.RegisterRequest
+	4,  // 26: auth.v1.AuthService.ConfirmEmail:input_type -> auth.v1.ConfirmEmailRequest
+	7,  // 27: auth.v1.AuthService.RefreshToken:input_type -> auth.v1.RefreshTokenRequest
+	8,  // 28: auth.v1.AuthService.Logout:input_type -> auth.v1.LogoutRequest
+	10, // 29: auth.v1.AuthService.ResetPassword:input_type -> auth.v1.ResetPasswordRequest
+	14, // 30: auth.v1.AuthService.ConfirmPasswordReset:input_type -> auth.v1.ConfirmPasswordResetRequest
+	12, // 31: auth.v1.AuthService.CheckPasswordResetCode:input_type -> auth.v1.CheckPasswordResetCodeRequest
+	16, // 32: auth.v1.AuthService.GetMe:input_type -> auth.v1.GetMeRequest
+	19, // 33: auth.v1.AuthService.UpdateUser:input_type -> auth.v1.UpdateUserRequest
+	18, // 34: auth.v1.AuthService.GetUser:input_type -> auth.v1.GetUserRequest
+	20, // 35: auth.v1.AuthService.UploadAvatar:input_type -> auth.v1.UploadUserAvatarRequest
+	6,  // 36: auth.v1.AuthService.Login:output_type -> auth.v1.SuccessLoginResponse
+	3,  // 37: auth.v1.AuthService.Register:output_type -> auth.v1.RegisterResponse
+	6,  // 38: auth.v1.AuthService.ConfirmEmail:output_type -> auth.v1.SuccessLoginResponse
+	6,  // 39: auth.v1.AuthService.RefreshToken:output_type -> auth.v1.SuccessLoginResponse
+	9,  // 40: auth.v1.AuthService.Logout:output_type -> auth.v1.LogoutResponse
+	11, // 41: auth.v1.AuthService.ResetPassword:output_type -> auth.v1.ResetPasswordResponse
+	15, // 42: auth.v1.AuthService.ConfirmPasswordReset:output_type -> auth.v1.ConfirmPasswordResetResponse
+	13, // 43: auth.v1.AuthService.CheckPasswordResetCode:output_type -> auth.v1.CheckPasswordResetCodeResponse
+	17, // 44: auth.v1.AuthService.GetMe:output_type -> auth.v1.GetUserResponse
+	0,  // 45: auth.v1.AuthService.UpdateUser:output_type -> auth.v1.User
+	17, // 46: auth.v1.AuthService.GetUser:output_type -> auth.v1.GetUserResponse
+	21, // 47: auth.v1.AuthService.UploadAvatar:output_type -> auth.v1.UploadUserAvatarResponse
+	36, // [36:48] is the sub-list for method output_type
+	24, // [24:36] is the sub-list for method input_type
+	24, // [24:24] is the sub-list for extension type_name
+	24, // [24:24] is the sub-list for extension extendee
+	0,  // [0:24] is the sub-list for field type_name
 }
 
 func init() { file_auth_v1_auth_proto_init() }
@@ -1328,6 +1344,7 @@ func file_auth_v1_auth_proto_init() {
 	if File_auth_v1_auth_proto != nil {
 		return
 	}
+	file_auth_v1_fields_proto_init()
 	file_auth_v1_auth_proto_msgTypes[0].OneofWrappers = []any{}
 	file_auth_v1_auth_proto_msgTypes[3].OneofWrappers = []any{
 		(*RegisterResponse_LoginResponse)(nil),
