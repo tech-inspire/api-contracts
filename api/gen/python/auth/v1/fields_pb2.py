@@ -27,7 +27,7 @@ from google.protobuf import field_mask_pb2 as google_dot_protobuf_dot_field__mas
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x14\x61uth/v1/fields.proto\x12\x07\x61uth.v1\x1a\x1b\x62uf/validate/validate.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"`\n\x08Username\x12T\n\x05value\x18\x01 \x01(\tB>\xbaH;r9\x10\x01\x18\x1e\x32\x33^(?!.*[._]{2})(?![._])[a-zA-Z0-9._]{1,30}(?<![._])$R\x05value\"j\n\x04Name\x12\x62\n\x05value\x18\x01 \x01(\tBL\xbaHIrG\x10\x01\x18\x32\x32\x41^(?!.*[ .\'\\-]{2})(?![ .\'\'\\-])[ \\p{L}\\p{N}\'\\-.]{1,50}(?<![ .\'\\-])$R\x05value\"&\n\x05\x45mail\x12\x1d\n\x05value\x18\x01 \x01(\tB\x07\xbaH\x04r\x02`\x01R\x05value\",\n\x08Password\x12 \n\x05value\x18\x01 \x01(\tB\n\xbaH\x07r\x05\x10\x08\x18\x80\x01R\x05value\";\n\x10\x43onfirmationCode\x12\'\n\x05value\x18\x01 \x01(\tB\x11\xbaH\x0er\x0c\x32\n^[0-9]{6}$R\x05valueBAZ?github.com/tech-inspire/api-contracts/api/gen/go/auth/v1;authv1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x14\x61uth/v1/fields.proto\x12\x07\x61uth.v1\x1a\x1b\x62uf/validate/validate.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"]\n\x08Username\x12Q\n\x05value\x18\x01 \x01(\tB;\xbaH8r6\x10\x01\x18\x1e\x32\x30^[a-zA-Z0-9](?:[a-zA-Z0-9._]{0,28}[a-zA-Z0-9])?$R\x05value\"E\n\x04Name\x12=\n\x05value\x18\x01 \x01(\tB\'\xbaH$r\"\x10\x01\x18\x32\x32\x1c^[A-Za-z0-9\xc3\x80-\xc3\xbf\' .-]{1,50}$R\x05value\"&\n\x05\x45mail\x12\x1d\n\x05value\x18\x01 \x01(\tB\x07\xbaH\x04r\x02`\x01R\x05value\",\n\x08Password\x12 \n\x05value\x18\x01 \x01(\tB\n\xbaH\x07r\x05\x10\x08\x18\x80\x01R\x05value\";\n\x10\x43onfirmationCode\x12\'\n\x05value\x18\x01 \x01(\tB\x11\xbaH\x0er\x0c\x32\n^[0-9]{6}$R\x05valueBAZ?github.com/tech-inspire/api-contracts/api/gen/go/auth/v1;authv1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -36,9 +36,9 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'Z?github.com/tech-inspire/api-contracts/api/gen/go/auth/v1;authv1'
   _globals['_USERNAME'].fields_by_name['value']._loaded_options = None
-  _globals['_USERNAME'].fields_by_name['value']._serialized_options = b'\272H;r9\020\001\030\03623^(?!.*[._]{2})(?![._])[a-zA-Z0-9._]{1,30}(?<![._])$'
+  _globals['_USERNAME'].fields_by_name['value']._serialized_options = b'\272H8r6\020\001\030\03620^[a-zA-Z0-9](?:[a-zA-Z0-9._]{0,28}[a-zA-Z0-9])?$'
   _globals['_NAME'].fields_by_name['value']._loaded_options = None
-  _globals['_NAME'].fields_by_name['value']._serialized_options = b'\272HIrG\020\001\03022A^(?!.*[ .\'\\-]{2})(?![ .\'\'\\-])[ \\p{L}\\p{N}\'\\-.]{1,50}(?<![ .\'\\-])$'
+  _globals['_NAME'].fields_by_name['value']._serialized_options = b'\272H$r\"\020\001\03022\034^[A-Za-z0-9\303\200-\303\277\' .-]{1,50}$'
   _globals['_EMAIL'].fields_by_name['value']._loaded_options = None
   _globals['_EMAIL'].fields_by_name['value']._serialized_options = b'\272H\004r\002`\001'
   _globals['_PASSWORD'].fields_by_name['value']._loaded_options = None
@@ -46,13 +46,13 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_CONFIRMATIONCODE'].fields_by_name['value']._loaded_options = None
   _globals['_CONFIRMATIONCODE'].fields_by_name['value']._serialized_options = b'\272H\016r\0142\n^[0-9]{6}$'
   _globals['_USERNAME']._serialized_start=129
-  _globals['_USERNAME']._serialized_end=225
-  _globals['_NAME']._serialized_start=227
-  _globals['_NAME']._serialized_end=333
-  _globals['_EMAIL']._serialized_start=335
-  _globals['_EMAIL']._serialized_end=373
-  _globals['_PASSWORD']._serialized_start=375
-  _globals['_PASSWORD']._serialized_end=419
-  _globals['_CONFIRMATIONCODE']._serialized_start=421
-  _globals['_CONFIRMATIONCODE']._serialized_end=480
+  _globals['_USERNAME']._serialized_end=222
+  _globals['_NAME']._serialized_start=224
+  _globals['_NAME']._serialized_end=293
+  _globals['_EMAIL']._serialized_start=295
+  _globals['_EMAIL']._serialized_end=333
+  _globals['_PASSWORD']._serialized_start=335
+  _globals['_PASSWORD']._serialized_end=379
+  _globals['_CONFIRMATIONCODE']._serialized_start=381
+  _globals['_CONFIRMATIONCODE']._serialized_end=440
 # @@protoc_insertion_point(module_scope)

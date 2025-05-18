@@ -251,11 +251,11 @@ var File_auth_v1_fields_proto protoreflect.FileDescriptor
 
 const file_auth_v1_fields_proto_rawDesc = "" +
 	"\n" +
-	"\x14auth/v1/fields.proto\x12\aauth.v1\x1a\x1bbuf/validate/validate.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"`\n" +
-	"\bUsername\x12T\n" +
-	"\x05value\x18\x01 \x01(\tB>\xbaH;r9\x10\x01\x18\x1e23^(?!.*[._]{2})(?![._])[a-zA-Z0-9._]{1,30}(?<![._])$R\x05value\"j\n" +
-	"\x04Name\x12b\n" +
-	"\x05value\x18\x01 \x01(\tBL\xbaHIrG\x10\x01\x1822A^(?!.*[ .'\\-]{2})(?![ .''\\-])[ \\p{L}\\p{N}'\\-.]{1,50}(?<![ .'\\-])$R\x05value\"&\n" +
+	"\x14auth/v1/fields.proto\x12\aauth.v1\x1a\x1bbuf/validate/validate.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"]\n" +
+	"\bUsername\x12Q\n" +
+	"\x05value\x18\x01 \x01(\tB;\xbaH8r6\x10\x01\x18\x1e20^[a-zA-Z0-9](?:[a-zA-Z0-9._]{0,28}[a-zA-Z0-9])?$R\x05value\"E\n" +
+	"\x04Name\x12=\n" +
+	"\x05value\x18\x01 \x01(\tB'\xbaH$r\"\x10\x01\x1822\x1c^[A-Za-z0-9À-ÿ' .-]{1,50}$R\x05value\"&\n" +
 	"\x05Email\x12\x1d\n" +
 	"\x05value\x18\x01 \x01(\tB\a\xbaH\x04r\x02`\x01R\x05value\",\n" +
 	"\bPassword\x12 \n" +

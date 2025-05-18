@@ -15,7 +15,7 @@ message Username {
     (buf.validate.field).string = {
       min_len: 1,
       max_len: 30,
-      pattern: "^(?!.*[._]{2})(?![._])[a-zA-Z0-9._]{1,30}(?<![._])$"
+      pattern: "^[a-zA-Z0-9](?:[a-zA-Z0-9._]{0,28}[a-zA-Z0-9])?$"
     }
   ];
 }
@@ -26,7 +26,7 @@ message Name {
     (buf.validate.field).string = {
       min_len: 1,
       max_len: 50,
-      pattern: "^(?!.*[ .'\\-]{2})(?![ .''\\-])[ \\p{L}\\p{N}'\\-.]{1,50}(?<![ .'\\-])$"
+      pattern: "^[A-Za-z0-9À-ÿ' .-]{1,50}$"
     }
   ];
 }
