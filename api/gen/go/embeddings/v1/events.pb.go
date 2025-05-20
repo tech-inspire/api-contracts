@@ -140,7 +140,7 @@ var File_embeddings_v1_events_proto protoreflect.FileDescriptor
 
 const file_embeddings_v1_events_proto_rawDesc = "" +
 	"\n" +
-	"\x1aembeddings/v1/events.proto\x12\aauth.v1\x1a\x1bbuf/validate/validate.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"S\n" +
+	"\x1aembeddings/v1/events.proto\x12\rembeddings.v1\x1a\x1bbuf/validate/validate.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"S\n" +
 	"\x1bGeneratePostEmbeddingsEvent\x12\x17\n" +
 	"\apost_id\x18\x01 \x01(\tR\x06postId\x12\x1b\n" +
 	"\timage_url\x18\x02 \x01(\tR\bimageUrl\"\x9b\x01\n" +
@@ -164,12 +164,12 @@ func file_embeddings_v1_events_proto_rawDescGZIP() []byte {
 
 var file_embeddings_v1_events_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_embeddings_v1_events_proto_goTypes = []any{
-	(*GeneratePostEmbeddingsEvent)(nil), // 0: auth.v1.GeneratePostEmbeddingsEvent
-	(*PostEmbeddingsUpdatedEvent)(nil),  // 1: auth.v1.PostEmbeddingsUpdatedEvent
+	(*GeneratePostEmbeddingsEvent)(nil), // 0: embeddings.v1.GeneratePostEmbeddingsEvent
+	(*PostEmbeddingsUpdatedEvent)(nil),  // 1: embeddings.v1.PostEmbeddingsUpdatedEvent
 	(*timestamppb.Timestamp)(nil),       // 2: google.protobuf.Timestamp
 }
 var file_embeddings_v1_events_proto_depIdxs = []int32{
-	2, // 0: auth.v1.PostEmbeddingsUpdatedEvent.updated_at:type_name -> google.protobuf.Timestamp
+	2, // 0: embeddings.v1.PostEmbeddingsUpdatedEvent.updated_at:type_name -> google.protobuf.Timestamp
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name

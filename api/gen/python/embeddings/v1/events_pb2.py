@@ -27,7 +27,7 @@ from google.protobuf import field_mask_pb2 as google_dot_protobuf_dot_field__mas
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1a\x65mbeddings/v1/events.proto\x12\x07\x61uth.v1\x1a\x1b\x62uf/validate/validate.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"S\n\x1bGeneratePostEmbeddingsEvent\x12\x17\n\x07post_id\x18\x01 \x01(\tR\x06postId\x12\x1b\n\timage_url\x18\x02 \x01(\tR\x08imageUrl\"\x9b\x01\n\x1aPostEmbeddingsUpdatedEvent\x12\x17\n\x07post_id\x18\x01 \x01(\tR\x06postId\x12)\n\x10\x65mbedding_vector\x18\x02 \x03(\x02R\x0f\x65mbeddingVector\x12\x39\n\nupdated_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tupdatedAtBMZKgithub.com/tech-inspire/api-contracts/api/gen/go/embeddings/v1;embeddingsv1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1a\x65mbeddings/v1/events.proto\x12\rembeddings.v1\x1a\x1b\x62uf/validate/validate.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"S\n\x1bGeneratePostEmbeddingsEvent\x12\x17\n\x07post_id\x18\x01 \x01(\tR\x06postId\x12\x1b\n\timage_url\x18\x02 \x01(\tR\x08imageUrl\"\x9b\x01\n\x1aPostEmbeddingsUpdatedEvent\x12\x17\n\x07post_id\x18\x01 \x01(\tR\x06postId\x12)\n\x10\x65mbedding_vector\x18\x02 \x03(\x02R\x0f\x65mbeddingVector\x12\x39\n\nupdated_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tupdatedAtBMZKgithub.com/tech-inspire/api-contracts/api/gen/go/embeddings/v1;embeddingsv1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -35,8 +35,8 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'embeddings.v1.events_pb2', 
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'ZKgithub.com/tech-inspire/api-contracts/api/gen/go/embeddings/v1;embeddingsv1'
-  _globals['_GENERATEPOSTEMBEDDINGSEVENT']._serialized_start=135
-  _globals['_GENERATEPOSTEMBEDDINGSEVENT']._serialized_end=218
-  _globals['_POSTEMBEDDINGSUPDATEDEVENT']._serialized_start=221
-  _globals['_POSTEMBEDDINGSUPDATEDEVENT']._serialized_end=376
+  _globals['_GENERATEPOSTEMBEDDINGSEVENT']._serialized_start=141
+  _globals['_GENERATEPOSTEMBEDDINGSEVENT']._serialized_end=224
+  _globals['_POSTEMBEDDINGSUPDATEDEVENT']._serialized_start=227
+  _globals['_POSTEMBEDDINGSUPDATEDEVENT']._serialized_end=382
 # @@protoc_insertion_point(module_scope)

@@ -15,7 +15,7 @@ class EmbeddingsServiceStub(object):
             channel: A grpc.Channel.
         """
         self.GenerateTextEmbeddings = channel.unary_unary(
-                '/auth.v1.EmbeddingsService/GenerateTextEmbeddings',
+                '/embeddings.v1.EmbeddingsService/GenerateTextEmbeddings',
                 request_serializer=embeddings_dot_v1_dot_embeddings__pb2.GenerateTextEmbeddingsRequest.SerializeToString,
                 response_deserializer=embeddings_dot_v1_dot_embeddings__pb2.GenerateTextEmbeddingsResponse.FromString,
                 _registered_method=True)
@@ -40,9 +40,9 @@ def add_EmbeddingsServiceServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'auth.v1.EmbeddingsService', rpc_method_handlers)
+            'embeddings.v1.EmbeddingsService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('auth.v1.EmbeddingsService', rpc_method_handlers)
+    server.add_registered_method_handlers('embeddings.v1.EmbeddingsService', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
@@ -63,7 +63,7 @@ class EmbeddingsService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/auth.v1.EmbeddingsService/GenerateTextEmbeddings',
+            '/embeddings.v1.EmbeddingsService/GenerateTextEmbeddings',
             embeddings_dot_v1_dot_embeddings__pb2.GenerateTextEmbeddingsRequest.SerializeToString,
             embeddings_dot_v1_dot_embeddings__pb2.GenerateTextEmbeddingsResponse.FromString,
             options,

@@ -22,7 +22,7 @@ const _ = connect.IsAtLeastVersion1_13_0
 
 const (
 	// EmbeddingsServiceName is the fully-qualified name of the EmbeddingsService service.
-	EmbeddingsServiceName = "auth.v1.EmbeddingsService"
+	EmbeddingsServiceName = "embeddings.v1.EmbeddingsService"
 )
 
 // These constants are the fully-qualified names of the RPCs defined in this package. They're
@@ -35,17 +35,17 @@ const (
 const (
 	// EmbeddingsServiceGenerateTextEmbeddingsProcedure is the fully-qualified name of the
 	// EmbeddingsService's GenerateTextEmbeddings RPC.
-	EmbeddingsServiceGenerateTextEmbeddingsProcedure = "/auth.v1.EmbeddingsService/GenerateTextEmbeddings"
+	EmbeddingsServiceGenerateTextEmbeddingsProcedure = "/embeddings.v1.EmbeddingsService/GenerateTextEmbeddings"
 )
 
-// EmbeddingsServiceClient is a client for the auth.v1.EmbeddingsService service.
+// EmbeddingsServiceClient is a client for the embeddings.v1.EmbeddingsService service.
 type EmbeddingsServiceClient interface {
 	GenerateTextEmbeddings(context.Context, *connect.Request[v1.GenerateTextEmbeddingsRequest]) (*connect.Response[v1.GenerateTextEmbeddingsResponse], error)
 }
 
-// NewEmbeddingsServiceClient constructs a client for the auth.v1.EmbeddingsService service. By
-// default, it uses the Connect protocol with the binary Protobuf Codec, asks for gzipped responses,
-// and sends uncompressed requests. To use the gRPC or gRPC-Web protocols, supply the
+// NewEmbeddingsServiceClient constructs a client for the embeddings.v1.EmbeddingsService service.
+// By default, it uses the Connect protocol with the binary Protobuf Codec, asks for gzipped
+// responses, and sends uncompressed requests. To use the gRPC or gRPC-Web protocols, supply the
 // connect.WithGRPC() or connect.WithGRPCWeb() options.
 //
 // The URL supplied here should be the base URL for the Connect or gRPC server (for example,
@@ -68,12 +68,12 @@ type embeddingsServiceClient struct {
 	generateTextEmbeddings *connect.Client[v1.GenerateTextEmbeddingsRequest, v1.GenerateTextEmbeddingsResponse]
 }
 
-// GenerateTextEmbeddings calls auth.v1.EmbeddingsService.GenerateTextEmbeddings.
+// GenerateTextEmbeddings calls embeddings.v1.EmbeddingsService.GenerateTextEmbeddings.
 func (c *embeddingsServiceClient) GenerateTextEmbeddings(ctx context.Context, req *connect.Request[v1.GenerateTextEmbeddingsRequest]) (*connect.Response[v1.GenerateTextEmbeddingsResponse], error) {
 	return c.generateTextEmbeddings.CallUnary(ctx, req)
 }
 
-// EmbeddingsServiceHandler is an implementation of the auth.v1.EmbeddingsService service.
+// EmbeddingsServiceHandler is an implementation of the embeddings.v1.EmbeddingsService service.
 type EmbeddingsServiceHandler interface {
 	GenerateTextEmbeddings(context.Context, *connect.Request[v1.GenerateTextEmbeddingsRequest]) (*connect.Response[v1.GenerateTextEmbeddingsResponse], error)
 }
@@ -91,7 +91,7 @@ func NewEmbeddingsServiceHandler(svc EmbeddingsServiceHandler, opts ...connect.H
 		connect.WithSchema(embeddingsServiceMethods.ByName("GenerateTextEmbeddings")),
 		connect.WithHandlerOptions(opts...),
 	)
-	return "/auth.v1.EmbeddingsService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	return "/embeddings.v1.EmbeddingsService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case EmbeddingsServiceGenerateTextEmbeddingsProcedure:
 			embeddingsServiceGenerateTextEmbeddingsHandler.ServeHTTP(w, r)
@@ -105,5 +105,5 @@ func NewEmbeddingsServiceHandler(svc EmbeddingsServiceHandler, opts ...connect.H
 type UnimplementedEmbeddingsServiceHandler struct{}
 
 func (UnimplementedEmbeddingsServiceHandler) GenerateTextEmbeddings(context.Context, *connect.Request[v1.GenerateTextEmbeddingsRequest]) (*connect.Response[v1.GenerateTextEmbeddingsResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("auth.v1.EmbeddingsService.GenerateTextEmbeddings is not implemented"))
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("embeddings.v1.EmbeddingsService.GenerateTextEmbeddings is not implemented"))
 }

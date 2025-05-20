@@ -27,7 +27,7 @@ from google.protobuf import field_mask_pb2 as google_dot_protobuf_dot_field__mas
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1e\x65mbeddings/v1/embeddings.proto\x12\x07\x61uth.v1\x1a\x1b\x62uf/validate/validate.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"3\n\x1dGenerateTextEmbeddingsRequest\x12\x12\n\x04text\x18\x01 \x01(\tR\x04text\"K\n\x1eGenerateTextEmbeddingsResponse\x12)\n\x10\x65mbedding_vector\x18\x01 \x03(\x02R\x0f\x65mbeddingVector2~\n\x11\x45mbeddingsService\x12i\n\x16GenerateTextEmbeddings\x12&.auth.v1.GenerateTextEmbeddingsRequest\x1a\'.auth.v1.GenerateTextEmbeddingsResponseBMZKgithub.com/tech-inspire/api-contracts/api/gen/go/embeddings/v1;embeddingsv1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1e\x65mbeddings/v1/embeddings.proto\x12\rembeddings.v1\x1a\x1b\x62uf/validate/validate.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"3\n\x1dGenerateTextEmbeddingsRequest\x12\x12\n\x04text\x18\x01 \x01(\tR\x04text\"K\n\x1eGenerateTextEmbeddingsResponse\x12)\n\x10\x65mbedding_vector\x18\x01 \x03(\x02R\x0f\x65mbeddingVector2\x8a\x01\n\x11\x45mbeddingsService\x12u\n\x16GenerateTextEmbeddings\x12,.embeddings.v1.GenerateTextEmbeddingsRequest\x1a-.embeddings.v1.GenerateTextEmbeddingsResponseBMZKgithub.com/tech-inspire/api-contracts/api/gen/go/embeddings/v1;embeddingsv1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -35,10 +35,10 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'embeddings.v1.embeddings_pb
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'ZKgithub.com/tech-inspire/api-contracts/api/gen/go/embeddings/v1;embeddingsv1'
-  _globals['_GENERATETEXTEMBEDDINGSREQUEST']._serialized_start=139
-  _globals['_GENERATETEXTEMBEDDINGSREQUEST']._serialized_end=190
-  _globals['_GENERATETEXTEMBEDDINGSRESPONSE']._serialized_start=192
-  _globals['_GENERATETEXTEMBEDDINGSRESPONSE']._serialized_end=267
-  _globals['_EMBEDDINGSSERVICE']._serialized_start=269
-  _globals['_EMBEDDINGSSERVICE']._serialized_end=395
+  _globals['_GENERATETEXTEMBEDDINGSREQUEST']._serialized_start=145
+  _globals['_GENERATETEXTEMBEDDINGSREQUEST']._serialized_end=196
+  _globals['_GENERATETEXTEMBEDDINGSRESPONSE']._serialized_start=198
+  _globals['_GENERATETEXTEMBEDDINGSRESPONSE']._serialized_end=273
+  _globals['_EMBEDDINGSSERVICE']._serialized_start=276
+  _globals['_EMBEDDINGSSERVICE']._serialized_end=414
 # @@protoc_insertion_point(module_scope)

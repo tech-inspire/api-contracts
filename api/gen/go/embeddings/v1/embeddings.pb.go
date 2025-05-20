@@ -116,13 +116,13 @@ var File_embeddings_v1_embeddings_proto protoreflect.FileDescriptor
 
 const file_embeddings_v1_embeddings_proto_rawDesc = "" +
 	"\n" +
-	"\x1eembeddings/v1/embeddings.proto\x12\aauth.v1\x1a\x1bbuf/validate/validate.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"3\n" +
+	"\x1eembeddings/v1/embeddings.proto\x12\rembeddings.v1\x1a\x1bbuf/validate/validate.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"3\n" +
 	"\x1dGenerateTextEmbeddingsRequest\x12\x12\n" +
 	"\x04text\x18\x01 \x01(\tR\x04text\"K\n" +
 	"\x1eGenerateTextEmbeddingsResponse\x12)\n" +
-	"\x10embedding_vector\x18\x01 \x03(\x02R\x0fembeddingVector2~\n" +
-	"\x11EmbeddingsService\x12i\n" +
-	"\x16GenerateTextEmbeddings\x12&.auth.v1.GenerateTextEmbeddingsRequest\x1a'.auth.v1.GenerateTextEmbeddingsResponseBMZKgithub.com/tech-inspire/api-contracts/api/gen/go/embeddings/v1;embeddingsv1b\x06proto3"
+	"\x10embedding_vector\x18\x01 \x03(\x02R\x0fembeddingVector2\x8a\x01\n" +
+	"\x11EmbeddingsService\x12u\n" +
+	"\x16GenerateTextEmbeddings\x12,.embeddings.v1.GenerateTextEmbeddingsRequest\x1a-.embeddings.v1.GenerateTextEmbeddingsResponseBMZKgithub.com/tech-inspire/api-contracts/api/gen/go/embeddings/v1;embeddingsv1b\x06proto3"
 
 var (
 	file_embeddings_v1_embeddings_proto_rawDescOnce sync.Once
@@ -138,12 +138,12 @@ func file_embeddings_v1_embeddings_proto_rawDescGZIP() []byte {
 
 var file_embeddings_v1_embeddings_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_embeddings_v1_embeddings_proto_goTypes = []any{
-	(*GenerateTextEmbeddingsRequest)(nil),  // 0: auth.v1.GenerateTextEmbeddingsRequest
-	(*GenerateTextEmbeddingsResponse)(nil), // 1: auth.v1.GenerateTextEmbeddingsResponse
+	(*GenerateTextEmbeddingsRequest)(nil),  // 0: embeddings.v1.GenerateTextEmbeddingsRequest
+	(*GenerateTextEmbeddingsResponse)(nil), // 1: embeddings.v1.GenerateTextEmbeddingsResponse
 }
 var file_embeddings_v1_embeddings_proto_depIdxs = []int32{
-	0, // 0: auth.v1.EmbeddingsService.GenerateTextEmbeddings:input_type -> auth.v1.GenerateTextEmbeddingsRequest
-	1, // 1: auth.v1.EmbeddingsService.GenerateTextEmbeddings:output_type -> auth.v1.GenerateTextEmbeddingsResponse
+	0, // 0: embeddings.v1.EmbeddingsService.GenerateTextEmbeddings:input_type -> embeddings.v1.GenerateTextEmbeddingsRequest
+	1, // 1: embeddings.v1.EmbeddingsService.GenerateTextEmbeddings:output_type -> embeddings.v1.GenerateTextEmbeddingsResponse
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
