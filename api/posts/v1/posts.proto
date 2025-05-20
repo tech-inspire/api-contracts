@@ -1,0 +1,175 @@
+syntax = "proto3";
+
+package posts.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/tech-inspire/api-contracts/api/gen/go/posts/v1;postsv1";
+
+// Defines the types of image variants.
+enum VariantType {
+  VARIANT_TYPE_UNSPECIFIED = 0;
+  ORIGINAL = 1; // Original full-size image
+  THUMBNAIL = 2; // Thumbnail or preview image
+}
+
+// PostsService provides operations to create, retrieve, and delete posts, as well
+// as to obtain upload URLs for post images.
+service PostsService {
+  // AddPost creates a new post record. The client must have already uploaded the
+  // image to S3 and provide the upload session key.
+  rpc AddPost(AddPostRequest) returns (AddPostResponse);
+
+  // GetPostByID retrieves a single post by its UUID.
+  rpc GetPostByID(GetPostByIDRequest) returns (GetPostByIDResponse);
+
+  // GetPosts retrieves multiple posts by their UUIDs in a single batch request.
+  rpc GetPosts(GetPostsRequest) returns (GetPostsResponse);
+
+  // DeletePost removes an existing post by its UUID.
+  rpc DeletePost(DeletePostRequest) returns (DeletePostResponse);
+
+  // GetUploadUrl returns a presigned S3 URL and a session key for uploading a post image.
+  rpc GetUploadUrl(GetUploadUrlRequest) returns (GetUploadUrlResponse);
+}
+
+// ImageVariant describes a derived version of a post image, such as an original
+// or thumbnail variant.
+message ImageVariant {
+  // S3 URL of the image variant.
+  string url = 1 [(buf.validate.field).string.uri = true];
+
+  // Width of the image in pixels.
+  int32 width = 2 [(buf.validate.field).int32.gt = 0];
+
+  // Height of the image in pixels.
+  int32 height = 3 [(buf.validate.field).int32.gt = 0];
+
+  // Size of the image variant in bytes.
+  int64 size = 4 [(buf.validate.field).int32.gt = 0];
+
+  // Type of the variant (e.g., ORIG, THUMB). Must be one of the defined variants.
+  VariantType variant_type = 5 [(buf.validate.field).enum = {
+    in: [
+      1,
+      2
+    ]
+  }];
+}
+
+// Post represents a user-created post with one or more image variants and optional
+// SoundCloud metadata.
+message Post {
+  // UUIDv7 of the post.
+  string post_id = 1 [(buf.validate.field).string.uuid = true];
+
+  // UUID of the post's author.
+  string author_id = 2 [(buf.validate.field).string.uuid = true];
+
+  // List of image variants in order, such as original followed by thumbnails.
+  repeated ImageVariant images = 3 [(buf.validate.field).repeated.min_items = 1];
+
+  // Optional SoundCloud track identifier.
+  optional string soundcloud_song = 4 [(buf.validate.field).string.min_len = 1];
+
+  // Optional start time for the SoundCloud track in seconds.
+  optional int32 soundcloud_song_start = 5 [(buf.validate.field).int32.gte = 0];
+
+  // Text description provided by the author.
+  string description = 6 [(buf.validate.field).string.min_len = 1];
+
+  // Timestamp when the post was created.
+  google.protobuf.Timestamp created_at = 7;
+}
+
+// AddPostRequest contains the data required to create a new post, including the
+// upload session key and metadata for the original image.
+message AddPostRequest {
+  // UUID of the post's author.
+  string author_id = 1 [(buf.validate.field).string.uuid = true];
+
+  // Key returned by GetUploadUrl, used to validate the upload.
+  string upload_session_key = 2 [(buf.validate.field).string.min_len = 1];
+
+  // S3 URL of the original uploaded image.
+  string image_url = 3 [(buf.validate.field).string.uri = true];
+
+  // Width of the original image in pixels.
+  int32 image_width = 4 [(buf.validate.field).int32.gt = 0];
+
+  // Height of the original image in pixels.
+  int32 image_height = 5 [(buf.validate.field).int32.gt = 0];
+
+  // Size of the original image in bytes.
+  int64 image_size = 6 [(buf.validate.field).int32.gt = 0];
+
+  // Optional SoundCloud track identifier.
+  optional string soundcloud_song = 7 [(buf.validate.field).string.min_len = 1];
+
+  // Optional start time for the SoundCloud track in seconds.
+  optional int32 soundcloud_song_start = 8 [(buf.validate.field).int32.gte = 0];
+
+  // Text description for the post.
+  string description = 9 [(buf.validate.field).string.min_len = 1];
+}
+
+// AddPostResponse returns the newly created post object.
+message AddPostResponse {
+  // Newly created post object.
+  Post post = 1;
+}
+
+// GetPostByIDRequest requests a post by its UUID.
+message GetPostByIDRequest {
+  // UUID of the post to retrieve.
+  string post_id = 1 [(buf.validate.field).string.uuid = true];
+}
+
+// GetPostByIDResponse returns a single post object.
+message GetPostByIDResponse {
+  // Requested post object.
+  Post post = 1;
+}
+
+// GetPostsRequest requests multiple posts by a list of UUIDs.
+message GetPostsRequest {
+  // List of UUIDs for the posts to retrieve.
+  repeated string post_ids = 1 [(buf.validate.field).repeated.min_items = 1];
+}
+
+// GetPostsResponse returns a list of retrieved post objects.
+message GetPostsResponse {
+  // List of retrieved post objects.
+  repeated Post posts = 1;
+}
+
+// DeletePostRequest requests removal of a post by its UUID.
+message DeletePostRequest {
+  // UUID of the post to delete.
+  string post_id = 1 [(buf.validate.field).string.uuid = true];
+}
+
+// DeletePostResponse is returned when a post has been deleted successfully.
+message DeletePostResponse {}
+
+// GetUploadUrlRequest requests a presigned S3 URL for image upload.
+message GetUploadUrlRequest {
+  // UUID of the post's author.
+  string author_id = 1 [(buf.validate.field).string.uuid = true];
+
+  // Expected MIME type of the uploaded file, e.g., "image/jpeg".
+  string mime_type = 2 [(buf.validate.field).string.pattern = "^\\w+/[-+.\\w]+$"];
+
+  // Expected size of the uploaded file in bytes.
+  int64 file_size = 3 [(buf.validate.field).int32.gt = 0];
+}
+
+// GetUploadUrlResponse returns a presigned URL and session key for S3 uploads.
+message GetUploadUrlResponse {
+  // Presigned PUT URL for direct S3 upload.
+  string upload_url = 1 [(buf.validate.field).string.uri = true];
+
+  // Session key clients must provide when calling AddPost.
+  string upload_session_key = 2 [(buf.validate.field).string.min_len = 1];
+}
