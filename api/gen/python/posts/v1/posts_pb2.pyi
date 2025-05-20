@@ -123,9 +123,20 @@ class GetUploadUrlRequest(_message.Message):
     def __init__(self, author_id: _Optional[str] = ..., mime_type: _Optional[str] = ..., file_size: _Optional[int] = ...) -> None: ...
 
 class GetUploadUrlResponse(_message.Message):
-    __slots__ = ("upload_url", "upload_session_key")
+    __slots__ = ("upload_url", "upload_session_key", "method", "headers")
+    class HeadersEntry(_message.Message):
+        __slots__ = ("key", "value")
+        KEY_FIELD_NUMBER: _ClassVar[int]
+        VALUE_FIELD_NUMBER: _ClassVar[int]
+        key: str
+        value: str
+        def __init__(self, key: _Optional[str] = ..., value: _Optional[str] = ...) -> None: ...
     UPLOAD_URL_FIELD_NUMBER: _ClassVar[int]
     UPLOAD_SESSION_KEY_FIELD_NUMBER: _ClassVar[int]
+    METHOD_FIELD_NUMBER: _ClassVar[int]
+    HEADERS_FIELD_NUMBER: _ClassVar[int]
     upload_url: str
     upload_session_key: str
-    def __init__(self, upload_url: _Optional[str] = ..., upload_session_key: _Optional[str] = ...) -> None: ...
+    method: str
+    headers: _containers.ScalarMap[str, str]
+    def __init__(self, upload_url: _Optional[str] = ..., upload_session_key: _Optional[str] = ..., method: _Optional[str] = ..., headers: _Optional[_Mapping[str, str]] = ...) -> None: ...

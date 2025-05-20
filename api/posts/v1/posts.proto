@@ -172,4 +172,7 @@ message GetUploadUrlResponse {
 
   // Session key clients must provide when calling AddPost.
   string upload_session_key = 2 [(buf.validate.field).string.min_len = 1];
+
+  string method = 3;
+  map<string, string> headers = 4;
 }

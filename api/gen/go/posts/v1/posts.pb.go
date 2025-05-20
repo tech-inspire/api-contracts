@@ -759,7 +759,9 @@ type GetUploadUrlResponse struct {
 	// Presigned PUT URL for direct S3 upload.
 	UploadUrl string `protobuf:"bytes,1,opt,name=upload_url,json=uploadUrl,proto3" json:"upload_url,omitempty"`
 	// Session key clients must provide when calling AddPost.
-	UploadSessionKey string `protobuf:"bytes,2,opt,name=upload_session_key,json=uploadSessionKey,proto3" json:"upload_session_key,omitempty"`
+	UploadSessionKey string            `protobuf:"bytes,2,opt,name=upload_session_key,json=uploadSessionKey,proto3" json:"upload_session_key,omitempty"`
+	Method           string            `protobuf:"bytes,3,opt,name=method,proto3" json:"method,omitempty"`
+	Headers          map[string]string `protobuf:"bytes,4,rep,name=headers,proto3" json:"headers,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -806,6 +808,20 @@ func (x *GetUploadUrlResponse) GetUploadSessionKey() string {
 		return x.UploadSessionKey
 	}
 	return ""
+}
+
+func (x *GetUploadUrlResponse) GetMethod() string {
+	if x != nil {
+		return x.Method
+	}
+	return ""
+}
+
+func (x *GetUploadUrlResponse) GetHeaders() map[string]string {
+	if x != nil {
+		return x.Headers
+	}
+	return nil
 }
 
 var File_posts_v1_posts_proto protoreflect.FileDescriptor
@@ -861,11 +877,16 @@ const file_posts_v1_posts_proto_rawDesc = "" +
 	"\x13GetUploadUrlRequest\x12%\n" +
 	"\tauthor_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bauthorId\x122\n" +
 	"\tmime_type\x18\x02 \x01(\tB\x15\xbaH\x12r\x102\x0e^\\w+/[-+.\\w]+$R\bmimeType\x12$\n" +
-	"\tfile_size\x18\x03 \x01(\x03B\a\xbaH\x04\x1a\x02 \x00R\bfileSize\"v\n" +
+	"\tfile_size\x18\x03 \x01(\x03B\a\xbaH\x04\x1a\x02 \x00R\bfileSize\"\x91\x02\n" +
 	"\x14GetUploadUrlResponse\x12'\n" +
 	"\n" +
 	"upload_url\x18\x01 \x01(\tB\b\xbaH\x05r\x03\x88\x01\x01R\tuploadUrl\x125\n" +
-	"\x12upload_session_key\x18\x02 \x01(\tB\a\xbaH\x04r\x02\x10\x01R\x10uploadSessionKey*H\n" +
+	"\x12upload_session_key\x18\x02 \x01(\tB\a\xbaH\x04r\x02\x10\x01R\x10uploadSessionKey\x12\x16\n" +
+	"\x06method\x18\x03 \x01(\tR\x06method\x12E\n" +
+	"\aheaders\x18\x04 \x03(\v2+.posts.v1.GetUploadUrlResponse.HeadersEntryR\aheaders\x1a:\n" +
+	"\fHeadersEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01*H\n" +
 	"\vVariantType\x12\x1c\n" +
 	"\x18VARIANT_TYPE_UNSPECIFIED\x10\x00\x12\f\n" +
 	"\bORIGINAL\x10\x01\x12\r\n" +
@@ -891,7 +912,7 @@ func file_posts_v1_posts_proto_rawDescGZIP() []byte {
 }
 
 var file_posts_v1_posts_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_posts_v1_posts_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_posts_v1_posts_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_posts_v1_posts_proto_goTypes = []any{
 	(VariantType)(0),              // 0: posts.v1.VariantType
 	(*ImageVariant)(nil),          // 1: posts.v1.ImageVariant
@@ -906,30 +927,32 @@ var file_posts_v1_posts_proto_goTypes = []any{
 	(*DeletePostResponse)(nil),    // 10: posts.v1.DeletePostResponse
 	(*GetUploadUrlRequest)(nil),   // 11: posts.v1.GetUploadUrlRequest
 	(*GetUploadUrlResponse)(nil),  // 12: posts.v1.GetUploadUrlResponse
-	(*timestamppb.Timestamp)(nil), // 13: google.protobuf.Timestamp
+	nil,                           // 13: posts.v1.GetUploadUrlResponse.HeadersEntry
+	(*timestamppb.Timestamp)(nil), // 14: google.protobuf.Timestamp
 }
 var file_posts_v1_posts_proto_depIdxs = []int32{
 	0,  // 0: posts.v1.ImageVariant.variant_type:type_name -> posts.v1.VariantType
 	1,  // 1: posts.v1.Post.images:type_name -> posts.v1.ImageVariant
-	13, // 2: posts.v1.Post.created_at:type_name -> google.protobuf.Timestamp
+	14, // 2: posts.v1.Post.created_at:type_name -> google.protobuf.Timestamp
 	2,  // 3: posts.v1.AddPostResponse.post:type_name -> posts.v1.Post
 	2,  // 4: posts.v1.GetPostByIDResponse.post:type_name -> posts.v1.Post
 	2,  // 5: posts.v1.GetPostsResponse.posts:type_name -> posts.v1.Post
-	3,  // 6: posts.v1.PostsService.AddPost:input_type -> posts.v1.AddPostRequest
-	5,  // 7: posts.v1.PostsService.GetPostByID:input_type -> posts.v1.GetPostByIDRequest
-	7,  // 8: posts.v1.PostsService.GetPosts:input_type -> posts.v1.GetPostsRequest
-	9,  // 9: posts.v1.PostsService.DeletePost:input_type -> posts.v1.DeletePostRequest
-	11, // 10: posts.v1.PostsService.GetUploadUrl:input_type -> posts.v1.GetUploadUrlRequest
-	4,  // 11: posts.v1.PostsService.AddPost:output_type -> posts.v1.AddPostResponse
-	6,  // 12: posts.v1.PostsService.GetPostByID:output_type -> posts.v1.GetPostByIDResponse
-	8,  // 13: posts.v1.PostsService.GetPosts:output_type -> posts.v1.GetPostsResponse
-	10, // 14: posts.v1.PostsService.DeletePost:output_type -> posts.v1.DeletePostResponse
-	12, // 15: posts.v1.PostsService.GetUploadUrl:output_type -> posts.v1.GetUploadUrlResponse
-	11, // [11:16] is the sub-list for method output_type
-	6,  // [6:11] is the sub-list for method input_type
-	6,  // [6:6] is the sub-list for extension type_name
-	6,  // [6:6] is the sub-list for extension extendee
-	0,  // [0:6] is the sub-list for field type_name
+	13, // 6: posts.v1.GetUploadUrlResponse.headers:type_name -> posts.v1.GetUploadUrlResponse.HeadersEntry
+	3,  // 7: posts.v1.PostsService.AddPost:input_type -> posts.v1.AddPostRequest
+	5,  // 8: posts.v1.PostsService.GetPostByID:input_type -> posts.v1.GetPostByIDRequest
+	7,  // 9: posts.v1.PostsService.GetPosts:input_type -> posts.v1.GetPostsRequest
+	9,  // 10: posts.v1.PostsService.DeletePost:input_type -> posts.v1.DeletePostRequest
+	11, // 11: posts.v1.PostsService.GetUploadUrl:input_type -> posts.v1.GetUploadUrlRequest
+	4,  // 12: posts.v1.PostsService.AddPost:output_type -> posts.v1.AddPostResponse
+	6,  // 13: posts.v1.PostsService.GetPostByID:output_type -> posts.v1.GetPostByIDResponse
+	8,  // 14: posts.v1.PostsService.GetPosts:output_type -> posts.v1.GetPostsResponse
+	10, // 15: posts.v1.PostsService.DeletePost:output_type -> posts.v1.DeletePostResponse
+	12, // 16: posts.v1.PostsService.GetUploadUrl:output_type -> posts.v1.GetUploadUrlResponse
+	12, // [12:17] is the sub-list for method output_type
+	7,  // [7:12] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_posts_v1_posts_proto_init() }
@@ -945,7 +968,7 @@ func file_posts_v1_posts_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_posts_v1_posts_proto_rawDesc), len(file_posts_v1_posts_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   12,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
