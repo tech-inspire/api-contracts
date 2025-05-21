@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package posts.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/timestamp.proto";
+import "posts/v1/posts.proto";
+
+option go_package = "github.com/tech-inspire/api-contracts/api/gen/go/posts/v1;postsv1";
+
+message PostCreatedEvent {
+  google.protobuf.Timestamp created_at = 1;
+  Post post = 2;
+}
+
+message PostUpdatedEvent {
+  google.protobuf.Timestamp updated_at = 1;
+  Post post = 2;
+}
+
+message PostDeletedEvent {
+  google.protobuf.Timestamp deleted_at = 1;
+  Post post = 2;
+}
