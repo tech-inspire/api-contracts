@@ -261,12 +261,8 @@ func (x *Post) GetCreatedAt() *timestamppb.Timestamp {
 // upload session key and metadata for the original image.
 type AddPostRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// UUID of the post's author.
-	AuthorId string `protobuf:"bytes,1,opt,name=author_id,json=authorId,proto3" json:"author_id,omitempty"`
 	// Key returned by GetUploadUrl, used to validate the upload.
 	UploadSessionKey string `protobuf:"bytes,2,opt,name=upload_session_key,json=uploadSessionKey,proto3" json:"upload_session_key,omitempty"`
-	// S3 URL of the original uploaded image.
-	ImageUrl string `protobuf:"bytes,3,opt,name=image_url,json=imageUrl,proto3" json:"image_url,omitempty"`
 	// Width of the original image in pixels.
 	ImageWidth int32 `protobuf:"varint,4,opt,name=image_width,json=imageWidth,proto3" json:"image_width,omitempty"`
 	// Height of the original image in pixels.
@@ -313,23 +309,9 @@ func (*AddPostRequest) Descriptor() ([]byte, []int) {
 	return file_posts_v1_posts_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *AddPostRequest) GetAuthorId() string {
-	if x != nil {
-		return x.AuthorId
-	}
-	return ""
-}
-
 func (x *AddPostRequest) GetUploadSessionKey() string {
 	if x != nil {
 		return x.UploadSessionKey
-	}
-	return ""
-}
-
-func (x *AddPostRequest) GetImageUrl() string {
-	if x != nil {
-		return x.ImageUrl
 	}
 	return ""
 }
@@ -837,16 +819,14 @@ const file_posts_v1_posts_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAtB\x12\n" +
 	"\x10_soundcloud_songB\x18\n" +
-	"\x16_soundcloud_song_start\"\xe5\x03\n" +
-	"\x0eAddPostRequest\x12%\n" +
-	"\tauthor_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bauthorId\x125\n" +
-	"\x12upload_session_key\x18\x02 \x01(\tB\a\xbaH\x04r\x02\x10\x01R\x10uploadSessionKey\x12%\n" +
-	"\timage_url\x18\x03 \x01(\tB\b\xbaH\x05r\x03\x88\x01\x01R\bimageUrl\x12(\n" +
+	"\x16_soundcloud_song_start\"\x97\x03\n" +
+	"\x0eAddPostRequest\x125\n" +
+	"\x12upload_session_key\x18\x02 \x01(\tB\a\xbaH\x04r\x02\x10\x01R\x10uploadSessionKey\x12(\n" +
 	"\vimage_width\x18\x04 \x01(\x05B\a\xbaH\x04\x1a\x02 \x00R\n" +
 	"imageWidth\x12*\n" +
 	"\fimage_height\x18\x05 \x01(\x05B\a\xbaH\x04\x1a\x02 \x00R\vimageHeight\x12&\n" +
 	"\n" +
-	"image_size\x18\x06 \x01(\x03B\a\xbaH\x04\x1a\x02 \x00R\timageSize\x125\n" +
+	"image_size\x18\x06 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\timageSize\x125\n" +
 	"\x0fsoundcloud_song\x18\a \x01(\tB\a\xbaH\x04r\x02\x10\x01H\x00R\x0esoundcloudSong\x88\x01\x01\x12@\n" +
 	"\x15soundcloud_song_start\x18\b \x01(\x05B\a\xbaH\x04\x1a\x02(\x00H\x01R\x13soundcloudSongStart\x88\x01\x01\x12)\n" +
 	"\vdescription\x18\t \x01(\tB\a\xbaH\x04r\x02\x10\x01R\vdescriptionB\x12\n" +

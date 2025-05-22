@@ -86,14 +86,8 @@ message Post {
 // AddPostRequest contains the data required to create a new post, including the
 // upload session key and metadata for the original image.
 message AddPostRequest {
-  // UUID of the post's author.
-  string author_id = 1 [(buf.validate.field).string.uuid = true];
-
   // Key returned by GetUploadUrl, used to validate the upload.
   string upload_session_key = 2 [(buf.validate.field).string.min_len = 1];
-
-  // S3 URL of the original uploaded image.
-  string image_url = 3 [(buf.validate.field).string.uri = true];
 
   // Width of the original image in pixels.
   int32 image_width = 4 [(buf.validate.field).int32.gt = 0];
@@ -102,7 +96,7 @@ message AddPostRequest {
   int32 image_height = 5 [(buf.validate.field).int32.gt = 0];
 
   // Size of the original image in bytes.
-  int64 image_size = 6 [(buf.validate.field).int32.gt = 0];
+  int64 image_size = 6 [(buf.validate.field).int64.gt = 0];
 
   // Optional SoundCloud track identifier.
   optional string soundcloud_song = 7 [(buf.validate.field).string.min_len = 1];

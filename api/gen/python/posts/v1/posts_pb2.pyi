@@ -51,26 +51,22 @@ class Post(_message.Message):
     def __init__(self, post_id: _Optional[str] = ..., author_id: _Optional[str] = ..., images: _Optional[_Iterable[_Union[ImageVariant, _Mapping]]] = ..., soundcloud_song: _Optional[str] = ..., soundcloud_song_start: _Optional[int] = ..., description: _Optional[str] = ..., created_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ...) -> None: ...
 
 class AddPostRequest(_message.Message):
-    __slots__ = ("author_id", "upload_session_key", "image_url", "image_width", "image_height", "image_size", "soundcloud_song", "soundcloud_song_start", "description")
-    AUTHOR_ID_FIELD_NUMBER: _ClassVar[int]
+    __slots__ = ("upload_session_key", "image_width", "image_height", "image_size", "soundcloud_song", "soundcloud_song_start", "description")
     UPLOAD_SESSION_KEY_FIELD_NUMBER: _ClassVar[int]
-    IMAGE_URL_FIELD_NUMBER: _ClassVar[int]
     IMAGE_WIDTH_FIELD_NUMBER: _ClassVar[int]
     IMAGE_HEIGHT_FIELD_NUMBER: _ClassVar[int]
     IMAGE_SIZE_FIELD_NUMBER: _ClassVar[int]
     SOUNDCLOUD_SONG_FIELD_NUMBER: _ClassVar[int]
     SOUNDCLOUD_SONG_START_FIELD_NUMBER: _ClassVar[int]
     DESCRIPTION_FIELD_NUMBER: _ClassVar[int]
-    author_id: str
     upload_session_key: str
-    image_url: str
     image_width: int
     image_height: int
     image_size: int
     soundcloud_song: str
     soundcloud_song_start: int
     description: str
-    def __init__(self, author_id: _Optional[str] = ..., upload_session_key: _Optional[str] = ..., image_url: _Optional[str] = ..., image_width: _Optional[int] = ..., image_height: _Optional[int] = ..., image_size: _Optional[int] = ..., soundcloud_song: _Optional[str] = ..., soundcloud_song_start: _Optional[int] = ..., description: _Optional[str] = ...) -> None: ...
+    def __init__(self, upload_session_key: _Optional[str] = ..., image_width: _Optional[int] = ..., image_height: _Optional[int] = ..., image_size: _Optional[int] = ..., soundcloud_song: _Optional[str] = ..., soundcloud_song_start: _Optional[int] = ..., description: _Optional[str] = ...) -> None: ...
 
 class AddPostResponse(_message.Message):
     __slots__ = ("post",)
