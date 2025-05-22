@@ -1,6 +1,6 @@
 {
   "name": "inspire-api-contracts",
-  "version": "0.2.5",
+  "version": "0.3.0",
   "devDependencies": {
     "@bufbuild/buf": "^1.51.0",
     "@bufbuild/protoc-gen-es": "^2.2.5"

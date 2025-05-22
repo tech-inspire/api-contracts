@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package search.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/tech-inspire/api-contracts/api/gen/go/search/v1;searchv1";
+
+service SearchService {
+  rpc SearchPosts(SearchImagesRequest) returns (SearchImagesResponse);
+}
+
+message SearchImagesRequest {
+  oneof search_by {
+    string text_query = 1 [(buf.validate.field).string.min_len = 1];
+    string reference_post_id = 2 [(buf.validate.field).string.uuid = true];
+  }
+
+  optional PhotoOrientation orientation = 3;
+  SortField sort_by = 4;
+  SortOrder sort_order = 5;
+
+  uint32 limit = 6 [(buf.validate.field).uint32.lte = 100];
+  uint32 offset = 7;
+
+  // 🔍 Minimum similarity score threshold for embedding search. Default is 0.7 (subject to change)
+  optional float min_similarity_score = 8 [
+    (buf.validate.field).float.gte = 0.0,
+    (buf.validate.field).float.lte = 1.0
+  ];
+}
+
+enum PhotoOrientation {
+  ORIENTATION_UNSPECIFIED = 0;
+  PORTRAIT = 1; // height > width
+  LANDSCAPE = 2; // width > height
+  SQUARE = 3; // width == height (within tolerance)
+}
+
+// --- Sorting Enums ---
+enum SortField {
+  SORT_FIELD_UNSPECIFIED = 0;
+  CREATED_AT = 1;
+}
+
+enum SortOrder {
+  SORT_ORDER_UNSPECIFIED = 0;
+  ASC = 1;
+  DESC = 2;
+}
+
+message SearchImagesResponse {
+  repeated SearchResult main_results = 1; // Matches with score ≥ threshold
+  repeated SearchResult see_also_results = 2; // Matches with score < threshold
+
+  uint32 total_main_results = 3;
+  uint32 total_see_also_results = 4;
+
+  uint32 limit = 5;
+  uint32 offset = 6;
+}
+
+message SearchResult {
+  string post_id = 1 [(buf.validate.field).string.uuid = true];
+  float similarity = 2 [
+    (buf.validate.field).float.gte = 0.0,
+    (buf.validate.field).float.lte = 1.0
+  ];
+}
