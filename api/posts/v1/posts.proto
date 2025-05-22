@@ -155,14 +155,11 @@ message DeletePostResponse {}
 
 // GetUploadUrlRequest requests a presigned S3 URL for image upload.
 message GetUploadUrlRequest {
-  // UUID of the post's author.
-  string author_id = 1 [(buf.validate.field).string.uuid = true];
-
   // Expected MIME type of the uploaded file, e.g., "image/jpeg".
   string mime_type = 2 [(buf.validate.field).string.pattern = "^\\w+/[-+.\\w]+$"];
 
   // Expected size of the uploaded file in bytes.
-  int64 file_size = 3 [(buf.validate.field).int32.gt = 0];
+  int64 file_size = 3 [(buf.validate.field).int64.gt = 0];
 }
 
 // GetUploadUrlResponse returns a presigned URL and session key for S3 uploads.

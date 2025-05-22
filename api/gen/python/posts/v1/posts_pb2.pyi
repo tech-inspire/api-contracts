@@ -113,14 +113,12 @@ class DeletePostResponse(_message.Message):
     def __init__(self) -> None: ...
 
 class GetUploadUrlRequest(_message.Message):
-    __slots__ = ("author_id", "mime_type", "file_size")
-    AUTHOR_ID_FIELD_NUMBER: _ClassVar[int]
+    __slots__ = ("mime_type", "file_size")
     MIME_TYPE_FIELD_NUMBER: _ClassVar[int]
     FILE_SIZE_FIELD_NUMBER: _ClassVar[int]
-    author_id: str
     mime_type: str
     file_size: int
-    def __init__(self, author_id: _Optional[str] = ..., mime_type: _Optional[str] = ..., file_size: _Optional[int] = ...) -> None: ...
+    def __init__(self, mime_type: _Optional[str] = ..., file_size: _Optional[int] = ...) -> None: ...
 
 class GetUploadUrlResponse(_message.Message):
     __slots__ = ("upload_url", "upload_session_key", "method", "headers")

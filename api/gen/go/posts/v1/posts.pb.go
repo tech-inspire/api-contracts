@@ -692,8 +692,6 @@ func (*DeletePostResponse) Descriptor() ([]byte, []int) {
 // GetUploadUrlRequest requests a presigned S3 URL for image upload.
 type GetUploadUrlRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// UUID of the post's author.
-	AuthorId string `protobuf:"bytes,1,opt,name=author_id,json=authorId,proto3" json:"author_id,omitempty"`
 	// Expected MIME type of the uploaded file, e.g., "image/jpeg".
 	MimeType string `protobuf:"bytes,2,opt,name=mime_type,json=mimeType,proto3" json:"mime_type,omitempty"`
 	// Expected size of the uploaded file in bytes.
@@ -730,13 +728,6 @@ func (x *GetUploadUrlRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use GetUploadUrlRequest.ProtoReflect.Descriptor instead.
 func (*GetUploadUrlRequest) Descriptor() ([]byte, []int) {
 	return file_posts_v1_posts_proto_rawDescGZIP(), []int{10}
-}
-
-func (x *GetUploadUrlRequest) GetAuthorId() string {
-	if x != nil {
-		return x.AuthorId
-	}
-	return ""
 }
 
 func (x *GetUploadUrlRequest) GetMimeType() string {
@@ -873,11 +864,10 @@ const file_posts_v1_posts_proto_rawDesc = "" +
 	"\x05posts\x18\x01 \x03(\v2\x0e.posts.v1.PostR\x05posts\"6\n" +
 	"\x11DeletePostRequest\x12!\n" +
 	"\apost_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06postId\"\x14\n" +
-	"\x12DeletePostResponse\"\x96\x01\n" +
-	"\x13GetUploadUrlRequest\x12%\n" +
-	"\tauthor_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bauthorId\x122\n" +
+	"\x12DeletePostResponse\"o\n" +
+	"\x13GetUploadUrlRequest\x122\n" +
 	"\tmime_type\x18\x02 \x01(\tB\x15\xbaH\x12r\x102\x0e^\\w+/[-+.\\w]+$R\bmimeType\x12$\n" +
-	"\tfile_size\x18\x03 \x01(\x03B\a\xbaH\x04\x1a\x02 \x00R\bfileSize\"\x91\x02\n" +
+	"\tfile_size\x18\x03 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\bfileSize\"\x91\x02\n" +
 	"\x14GetUploadUrlResponse\x12'\n" +
 	"\n" +
 	"upload_url\x18\x01 \x01(\tB\b\xbaH\x05r\x03\x88\x01\x01R\tuploadUrl\x125\n" +
