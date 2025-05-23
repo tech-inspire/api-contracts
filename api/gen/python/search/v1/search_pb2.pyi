@@ -59,20 +59,14 @@ class SearchImagesRequest(_message.Message):
     def __init__(self, text_query: _Optional[str] = ..., reference_post_id: _Optional[str] = ..., author_id: _Optional[str] = ..., orientation: _Optional[_Union[PhotoOrientation, str]] = ..., sort_by: _Optional[_Union[SortField, str]] = ..., sort_order: _Optional[_Union[SortOrder, str]] = ..., limit: _Optional[int] = ..., offset: _Optional[int] = ..., min_similarity_score: _Optional[float] = ...) -> None: ...
 
 class SearchImagesResponse(_message.Message):
-    __slots__ = ("main_results", "see_also_results", "total_main_results", "total_see_also_results", "limit", "offset")
-    MAIN_RESULTS_FIELD_NUMBER: _ClassVar[int]
-    SEE_ALSO_RESULTS_FIELD_NUMBER: _ClassVar[int]
-    TOTAL_MAIN_RESULTS_FIELD_NUMBER: _ClassVar[int]
-    TOTAL_SEE_ALSO_RESULTS_FIELD_NUMBER: _ClassVar[int]
+    __slots__ = ("results", "limit", "offset")
+    RESULTS_FIELD_NUMBER: _ClassVar[int]
     LIMIT_FIELD_NUMBER: _ClassVar[int]
     OFFSET_FIELD_NUMBER: _ClassVar[int]
-    main_results: _containers.RepeatedCompositeFieldContainer[SearchResult]
-    see_also_results: _containers.RepeatedCompositeFieldContainer[SearchResult]
-    total_main_results: int
-    total_see_also_results: int
+    results: _containers.RepeatedCompositeFieldContainer[SearchResult]
     limit: int
     offset: int
-    def __init__(self, main_results: _Optional[_Iterable[_Union[SearchResult, _Mapping]]] = ..., see_also_results: _Optional[_Iterable[_Union[SearchResult, _Mapping]]] = ..., total_main_results: _Optional[int] = ..., total_see_also_results: _Optional[int] = ..., limit: _Optional[int] = ..., offset: _Optional[int] = ...) -> None: ...
+    def __init__(self, results: _Optional[_Iterable[_Union[SearchResult, _Mapping]]] = ..., limit: _Optional[int] = ..., offset: _Optional[int] = ...) -> None: ...
 
 class SearchResult(_message.Message):
     __slots__ = ("post_id", "similarity")

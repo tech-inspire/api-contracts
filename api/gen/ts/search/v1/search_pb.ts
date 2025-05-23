@@ -12,7 +12,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file search/v1/search.proto.
  */
 export const file_search_v1_search: GenFile = /*@__PURE__*/
-  fileDesc("ChZzZWFyY2gvdjEvc2VhcmNoLnByb3RvEglzZWFyY2gudjEipQMKE1NlYXJjaEltYWdlc1JlcXVlc3QSHQoKdGV4dF9xdWVyeRgBIAEoCUIHukgEcgIQAUgAEiUKEXJlZmVyZW5jZV9wb3N0X2lkGAIgASgJQgi6SAVyA7ABAUgAEiAKCWF1dGhvcl9pZBgJIAEoCUIIukgFcgOwAQFIAYgBARI1CgtvcmllbnRhdGlvbhgDIAEoDjIbLnNlYXJjaC52MS5QaG90b09yaWVudGF0aW9uSAKIAQESJQoHc29ydF9ieRgEIAEoDjIULnNlYXJjaC52MS5Tb3J0RmllbGQSKAoKc29ydF9vcmRlchgFIAEoDjIULnNlYXJjaC52MS5Tb3J0T3JkZXISFgoFbGltaXQYBiABKA1CB7pIBCoCGGQSDgoGb2Zmc2V0GAcgASgNEjIKFG1pbl9zaW1pbGFyaXR5X3Njb3JlGAggASgCQg+6SAwKCh0AAIA/LQAAAABIA4gBAUILCglzZWFyY2hfYnlCDAoKX2F1dGhvcl9pZEIOCgxfb3JpZW50YXRpb25CFwoVX21pbl9zaW1pbGFyaXR5X3Njb3JlItMBChRTZWFyY2hJbWFnZXNSZXNwb25zZRItCgxtYWluX3Jlc3VsdHMYASADKAsyFy5zZWFyY2gudjEuU2VhcmNoUmVzdWx0EjEKEHNlZV9hbHNvX3Jlc3VsdHMYAiADKAsyFy5zZWFyY2gudjEuU2VhcmNoUmVzdWx0EhoKEnRvdGFsX21haW5fcmVzdWx0cxgDIAEoDRIeChZ0b3RhbF9zZWVfYWxzb19yZXN1bHRzGAQgASgNEg0KBWxpbWl0GAUgASgNEg4KBm9mZnNldBgGIAEoDSJOCgxTZWFyY2hSZXN1bHQSGQoHcG9zdF9pZBgBIAEoCUIIukgFcgOwAQESIwoKc2ltaWxhcml0eRgCIAEoAkIPukgMCgodAACAPy0AAAAAKlgKEFBob3RvT3JpZW50YXRpb24SGwoXT1JJRU5UQVRJT05fVU5TUEVDSUZJRUQQABIMCghQT1JUUkFJVBABEg0KCUxBTkRTQ0FQRRACEgoKBlNRVUFSRRADKjcKCVNvcnRGaWVsZBIaChZTT1JUX0ZJRUxEX1VOU1BFQ0lGSUVEEAASDgoKQ1JFQVRFRF9BVBABKjoKCVNvcnRPcmRlchIaChZTT1JUX09SREVSX1VOU1BFQ0lGSUVEEAASBwoDQVNDEAESCAoEREVTQxACMl8KDVNlYXJjaFNlcnZpY2USTgoLU2VhcmNoUG9zdHMSHi5zZWFyY2gudjEuU2VhcmNoSW1hZ2VzUmVxdWVzdBofLnNlYXJjaC52MS5TZWFyY2hJbWFnZXNSZXNwb25zZUJFWkNnaXRodWIuY29tL3RlY2gtaW5zcGlyZS9hcGktY29udHJhY3RzL2FwaS9nZW4vZ28vc2VhcmNoL3YxO3NlYXJjaHYxYgZwcm90bzM", [file_buf_validate_validate, file_google_protobuf_timestamp]);
+  fileDesc("ChZzZWFyY2gvdjEvc2VhcmNoLnByb3RvEglzZWFyY2gudjEipQMKE1NlYXJjaEltYWdlc1JlcXVlc3QSHQoKdGV4dF9xdWVyeRgBIAEoCUIHukgEcgIQAUgAEiUKEXJlZmVyZW5jZV9wb3N0X2lkGAIgASgJQgi6SAVyA7ABAUgAEiAKCWF1dGhvcl9pZBgJIAEoCUIIukgFcgOwAQFIAYgBARI1CgtvcmllbnRhdGlvbhgDIAEoDjIbLnNlYXJjaC52MS5QaG90b09yaWVudGF0aW9uSAKIAQESJQoHc29ydF9ieRgEIAEoDjIULnNlYXJjaC52MS5Tb3J0RmllbGQSKAoKc29ydF9vcmRlchgFIAEoDjIULnNlYXJjaC52MS5Tb3J0T3JkZXISFgoFbGltaXQYBiABKA1CB7pIBCoCGGQSDgoGb2Zmc2V0GAcgASgNEjIKFG1pbl9zaW1pbGFyaXR5X3Njb3JlGAggASgCQg+6SAwKCh0AAIA/LQAAAABIA4gBAUILCglzZWFyY2hfYnlCDAoKX2F1dGhvcl9pZEIOCgxfb3JpZW50YXRpb25CFwoVX21pbl9zaW1pbGFyaXR5X3Njb3JlIl8KFFNlYXJjaEltYWdlc1Jlc3BvbnNlEigKB3Jlc3VsdHMYASADKAsyFy5zZWFyY2gudjEuU2VhcmNoUmVzdWx0Eg0KBWxpbWl0GAUgASgNEg4KBm9mZnNldBgGIAEoDSJOCgxTZWFyY2hSZXN1bHQSGQoHcG9zdF9pZBgBIAEoCUIIukgFcgOwAQESIwoKc2ltaWxhcml0eRgCIAEoAkIPukgMCgodAACAPy0AAAAAKlgKEFBob3RvT3JpZW50YXRpb24SGwoXT1JJRU5UQVRJT05fVU5TUEVDSUZJRUQQABIMCghQT1JUUkFJVBABEg0KCUxBTkRTQ0FQRRACEgoKBlNRVUFSRRADKjcKCVNvcnRGaWVsZBIaChZTT1JUX0ZJRUxEX1VOU1BFQ0lGSUVEEAASDgoKQ1JFQVRFRF9BVBABKjoKCVNvcnRPcmRlchIaChZTT1JUX09SREVSX1VOU1BFQ0lGSUVEEAASBwoDQVNDEAESCAoEREVTQxACMl8KDVNlYXJjaFNlcnZpY2USTgoLU2VhcmNoUG9zdHMSHi5zZWFyY2gudjEuU2VhcmNoSW1hZ2VzUmVxdWVzdBofLnNlYXJjaC52MS5TZWFyY2hJbWFnZXNSZXNwb25zZUJFWkNnaXRodWIuY29tL3RlY2gtaW5zcGlyZS9hcGktY29udHJhY3RzL2FwaS9nZW4vZ28vc2VhcmNoL3YxO3NlYXJjaHYxYgZwcm90bzM", [file_buf_validate_validate, file_google_protobuf_timestamp]);
 
 /**
  * @generated from message search.v1.SearchImagesRequest
@@ -66,7 +66,7 @@ export type SearchImagesRequest = Message<"search.v1.SearchImagesRequest"> & {
   offset: number;
 
   /**
-   * 🔍 Minimum similarity score threshold for embedding search. Default is 0.7 (subject to change)
+   * Minimum similarity score threshold for embedding search. Default is 0.7 (subject to change)
    *
    * @generated from field: optional float min_similarity_score = 8;
    */
@@ -87,26 +87,9 @@ export type SearchImagesResponse = Message<"search.v1.SearchImagesResponse"> & {
   /**
    * Matches with score ≥ threshold
    *
-   * @generated from field: repeated search.v1.SearchResult main_results = 1;
+   * @generated from field: repeated search.v1.SearchResult results = 1;
    */
-  mainResults: SearchResult[];
-
-  /**
-   * Matches with score < threshold
-   *
-   * @generated from field: repeated search.v1.SearchResult see_also_results = 2;
-   */
-  seeAlsoResults: SearchResult[];
-
-  /**
-   * @generated from field: uint32 total_main_results = 3;
-   */
-  totalMainResults: number;
-
-  /**
-   * @generated from field: uint32 total_see_also_results = 4;
-   */
-  totalSeeAlsoResults: number;
+  results: SearchResult[];
 
   /**
    * @generated from field: uint32 limit = 5;

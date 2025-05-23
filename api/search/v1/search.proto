@@ -26,7 +26,7 @@ message SearchImagesRequest {
   uint32 limit = 6 [(buf.validate.field).uint32.lte = 100];
   uint32 offset = 7;
 
-  // 🔍 Minimum similarity score threshold for embedding search. Default is 0.7 (subject to change)
+  // Minimum similarity score threshold for embedding search. Default is 0.7 (subject to change)
   optional float min_similarity_score = 8 [
     (buf.validate.field).float.gte = 0.0,
     (buf.validate.field).float.lte = 1.0
@@ -53,11 +53,7 @@ enum SortOrder {
 }
 
 message SearchImagesResponse {
-  repeated SearchResult main_results = 1; // Matches with score ≥ threshold
-  repeated SearchResult see_also_results = 2; // Matches with score < threshold
-
-  uint32 total_main_results = 3;
-  uint32 total_see_also_results = 4;
+  repeated SearchResult results = 1; // Matches with score ≥ threshold
 
   uint32 limit = 5;
   uint32 offset = 6;

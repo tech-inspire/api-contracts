@@ -184,7 +184,7 @@ type SearchImagesRequest struct {
 	SortOrder   SortOrder                      `protobuf:"varint,5,opt,name=sort_order,json=sortOrder,proto3,enum=search.v1.SortOrder" json:"sort_order,omitempty"`
 	Limit       uint32                         `protobuf:"varint,6,opt,name=limit,proto3" json:"limit,omitempty"`
 	Offset      uint32                         `protobuf:"varint,7,opt,name=offset,proto3" json:"offset,omitempty"`
-	// 🔍 Minimum similarity score threshold for embedding search. Default is 0.7 (subject to change)
+	// Minimum similarity score threshold for embedding search. Default is 0.7 (subject to change)
 	MinSimilarityScore *float32 `protobuf:"fixed32,8,opt,name=min_similarity_score,json=minSimilarityScore,proto3,oneof" json:"min_similarity_score,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
@@ -311,15 +311,12 @@ func (*SearchImagesRequest_TextQuery) isSearchImagesRequest_SearchBy() {}
 func (*SearchImagesRequest_ReferencePostId) isSearchImagesRequest_SearchBy() {}
 
 type SearchImagesResponse struct {
-	state               protoimpl.MessageState `protogen:"open.v1"`
-	MainResults         []*SearchResult        `protobuf:"bytes,1,rep,name=main_results,json=mainResults,proto3" json:"main_results,omitempty"`            // Matches with score ≥ threshold
-	SeeAlsoResults      []*SearchResult        `protobuf:"bytes,2,rep,name=see_also_results,json=seeAlsoResults,proto3" json:"see_also_results,omitempty"` // Matches with score < threshold
-	TotalMainResults    uint32                 `protobuf:"varint,3,opt,name=total_main_results,json=totalMainResults,proto3" json:"total_main_results,omitempty"`
-	TotalSeeAlsoResults uint32                 `protobuf:"varint,4,opt,name=total_see_also_results,json=totalSeeAlsoResults,proto3" json:"total_see_also_results,omitempty"`
-	Limit               uint32                 `protobuf:"varint,5,opt,name=limit,proto3" json:"limit,omitempty"`
-	Offset              uint32                 `protobuf:"varint,6,opt,name=offset,proto3" json:"offset,omitempty"`
-	unknownFields       protoimpl.UnknownFields
-	sizeCache           protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Results       []*SearchResult        `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"` // Matches with score ≥ threshold
+	Limit         uint32                 `protobuf:"varint,5,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        uint32                 `protobuf:"varint,6,opt,name=offset,proto3" json:"offset,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *SearchImagesResponse) Reset() {
@@ -352,32 +349,11 @@ func (*SearchImagesResponse) Descriptor() ([]byte, []int) {
 	return file_search_v1_search_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *SearchImagesResponse) GetMainResults() []*SearchResult {
+func (x *SearchImagesResponse) GetResults() []*SearchResult {
 	if x != nil {
-		return x.MainResults
+		return x.Results
 	}
 	return nil
-}
-
-func (x *SearchImagesResponse) GetSeeAlsoResults() []*SearchResult {
-	if x != nil {
-		return x.SeeAlsoResults
-	}
-	return nil
-}
-
-func (x *SearchImagesResponse) GetTotalMainResults() uint32 {
-	if x != nil {
-		return x.TotalMainResults
-	}
-	return 0
-}
-
-func (x *SearchImagesResponse) GetTotalSeeAlsoResults() uint32 {
-	if x != nil {
-		return x.TotalSeeAlsoResults
-	}
-	return 0
 }
 
 func (x *SearchImagesResponse) GetLimit() uint32 {
@@ -469,12 +445,9 @@ const file_search_v1_search_proto_rawDesc = "" +
 	"\n" +
 	"_author_idB\x0e\n" +
 	"\f_orientationB\x17\n" +
-	"\x15_min_similarity_score\"\xa6\x02\n" +
-	"\x14SearchImagesResponse\x12:\n" +
-	"\fmain_results\x18\x01 \x03(\v2\x17.search.v1.SearchResultR\vmainResults\x12A\n" +
-	"\x10see_also_results\x18\x02 \x03(\v2\x17.search.v1.SearchResultR\x0eseeAlsoResults\x12,\n" +
-	"\x12total_main_results\x18\x03 \x01(\rR\x10totalMainResults\x123\n" +
-	"\x16total_see_also_results\x18\x04 \x01(\rR\x13totalSeeAlsoResults\x12\x14\n" +
+	"\x15_min_similarity_score\"w\n" +
+	"\x14SearchImagesResponse\x121\n" +
+	"\aresults\x18\x01 \x03(\v2\x17.search.v1.SearchResultR\aresults\x12\x14\n" +
 	"\x05limit\x18\x05 \x01(\rR\x05limit\x12\x16\n" +
 	"\x06offset\x18\x06 \x01(\rR\x06offset\"b\n" +
 	"\fSearchResult\x12!\n" +
@@ -527,15 +500,14 @@ var file_search_v1_search_proto_depIdxs = []int32{
 	0, // 0: search.v1.SearchImagesRequest.orientation:type_name -> search.v1.PhotoOrientation
 	1, // 1: search.v1.SearchImagesRequest.sort_by:type_name -> search.v1.SortField
 	2, // 2: search.v1.SearchImagesRequest.sort_order:type_name -> search.v1.SortOrder
-	5, // 3: search.v1.SearchImagesResponse.main_results:type_name -> search.v1.SearchResult
-	5, // 4: search.v1.SearchImagesResponse.see_also_results:type_name -> search.v1.SearchResult
-	3, // 5: search.v1.SearchService.SearchPosts:input_type -> search.v1.SearchImagesRequest
-	4, // 6: search.v1.SearchService.SearchPosts:output_type -> search.v1.SearchImagesResponse
-	6, // [6:7] is the sub-list for method output_type
-	5, // [5:6] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	5, // 3: search.v1.SearchImagesResponse.results:type_name -> search.v1.SearchResult
+	3, // 4: search.v1.SearchService.SearchPosts:input_type -> search.v1.SearchImagesRequest
+	4, // 5: search.v1.SearchService.SearchPosts:output_type -> search.v1.SearchImagesResponse
+	5, // [5:6] is the sub-list for method output_type
+	4, // [4:5] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_search_v1_search_proto_init() }
