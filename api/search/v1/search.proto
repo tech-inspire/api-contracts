@@ -61,7 +61,7 @@ message SearchImagesResponse {
 
 message SearchResult {
   string post_id = 1 [(buf.validate.field).string.uuid = true];
-  float similarity = 2 [
+  optional float similarity = 2 [
     (buf.validate.field).float.gte = 0.0,
     (buf.validate.field).float.lte = 1.0
   ];

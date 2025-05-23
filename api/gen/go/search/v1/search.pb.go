@@ -373,7 +373,7 @@ func (x *SearchImagesResponse) GetOffset() uint32 {
 type SearchResult struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	PostId        string                 `protobuf:"bytes,1,opt,name=post_id,json=postId,proto3" json:"post_id,omitempty"`
-	Similarity    float32                `protobuf:"fixed32,2,opt,name=similarity,proto3" json:"similarity,omitempty"`
+	Similarity    *float32               `protobuf:"fixed32,2,opt,name=similarity,proto3,oneof" json:"similarity,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -416,8 +416,8 @@ func (x *SearchResult) GetPostId() string {
 }
 
 func (x *SearchResult) GetSimilarity() float32 {
-	if x != nil {
-		return x.Similarity
+	if x != nil && x.Similarity != nil {
+		return *x.Similarity
 	}
 	return 0
 }
@@ -449,14 +449,15 @@ const file_search_v1_search_proto_rawDesc = "" +
 	"\x14SearchImagesResponse\x121\n" +
 	"\aresults\x18\x01 \x03(\v2\x17.search.v1.SearchResultR\aresults\x12\x14\n" +
 	"\x05limit\x18\x05 \x01(\rR\x05limit\x12\x16\n" +
-	"\x06offset\x18\x06 \x01(\rR\x06offset\"b\n" +
+	"\x06offset\x18\x06 \x01(\rR\x06offset\"v\n" +
 	"\fSearchResult\x12!\n" +
-	"\apost_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06postId\x12/\n" +
+	"\apost_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06postId\x124\n" +
 	"\n" +
 	"similarity\x18\x02 \x01(\x02B\x0f\xbaH\f\n" +
 	"\n" +
-	"\x1d\x00\x00\x80?-\x00\x00\x00\x00R\n" +
-	"similarity*X\n" +
+	"\x1d\x00\x00\x80?-\x00\x00\x00\x00H\x00R\n" +
+	"similarity\x88\x01\x01B\r\n" +
+	"\v_similarity*X\n" +
 	"\x10PhotoOrientation\x12\x1b\n" +
 	"\x17ORIENTATION_UNSPECIFIED\x10\x00\x12\f\n" +
 	"\bPORTRAIT\x10\x01\x12\r\n" +
@@ -519,6 +520,7 @@ func file_search_v1_search_proto_init() {
 		(*SearchImagesRequest_TextQuery)(nil),
 		(*SearchImagesRequest_ReferencePostId)(nil),
 	}
+	file_search_v1_search_proto_msgTypes[2].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
