@@ -47,7 +47,7 @@ message ImageVariant {
   int32 height = 3 [(buf.validate.field).int32.gt = 0];
 
   // Size of the image variant in bytes.
-  int64 size = 4 [(buf.validate.field).int32.gt = 0];
+  int32 size = 4 [(buf.validate.field).int32.gt = 0];
 
   // Type of the variant (e.g., ORIG, THUMB). Must be one of the defined variants.
   VariantType variant_type = 5 [(buf.validate.field).enum = {
@@ -96,7 +96,7 @@ message AddPostRequest {
   int32 image_height = 5 [(buf.validate.field).int32.gt = 0];
 
   // Size of the original image in bytes.
-  int64 image_size = 6 [(buf.validate.field).int64.gt = 0];
+  int32 image_size = 6 [(buf.validate.field).int32.gt = 0];
 
   // Optional SoundCloud track identifier.
   optional string soundcloud_song = 7 [(buf.validate.field).string.min_len = 1];
@@ -153,7 +153,7 @@ message GetUploadUrlRequest {
   string mime_type = 2 [(buf.validate.field).string.pattern = "^\\w+/[-+.\\w]+$"];
 
   // Expected size of the uploaded file in bytes.
-  int64 file_size = 3 [(buf.validate.field).int64.gt = 0];
+  int32 file_size = 3 [(buf.validate.field).int32.gt = 0];
 }
 
 // GetUploadUrlResponse returns a presigned URL and session key for S3 uploads.

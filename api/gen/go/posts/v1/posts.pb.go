@@ -84,7 +84,7 @@ type ImageVariant struct {
 	// Height of the image in pixels.
 	Height int32 `protobuf:"varint,3,opt,name=height,proto3" json:"height,omitempty"`
 	// Size of the image variant in bytes.
-	Size int64 `protobuf:"varint,4,opt,name=size,proto3" json:"size,omitempty"`
+	Size int32 `protobuf:"varint,4,opt,name=size,proto3" json:"size,omitempty"`
 	// Type of the variant (e.g., ORIG, THUMB). Must be one of the defined variants.
 	VariantType   VariantType `protobuf:"varint,5,opt,name=variant_type,json=variantType,proto3,enum=posts.v1.VariantType" json:"variant_type,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -142,7 +142,7 @@ func (x *ImageVariant) GetHeight() int32 {
 	return 0
 }
 
-func (x *ImageVariant) GetSize() int64 {
+func (x *ImageVariant) GetSize() int32 {
 	if x != nil {
 		return x.Size
 	}
@@ -268,7 +268,7 @@ type AddPostRequest struct {
 	// Height of the original image in pixels.
 	ImageHeight int32 `protobuf:"varint,5,opt,name=image_height,json=imageHeight,proto3" json:"image_height,omitempty"`
 	// Size of the original image in bytes.
-	ImageSize int64 `protobuf:"varint,6,opt,name=image_size,json=imageSize,proto3" json:"image_size,omitempty"`
+	ImageSize int32 `protobuf:"varint,6,opt,name=image_size,json=imageSize,proto3" json:"image_size,omitempty"`
 	// Optional SoundCloud track identifier.
 	SoundcloudSong *string `protobuf:"bytes,7,opt,name=soundcloud_song,json=soundcloudSong,proto3,oneof" json:"soundcloud_song,omitempty"`
 	// Optional start time for the SoundCloud track in seconds.
@@ -330,7 +330,7 @@ func (x *AddPostRequest) GetImageHeight() int32 {
 	return 0
 }
 
-func (x *AddPostRequest) GetImageSize() int64 {
+func (x *AddPostRequest) GetImageSize() int32 {
 	if x != nil {
 		return x.ImageSize
 	}
@@ -677,7 +677,7 @@ type GetUploadUrlRequest struct {
 	// Expected MIME type of the uploaded file, e.g., "image/jpeg".
 	MimeType string `protobuf:"bytes,2,opt,name=mime_type,json=mimeType,proto3" json:"mime_type,omitempty"`
 	// Expected size of the uploaded file in bytes.
-	FileSize      int64 `protobuf:"varint,3,opt,name=file_size,json=fileSize,proto3" json:"file_size,omitempty"`
+	FileSize      int32 `protobuf:"varint,3,opt,name=file_size,json=fileSize,proto3" json:"file_size,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -719,7 +719,7 @@ func (x *GetUploadUrlRequest) GetMimeType() string {
 	return ""
 }
 
-func (x *GetUploadUrlRequest) GetFileSize() int64 {
+func (x *GetUploadUrlRequest) GetFileSize() int32 {
 	if x != nil {
 		return x.FileSize
 	}
@@ -806,7 +806,7 @@ const file_posts_v1_posts_proto_rawDesc = "" +
 	"\x03url\x18\x01 \x01(\tB\b\xbaH\x05r\x03\x88\x01\x01R\x03url\x12\x1d\n" +
 	"\x05width\x18\x02 \x01(\x05B\a\xbaH\x04\x1a\x02 \x00R\x05width\x12\x1f\n" +
 	"\x06height\x18\x03 \x01(\x05B\a\xbaH\x04\x1a\x02 \x00R\x06height\x12\x1b\n" +
-	"\x04size\x18\x04 \x01(\x03B\a\xbaH\x04\x1a\x02 \x00R\x04size\x12D\n" +
+	"\x04size\x18\x04 \x01(\x05B\a\xbaH\x04\x1a\x02 \x00R\x04size\x12D\n" +
 	"\fvariant_type\x18\x05 \x01(\x0e2\x15.posts.v1.VariantTypeB\n" +
 	"\xbaH\a\x82\x01\x04\x18\x01\x18\x02R\vvariantType\"\x97\x03\n" +
 	"\x04Post\x12!\n" +
@@ -826,7 +826,7 @@ const file_posts_v1_posts_proto_rawDesc = "" +
 	"imageWidth\x12*\n" +
 	"\fimage_height\x18\x05 \x01(\x05B\a\xbaH\x04\x1a\x02 \x00R\vimageHeight\x12&\n" +
 	"\n" +
-	"image_size\x18\x06 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\timageSize\x125\n" +
+	"image_size\x18\x06 \x01(\x05B\a\xbaH\x04\x1a\x02 \x00R\timageSize\x125\n" +
 	"\x0fsoundcloud_song\x18\a \x01(\tB\a\xbaH\x04r\x02\x10\x01H\x00R\x0esoundcloudSong\x88\x01\x01\x12@\n" +
 	"\x15soundcloud_song_start\x18\b \x01(\x05B\a\xbaH\x04\x1a\x02(\x00H\x01R\x13soundcloudSongStart\x88\x01\x01\x12)\n" +
 	"\vdescription\x18\t \x01(\tB\a\xbaH\x04r\x02\x10\x01R\vdescriptionB\x12\n" +
@@ -847,7 +847,7 @@ const file_posts_v1_posts_proto_rawDesc = "" +
 	"\x12DeletePostResponse\"o\n" +
 	"\x13GetUploadUrlRequest\x122\n" +
 	"\tmime_type\x18\x02 \x01(\tB\x15\xbaH\x12r\x102\x0e^\\w+/[-+.\\w]+$R\bmimeType\x12$\n" +
-	"\tfile_size\x18\x03 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\bfileSize\"\x91\x02\n" +
+	"\tfile_size\x18\x03 \x01(\x05B\a\xbaH\x04\x1a\x02 \x00R\bfileSize\"\x91\x02\n" +
 	"\x14GetUploadUrlResponse\x12'\n" +
 	"\n" +
 	"upload_url\x18\x01 \x01(\tB\b\xbaH\x05r\x03\x88\x01\x01R\tuploadUrl\x125\n" +
