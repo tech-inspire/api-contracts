@@ -17,6 +17,8 @@ message SearchImagesRequest {
     string reference_post_id = 2 [(buf.validate.field).string.uuid = true];
   }
 
+  optional string author_id = 9 [(buf.validate.field).string.uuid = true];
+
   optional PhotoOrientation orientation = 3;
   SortField sort_by = 4;
   SortOrder sort_order = 5;

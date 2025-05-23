@@ -37,9 +37,10 @@ ASC: SortOrder
 DESC: SortOrder
 
 class SearchImagesRequest(_message.Message):
-    __slots__ = ("text_query", "reference_post_id", "orientation", "sort_by", "sort_order", "limit", "offset", "min_similarity_score")
+    __slots__ = ("text_query", "reference_post_id", "author_id", "orientation", "sort_by", "sort_order", "limit", "offset", "min_similarity_score")
     TEXT_QUERY_FIELD_NUMBER: _ClassVar[int]
     REFERENCE_POST_ID_FIELD_NUMBER: _ClassVar[int]
+    AUTHOR_ID_FIELD_NUMBER: _ClassVar[int]
     ORIENTATION_FIELD_NUMBER: _ClassVar[int]
     SORT_BY_FIELD_NUMBER: _ClassVar[int]
     SORT_ORDER_FIELD_NUMBER: _ClassVar[int]
@@ -48,13 +49,14 @@ class SearchImagesRequest(_message.Message):
     MIN_SIMILARITY_SCORE_FIELD_NUMBER: _ClassVar[int]
     text_query: str
     reference_post_id: str
+    author_id: str
     orientation: PhotoOrientation
     sort_by: SortField
     sort_order: SortOrder
     limit: int
     offset: int
     min_similarity_score: float
-    def __init__(self, text_query: _Optional[str] = ..., reference_post_id: _Optional[str] = ..., orientation: _Optional[_Union[PhotoOrientation, str]] = ..., sort_by: _Optional[_Union[SortField, str]] = ..., sort_order: _Optional[_Union[SortOrder, str]] = ..., limit: _Optional[int] = ..., offset: _Optional[int] = ..., min_similarity_score: _Optional[float] = ...) -> None: ...
+    def __init__(self, text_query: _Optional[str] = ..., reference_post_id: _Optional[str] = ..., author_id: _Optional[str] = ..., orientation: _Optional[_Union[PhotoOrientation, str]] = ..., sort_by: _Optional[_Union[SortField, str]] = ..., sort_order: _Optional[_Union[SortOrder, str]] = ..., limit: _Optional[int] = ..., offset: _Optional[int] = ..., min_similarity_score: _Optional[float] = ...) -> None: ...
 
 class SearchImagesResponse(_message.Message):
     __slots__ = ("main_results", "see_also_results", "total_main_results", "total_see_also_results", "limit", "offset")

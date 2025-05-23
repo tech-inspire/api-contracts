@@ -178,6 +178,7 @@ type SearchImagesRequest struct {
 	//	*SearchImagesRequest_TextQuery
 	//	*SearchImagesRequest_ReferencePostId
 	SearchBy    isSearchImagesRequest_SearchBy `protobuf_oneof:"search_by"`
+	AuthorId    *string                        `protobuf:"bytes,9,opt,name=author_id,json=authorId,proto3,oneof" json:"author_id,omitempty"`
 	Orientation *PhotoOrientation              `protobuf:"varint,3,opt,name=orientation,proto3,enum=search.v1.PhotoOrientation,oneof" json:"orientation,omitempty"`
 	SortBy      SortField                      `protobuf:"varint,4,opt,name=sort_by,json=sortBy,proto3,enum=search.v1.SortField" json:"sort_by,omitempty"`
 	SortOrder   SortOrder                      `protobuf:"varint,5,opt,name=sort_order,json=sortOrder,proto3,enum=search.v1.SortOrder" json:"sort_order,omitempty"`
@@ -240,6 +241,13 @@ func (x *SearchImagesRequest) GetReferencePostId() string {
 		if x, ok := x.SearchBy.(*SearchImagesRequest_ReferencePostId); ok {
 			return x.ReferencePostId
 		}
+	}
+	return ""
+}
+
+func (x *SearchImagesRequest) GetAuthorId() string {
+	if x != nil && x.AuthorId != nil {
+		return *x.AuthorId
 	}
 	return ""
 }
@@ -442,12 +450,13 @@ var File_search_v1_search_proto protoreflect.FileDescriptor
 
 const file_search_v1_search_proto_rawDesc = "" +
 	"\n" +
-	"\x16search/v1/search.proto\x12\tsearch.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd4\x03\n" +
+	"\x16search/v1/search.proto\x12\tsearch.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x8e\x04\n" +
 	"\x13SearchImagesRequest\x12(\n" +
 	"\n" +
 	"text_query\x18\x01 \x01(\tB\a\xbaH\x04r\x02\x10\x01H\x00R\ttextQuery\x126\n" +
-	"\x11reference_post_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x0freferencePostId\x12B\n" +
-	"\vorientation\x18\x03 \x01(\x0e2\x1b.search.v1.PhotoOrientationH\x01R\vorientation\x88\x01\x01\x12-\n" +
+	"\x11reference_post_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x0freferencePostId\x12*\n" +
+	"\tauthor_id\x18\t \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x01R\bauthorId\x88\x01\x01\x12B\n" +
+	"\vorientation\x18\x03 \x01(\x0e2\x1b.search.v1.PhotoOrientationH\x02R\vorientation\x88\x01\x01\x12-\n" +
 	"\asort_by\x18\x04 \x01(\x0e2\x14.search.v1.SortFieldR\x06sortBy\x123\n" +
 	"\n" +
 	"sort_order\x18\x05 \x01(\x0e2\x14.search.v1.SortOrderR\tsortOrder\x12\x1d\n" +
@@ -455,8 +464,10 @@ const file_search_v1_search_proto_rawDesc = "" +
 	"\x06offset\x18\a \x01(\rR\x06offset\x12F\n" +
 	"\x14min_similarity_score\x18\b \x01(\x02B\x0f\xbaH\f\n" +
 	"\n" +
-	"\x1d\x00\x00\x80?-\x00\x00\x00\x00H\x02R\x12minSimilarityScore\x88\x01\x01B\v\n" +
-	"\tsearch_byB\x0e\n" +
+	"\x1d\x00\x00\x80?-\x00\x00\x00\x00H\x03R\x12minSimilarityScore\x88\x01\x01B\v\n" +
+	"\tsearch_byB\f\n" +
+	"\n" +
+	"_author_idB\x0e\n" +
 	"\f_orientationB\x17\n" +
 	"\x15_min_similarity_score\"\xa6\x02\n" +
 	"\x14SearchImagesResponse\x12:\n" +
