@@ -4,13 +4,14 @@
 
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
+import { file_buf_validate_validate } from "../../buf/validate/validate_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file likes/v1/likes.proto.
  */
 export const file_likes_v1_likes: GenFile = /*@__PURE__*/
-  fileDesc("ChRsaWtlcy92MS9saWtlcy5wcm90bxIIbGlrZXMudjEiJwoUR2V0TGlrZXNDb3VudFJlcXVlc3QSDwoHcG9zdF9pZBgBIAEoCSIsChVHZXRMaWtlc0NvdW50UmVzcG9uc2USEwoLbGlrZXNfY291bnQYASABKAMiOwoXSGFzVXNlckxpa2VkUG9zdFJlcXVlc3QSDwoHdXNlcl9pZBgBIAEoAxIPCgdwb3N0X2lkGAIgASgJIikKGEhhc1VzZXJMaWtlZFBvc3RSZXNwb25zZRINCgVsaWtlZBgBIAEoCCIzCg9MaWtlUG9zdFJlcXVlc3QSDwoHdXNlcl9pZBgBIAEoAxIPCgdwb3N0X2lkGAIgASgJIjQKEExpa2VQb3N0UmVzcG9uc2USDwoHc3VjY2VzcxgBIAEoCBIPCgdtZXNzYWdlGAIgASgJIjUKEVVubGlrZVBvc3RSZXF1ZXN0Eg8KB3VzZXJfaWQYASABKAMSDwoHcG9zdF9pZBgCIAEoCSI2ChJVbmxpa2VQb3N0UmVzcG9uc2USDwoHc3VjY2VzcxgBIAEoCBIPCgdtZXNzYWdlGAIgASgJIkoKGEdldFVzZXJMaWtlZFBvc3RzUmVxdWVzdBIPCgd1c2VyX2lkGAEgASgDEg0KBWxpbWl0GAIgASgFEg4KBm9mZnNldBgDIAEoBSItChlHZXRVc2VyTGlrZWRQb3N0c1Jlc3BvbnNlEhAKCHBvc3RfaWRzGAEgAygJMqUDCgxMaWtlc1NlcnZpY2USUAoNR2V0TGlrZXNDb3VudBIeLmxpa2VzLnYxLkdldExpa2VzQ291bnRSZXF1ZXN0Gh8ubGlrZXMudjEuR2V0TGlrZXNDb3VudFJlc3BvbnNlElkKEEhhc1VzZXJMaWtlZFBvc3QSIS5saWtlcy52MS5IYXNVc2VyTGlrZWRQb3N0UmVxdWVzdBoiLmxpa2VzLnYxLkhhc1VzZXJMaWtlZFBvc3RSZXNwb25zZRJBCghMaWtlUG9zdBIZLmxpa2VzLnYxLkxpa2VQb3N0UmVxdWVzdBoaLmxpa2VzLnYxLkxpa2VQb3N0UmVzcG9uc2USRwoKVW5saWtlUG9zdBIbLmxpa2VzLnYxLlVubGlrZVBvc3RSZXF1ZXN0GhwubGlrZXMudjEuVW5saWtlUG9zdFJlc3BvbnNlElwKEUdldFVzZXJMaWtlZFBvc3RzEiIubGlrZXMudjEuR2V0VXNlckxpa2VkUG9zdHNSZXF1ZXN0GiMubGlrZXMudjEuR2V0VXNlckxpa2VkUG9zdHNSZXNwb25zZUJDWkFnaXRodWIuY29tL3RlY2gtaW5zcGlyZS9hcGktY29udHJhY3RzL2FwaS9nZW4vZ28vbGlrZXMvdjE7bGlrZXN2MWIGcHJvdG8z");
+  fileDesc("ChRsaWtlcy92MS9saWtlcy5wcm90bxIIbGlrZXMudjEiMQoUR2V0TGlrZXNDb3VudFJlcXVlc3QSGQoHcG9zdF9pZBgBIAEoCUIIukgFcgOwAQEiLAoVR2V0TGlrZXNDb3VudFJlc3BvbnNlEhMKC2xpa2VzX2NvdW50GAEgASgDIk8KF0hhc1VzZXJMaWtlZFBvc3RSZXF1ZXN0EhkKB3VzZXJfaWQYASABKAlCCLpIBXIDsAEBEhkKB3Bvc3RfaWQYAiABKAlCCLpIBXIDsAEBIikKGEhhc1VzZXJMaWtlZFBvc3RSZXNwb25zZRINCgVsaWtlZBgBIAEoCCJHCg9MaWtlUG9zdFJlcXVlc3QSGQoHdXNlcl9pZBgBIAEoCUIIukgFcgOwAQESGQoHcG9zdF9pZBgCIAEoCUIIukgFcgOwAQEiNAoQTGlrZVBvc3RSZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIEg8KB21lc3NhZ2UYAiABKAkiSQoRVW5saWtlUG9zdFJlcXVlc3QSGQoHdXNlcl9pZBgBIAEoCUIIukgFcgOwAQESGQoHcG9zdF9pZBgCIAEoCUIIukgFcgOwAQEiNgoSVW5saWtlUG9zdFJlc3BvbnNlEg8KB3N1Y2Nlc3MYASABKAgSDwoHbWVzc2FnZRgCIAEoCSJUChhHZXRVc2VyTGlrZWRQb3N0c1JlcXVlc3QSGQoHdXNlcl9pZBgBIAEoCUIIukgFcgOwAQESDQoFbGltaXQYAiABKAUSDgoGb2Zmc2V0GAMgASgFIi0KGUdldFVzZXJMaWtlZFBvc3RzUmVzcG9uc2USEAoIcG9zdF9pZHMYASADKAkypQMKDExpa2VzU2VydmljZRJQCg1HZXRMaWtlc0NvdW50Eh4ubGlrZXMudjEuR2V0TGlrZXNDb3VudFJlcXVlc3QaHy5saWtlcy52MS5HZXRMaWtlc0NvdW50UmVzcG9uc2USWQoQSGFzVXNlckxpa2VkUG9zdBIhLmxpa2VzLnYxLkhhc1VzZXJMaWtlZFBvc3RSZXF1ZXN0GiIubGlrZXMudjEuSGFzVXNlckxpa2VkUG9zdFJlc3BvbnNlEkEKCExpa2VQb3N0EhkubGlrZXMudjEuTGlrZVBvc3RSZXF1ZXN0GhoubGlrZXMudjEuTGlrZVBvc3RSZXNwb25zZRJHCgpVbmxpa2VQb3N0EhsubGlrZXMudjEuVW5saWtlUG9zdFJlcXVlc3QaHC5saWtlcy52MS5Vbmxpa2VQb3N0UmVzcG9uc2USXAoRR2V0VXNlckxpa2VkUG9zdHMSIi5saWtlcy52MS5HZXRVc2VyTGlrZWRQb3N0c1JlcXVlc3QaIy5saWtlcy52MS5HZXRVc2VyTGlrZWRQb3N0c1Jlc3BvbnNlQkNaQWdpdGh1Yi5jb20vdGVjaC1pbnNwaXJlL2FwaS1jb250cmFjdHMvYXBpL2dlbi9nby9saWtlcy92MTtsaWtlc3YxYgZwcm90bzM", [file_buf_validate_validate]);
 
 /**
  * @generated from message likes.v1.GetLikesCountRequest
@@ -51,9 +52,9 @@ export const GetLikesCountResponseSchema: GenMessage<GetLikesCountResponse> = /*
  */
 export type HasUserLikedPostRequest = Message<"likes.v1.HasUserLikedPostRequest"> & {
   /**
-   * @generated from field: int64 user_id = 1;
+   * @generated from field: string user_id = 1;
    */
-  userId: bigint;
+  userId: string;
 
   /**
    * @generated from field: string post_id = 2;
@@ -90,9 +91,9 @@ export const HasUserLikedPostResponseSchema: GenMessage<HasUserLikedPostResponse
  */
 export type LikePostRequest = Message<"likes.v1.LikePostRequest"> & {
   /**
-   * @generated from field: int64 user_id = 1;
+   * @generated from field: string user_id = 1;
    */
-  userId: bigint;
+  userId: string;
 
   /**
    * @generated from field: string post_id = 2;
@@ -134,9 +135,9 @@ export const LikePostResponseSchema: GenMessage<LikePostResponse> = /*@__PURE__*
  */
 export type UnlikePostRequest = Message<"likes.v1.UnlikePostRequest"> & {
   /**
-   * @generated from field: int64 user_id = 1;
+   * @generated from field: string user_id = 1;
    */
-  userId: bigint;
+  userId: string;
 
   /**
    * @generated from field: string post_id = 2;
@@ -178,9 +179,9 @@ export const UnlikePostResponseSchema: GenMessage<UnlikePostResponse> = /*@__PUR
  */
 export type GetUserLikedPostsRequest = Message<"likes.v1.GetUserLikedPostsRequest"> & {
   /**
-   * @generated from field: int64 user_id = 1;
+   * @generated from field: string user_id = 1;
    */
-  userId: bigint;
+  userId: string;
 
   /**
    * max number of posts to return

@@ -7,6 +7,7 @@
 package likesv1
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -111,7 +112,7 @@ func (x *GetLikesCountResponse) GetLikesCount() int64 {
 
 type HasUserLikedPostRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	PostId        string                 `protobuf:"bytes,2,opt,name=post_id,json=postId,proto3" json:"post_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -147,11 +148,11 @@ func (*HasUserLikedPostRequest) Descriptor() ([]byte, []int) {
 	return file_likes_v1_likes_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *HasUserLikedPostRequest) GetUserId() int64 {
+func (x *HasUserLikedPostRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 func (x *HasUserLikedPostRequest) GetPostId() string {
@@ -207,7 +208,7 @@ func (x *HasUserLikedPostResponse) GetLiked() bool {
 
 type LikePostRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	PostId        string                 `protobuf:"bytes,2,opt,name=post_id,json=postId,proto3" json:"post_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -243,11 +244,11 @@ func (*LikePostRequest) Descriptor() ([]byte, []int) {
 	return file_likes_v1_likes_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *LikePostRequest) GetUserId() int64 {
+func (x *LikePostRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 func (x *LikePostRequest) GetPostId() string {
@@ -311,7 +312,7 @@ func (x *LikePostResponse) GetMessage() string {
 
 type UnlikePostRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	PostId        string                 `protobuf:"bytes,2,opt,name=post_id,json=postId,proto3" json:"post_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -347,11 +348,11 @@ func (*UnlikePostRequest) Descriptor() ([]byte, []int) {
 	return file_likes_v1_likes_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *UnlikePostRequest) GetUserId() int64 {
+func (x *UnlikePostRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 func (x *UnlikePostRequest) GetPostId() string {
@@ -415,7 +416,7 @@ func (x *UnlikePostResponse) GetMessage() string {
 
 type GetUserLikedPostsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`   // max number of posts to return
 	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"` // skip first N posts
 	unknownFields protoimpl.UnknownFields
@@ -452,11 +453,11 @@ func (*GetUserLikedPostsRequest) Descriptor() ([]byte, []int) {
 	return file_likes_v1_likes_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *GetUserLikedPostsRequest) GetUserId() int64 {
+func (x *GetUserLikedPostsRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 func (x *GetUserLikedPostsRequest) GetLimit() int32 {
@@ -521,31 +522,31 @@ var File_likes_v1_likes_proto protoreflect.FileDescriptor
 
 const file_likes_v1_likes_proto_rawDesc = "" +
 	"\n" +
-	"\x14likes/v1/likes.proto\x12\blikes.v1\"/\n" +
-	"\x14GetLikesCountRequest\x12\x17\n" +
-	"\apost_id\x18\x01 \x01(\tR\x06postId\"8\n" +
+	"\x14likes/v1/likes.proto\x12\blikes.v1\x1a\x1bbuf/validate/validate.proto\"9\n" +
+	"\x14GetLikesCountRequest\x12!\n" +
+	"\apost_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06postId\"8\n" +
 	"\x15GetLikesCountResponse\x12\x1f\n" +
 	"\vlikes_count\x18\x01 \x01(\x03R\n" +
-	"likesCount\"K\n" +
-	"\x17HasUserLikedPostRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x17\n" +
-	"\apost_id\x18\x02 \x01(\tR\x06postId\"0\n" +
+	"likesCount\"_\n" +
+	"\x17HasUserLikedPostRequest\x12!\n" +
+	"\auser_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12!\n" +
+	"\apost_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06postId\"0\n" +
 	"\x18HasUserLikedPostResponse\x12\x14\n" +
-	"\x05liked\x18\x01 \x01(\bR\x05liked\"C\n" +
-	"\x0fLikePostRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x17\n" +
-	"\apost_id\x18\x02 \x01(\tR\x06postId\"F\n" +
+	"\x05liked\x18\x01 \x01(\bR\x05liked\"W\n" +
+	"\x0fLikePostRequest\x12!\n" +
+	"\auser_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12!\n" +
+	"\apost_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06postId\"F\n" +
 	"\x10LikePostResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"E\n" +
-	"\x11UnlikePostRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x17\n" +
-	"\apost_id\x18\x02 \x01(\tR\x06postId\"H\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"Y\n" +
+	"\x11UnlikePostRequest\x12!\n" +
+	"\auser_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12!\n" +
+	"\apost_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06postId\"H\n" +
 	"\x12UnlikePostResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"a\n" +
-	"\x18GetUserLikedPostsRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x14\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"k\n" +
+	"\x18GetUserLikedPostsRequest\x12!\n" +
+	"\auser_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
 	"\x06offset\x18\x03 \x01(\x05R\x06offset\"6\n" +
 	"\x19GetUserLikedPostsResponse\x12\x19\n" +
