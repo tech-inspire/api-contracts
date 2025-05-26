@@ -45,18 +45,14 @@ message LikePostRequest {
   string post_id = 2 [(buf.validate.field).string.uuid = true];
 }
 
-message LikePostResponse {
-  bool success = 1;
-}
+message LikePostResponse {}
 
 message UnlikePostRequest {
   string user_id = 1 [(buf.validate.field).string.uuid = true];
   string post_id = 2 [(buf.validate.field).string.uuid = true];
 }
 
-message UnlikePostResponse {
-  bool success = 1;
-}
+message UnlikePostResponse {}
 
 message GetUserLikedPostsRequest {
   string user_id = 1 [(buf.validate.field).string.uuid = true];

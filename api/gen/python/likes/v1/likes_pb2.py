@@ -25,7 +25,7 @@ _sym_db = _symbol_database.Default()
 from buf.validate import validate_pb2 as buf_dot_validate_dot_validate__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x14likes/v1/likes.proto\x12\x08likes.v1\x1a\x1b\x62uf/validate/validate.proto\"9\n\x14GetLikesCountRequest\x12!\n\x07post_id\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x06postId\"8\n\x15GetLikesCountResponse\x12\x1f\n\x0blikes_count\x18\x01 \x01(\x03R\nlikesCount\"_\n\x17HasUserLikedPostRequest\x12!\n\x07user_id\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12!\n\x07post_id\x18\x02 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x06postId\"0\n\x18HasUserLikedPostResponse\x12\x14\n\x05liked\x18\x01 \x01(\x08R\x05liked\"W\n\x0fLikePostRequest\x12!\n\x07user_id\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12!\n\x07post_id\x18\x02 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x06postId\",\n\x10LikePostResponse\x12\x18\n\x07success\x18\x01 \x01(\x08R\x07success\"Y\n\x11UnlikePostRequest\x12!\n\x07user_id\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12!\n\x07post_id\x18\x02 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x06postId\".\n\x12UnlikePostResponse\x12\x18\n\x07success\x18\x01 \x01(\x08R\x07success\"k\n\x18GetUserLikedPostsRequest\x12!\n\x07user_id\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12\x14\n\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n\x06offset\x18\x03 \x01(\x05R\x06offset\"6\n\x19GetUserLikedPostsResponse\x12\x19\n\x08post_ids\x18\x01 \x03(\tR\x07postIds2\xa5\x03\n\x0cLikesService\x12P\n\rGetLikesCount\x12\x1e.likes.v1.GetLikesCountRequest\x1a\x1f.likes.v1.GetLikesCountResponse\x12Y\n\x10HasUserLikedPost\x12!.likes.v1.HasUserLikedPostRequest\x1a\".likes.v1.HasUserLikedPostResponse\x12\x41\n\x08LikePost\x12\x19.likes.v1.LikePostRequest\x1a\x1a.likes.v1.LikePostResponse\x12G\n\nUnlikePost\x12\x1b.likes.v1.UnlikePostRequest\x1a\x1c.likes.v1.UnlikePostResponse\x12\\\n\x11GetUserLikedPosts\x12\".likes.v1.GetUserLikedPostsRequest\x1a#.likes.v1.GetUserLikedPostsResponseBCZAgithub.com/tech-inspire/api-contracts/api/gen/go/likes/v1;likesv1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x14likes/v1/likes.proto\x12\x08likes.v1\x1a\x1b\x62uf/validate/validate.proto\"9\n\x14GetLikesCountRequest\x12!\n\x07post_id\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x06postId\"8\n\x15GetLikesCountResponse\x12\x1f\n\x0blikes_count\x18\x01 \x01(\x03R\nlikesCount\"_\n\x17HasUserLikedPostRequest\x12!\n\x07user_id\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12!\n\x07post_id\x18\x02 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x06postId\"0\n\x18HasUserLikedPostResponse\x12\x14\n\x05liked\x18\x01 \x01(\x08R\x05liked\"W\n\x0fLikePostRequest\x12!\n\x07user_id\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12!\n\x07post_id\x18\x02 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x06postId\"\x12\n\x10LikePostResponse\"Y\n\x11UnlikePostRequest\x12!\n\x07user_id\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12!\n\x07post_id\x18\x02 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x06postId\"\x14\n\x12UnlikePostResponse\"k\n\x18GetUserLikedPostsRequest\x12!\n\x07user_id\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12\x14\n\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n\x06offset\x18\x03 \x01(\x05R\x06offset\"6\n\x19GetUserLikedPostsResponse\x12\x19\n\x08post_ids\x18\x01 \x03(\tR\x07postIds2\xa5\x03\n\x0cLikesService\x12P\n\rGetLikesCount\x12\x1e.likes.v1.GetLikesCountRequest\x1a\x1f.likes.v1.GetLikesCountResponse\x12Y\n\x10HasUserLikedPost\x12!.likes.v1.HasUserLikedPostRequest\x1a\".likes.v1.HasUserLikedPostResponse\x12\x41\n\x08LikePost\x12\x19.likes.v1.LikePostRequest\x1a\x1a.likes.v1.LikePostResponse\x12G\n\nUnlikePost\x12\x1b.likes.v1.UnlikePostRequest\x1a\x1c.likes.v1.UnlikePostResponse\x12\\\n\x11GetUserLikedPosts\x12\".likes.v1.GetUserLikedPostsRequest\x1a#.likes.v1.GetUserLikedPostsResponseBCZAgithub.com/tech-inspire/api-contracts/api/gen/go/likes/v1;likesv1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -60,15 +60,15 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_LIKEPOSTREQUEST']._serialized_start=327
   _globals['_LIKEPOSTREQUEST']._serialized_end=414
   _globals['_LIKEPOSTRESPONSE']._serialized_start=416
-  _globals['_LIKEPOSTRESPONSE']._serialized_end=460
-  _globals['_UNLIKEPOSTREQUEST']._serialized_start=462
-  _globals['_UNLIKEPOSTREQUEST']._serialized_end=551
-  _globals['_UNLIKEPOSTRESPONSE']._serialized_start=553
-  _globals['_UNLIKEPOSTRESPONSE']._serialized_end=599
-  _globals['_GETUSERLIKEDPOSTSREQUEST']._serialized_start=601
-  _globals['_GETUSERLIKEDPOSTSREQUEST']._serialized_end=708
-  _globals['_GETUSERLIKEDPOSTSRESPONSE']._serialized_start=710
-  _globals['_GETUSERLIKEDPOSTSRESPONSE']._serialized_end=764
-  _globals['_LIKESSERVICE']._serialized_start=767
-  _globals['_LIKESSERVICE']._serialized_end=1188
+  _globals['_LIKEPOSTRESPONSE']._serialized_end=434
+  _globals['_UNLIKEPOSTREQUEST']._serialized_start=436
+  _globals['_UNLIKEPOSTREQUEST']._serialized_end=525
+  _globals['_UNLIKEPOSTRESPONSE']._serialized_start=527
+  _globals['_UNLIKEPOSTRESPONSE']._serialized_end=547
+  _globals['_GETUSERLIKEDPOSTSREQUEST']._serialized_start=549
+  _globals['_GETUSERLIKEDPOSTSREQUEST']._serialized_end=656
+  _globals['_GETUSERLIKEDPOSTSRESPONSE']._serialized_start=658
+  _globals['_GETUSERLIKEDPOSTSRESPONSE']._serialized_end=712
+  _globals['_LIKESSERVICE']._serialized_start=715
+  _globals['_LIKESSERVICE']._serialized_end=1136
 # @@protoc_insertion_point(module_scope)
