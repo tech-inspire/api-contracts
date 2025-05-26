@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+package likes.v1;
+
+option go_package = "github.com/tech-inspire/api-contracts/api/gen/go/likes/v1;likesv1";
+
+service LikesService {
+  // Get current likes count for a post
+  rpc GetLikesCount(GetLikesCountRequest) returns (GetLikesCountResponse);
+
+  // Check if user liked a post
+  rpc HasUserLikedPost(HasUserLikedPostRequest) returns (HasUserLikedPostResponse);
+
+  // Like a post
+  rpc LikePost(LikePostRequest) returns (LikePostResponse);
+
+  // Unlike a post
+  rpc UnlikePost(UnlikePostRequest) returns (UnlikePostResponse);
+
+  // Get all posts liked by a user
+  rpc GetUserLikedPosts(GetUserLikedPostsRequest) returns (GetUserLikedPostsResponse);
+}
+
+message GetLikesCountRequest {
+  string post_id = 1;
+}
+
+message GetLikesCountResponse {
+  int64 likes_count = 1;
+}
+
+message HasUserLikedPostRequest {
+  int64 user_id = 1;
+  string post_id = 2;
+}
+
+message HasUserLikedPostResponse {
+  bool liked = 1;
+}
+
+message LikePostRequest {
+  int64 user_id = 1;
+  string post_id = 2;
+}
+
+message LikePostResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message UnlikePostRequest {
+  int64 user_id = 1;
+  string post_id = 2;
+}
+
+message UnlikePostResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message GetUserLikedPostsRequest {
+  int64 user_id = 1;
+  int32 limit = 2;  // max number of posts to return
+  int32 offset = 3; // skip first N posts
+}
+
+message GetUserLikedPostsResponse {
+  repeated string post_ids = 1;
+}
