@@ -77,7 +77,7 @@ message Post {
   optional int32 soundcloud_song_start = 5 [(buf.validate.field).int32.gte = 0];
 
   // Text description provided by the author.
-  string description = 6 [(buf.validate.field).string.min_len = 1];
+  string description = 6;
 
   // Timestamp when the post was created.
   google.protobuf.Timestamp created_at = 7;
@@ -105,7 +105,7 @@ message AddPostRequest {
   optional int32 soundcloud_song_start = 8 [(buf.validate.field).int32.gte = 0];
 
   // Text description for the post.
-  string description = 9 [(buf.validate.field).string.min_len = 1];
+  string description = 9;
 }
 
 // AddPostResponse returns the newly created post object.
