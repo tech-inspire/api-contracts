@@ -34,24 +34,20 @@ class HasUserLikedPostResponse(_message.Message):
     def __init__(self, liked: bool = ...) -> None: ...
 
 class LikePostRequest(_message.Message):
-    __slots__ = ("user_id", "post_id")
-    USER_ID_FIELD_NUMBER: _ClassVar[int]
+    __slots__ = ("post_id",)
     POST_ID_FIELD_NUMBER: _ClassVar[int]
-    user_id: str
     post_id: str
-    def __init__(self, user_id: _Optional[str] = ..., post_id: _Optional[str] = ...) -> None: ...
+    def __init__(self, post_id: _Optional[str] = ...) -> None: ...
 
 class LikePostResponse(_message.Message):
     __slots__ = ()
     def __init__(self) -> None: ...
 
 class UnlikePostRequest(_message.Message):
-    __slots__ = ("user_id", "post_id")
-    USER_ID_FIELD_NUMBER: _ClassVar[int]
+    __slots__ = ("post_id",)
     POST_ID_FIELD_NUMBER: _ClassVar[int]
-    user_id: str
     post_id: str
-    def __init__(self, user_id: _Optional[str] = ..., post_id: _Optional[str] = ...) -> None: ...
+    def __init__(self, post_id: _Optional[str] = ...) -> None: ...
 
 class UnlikePostResponse(_message.Message):
     __slots__ = ()

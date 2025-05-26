@@ -208,7 +208,6 @@ func (x *HasUserLikedPostResponse) GetLiked() bool {
 
 type LikePostRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	PostId        string                 `protobuf:"bytes,2,opt,name=post_id,json=postId,proto3" json:"post_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -242,13 +241,6 @@ func (x *LikePostRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use LikePostRequest.ProtoReflect.Descriptor instead.
 func (*LikePostRequest) Descriptor() ([]byte, []int) {
 	return file_likes_v1_likes_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *LikePostRequest) GetUserId() string {
-	if x != nil {
-		return x.UserId
-	}
-	return ""
 }
 
 func (x *LikePostRequest) GetPostId() string {
@@ -296,7 +288,6 @@ func (*LikePostResponse) Descriptor() ([]byte, []int) {
 
 type UnlikePostRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	PostId        string                 `protobuf:"bytes,2,opt,name=post_id,json=postId,proto3" json:"post_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -330,13 +321,6 @@ func (x *UnlikePostRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use UnlikePostRequest.ProtoReflect.Descriptor instead.
 func (*UnlikePostRequest) Descriptor() ([]byte, []int) {
 	return file_likes_v1_likes_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *UnlikePostRequest) GetUserId() string {
-	if x != nil {
-		return x.UserId
-	}
-	return ""
 }
 
 func (x *UnlikePostRequest) GetPostId() string {
@@ -500,13 +484,11 @@ const file_likes_v1_likes_proto_rawDesc = "" +
 	"\auser_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12!\n" +
 	"\apost_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06postId\"0\n" +
 	"\x18HasUserLikedPostResponse\x12\x14\n" +
-	"\x05liked\x18\x01 \x01(\bR\x05liked\"W\n" +
+	"\x05liked\x18\x01 \x01(\bR\x05liked\"4\n" +
 	"\x0fLikePostRequest\x12!\n" +
-	"\auser_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12!\n" +
 	"\apost_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06postId\"\x12\n" +
-	"\x10LikePostResponse\"Y\n" +
+	"\x10LikePostResponse\"6\n" +
 	"\x11UnlikePostRequest\x12!\n" +
-	"\auser_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12!\n" +
 	"\apost_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06postId\"\x14\n" +
 	"\x12UnlikePostResponse\"k\n" +
 	"\x18GetUserLikedPostsRequest\x12!\n" +
