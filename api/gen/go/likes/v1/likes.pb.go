@@ -7,7 +7,7 @@
 package likesv1
 
 import (
-	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -261,7 +261,6 @@ func (x *LikePostRequest) GetPostId() string {
 type LikePostResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
-	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -301,13 +300,6 @@ func (x *LikePostResponse) GetSuccess() bool {
 		return x.Success
 	}
 	return false
-}
-
-func (x *LikePostResponse) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
 }
 
 type UnlikePostRequest struct {
@@ -365,7 +357,6 @@ func (x *UnlikePostRequest) GetPostId() string {
 type UnlikePostResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
-	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -405,13 +396,6 @@ func (x *UnlikePostResponse) GetSuccess() bool {
 		return x.Success
 	}
 	return false
-}
-
-func (x *UnlikePostResponse) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
 }
 
 type GetUserLikedPostsRequest struct {
@@ -535,16 +519,14 @@ const file_likes_v1_likes_proto_rawDesc = "" +
 	"\x05liked\x18\x01 \x01(\bR\x05liked\"W\n" +
 	"\x0fLikePostRequest\x12!\n" +
 	"\auser_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12!\n" +
-	"\apost_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06postId\"F\n" +
+	"\apost_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06postId\",\n" +
 	"\x10LikePostResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"Y\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"Y\n" +
 	"\x11UnlikePostRequest\x12!\n" +
 	"\auser_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12!\n" +
-	"\apost_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06postId\"H\n" +
+	"\apost_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06postId\".\n" +
 	"\x12UnlikePostResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"k\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"k\n" +
 	"\x18GetUserLikedPostsRequest\x12!\n" +
 	"\auser_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +

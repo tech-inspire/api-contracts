@@ -47,7 +47,6 @@ message LikePostRequest {
 
 message LikePostResponse {
   bool success = 1;
-  string message = 2;
 }
 
 message UnlikePostRequest {
@@ -57,7 +56,6 @@ message UnlikePostRequest {
 
 message UnlikePostResponse {
   bool success = 1;
-  string message = 2;
 }
 
 message GetUserLikedPostsRequest {

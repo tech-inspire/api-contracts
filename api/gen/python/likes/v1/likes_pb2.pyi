@@ -42,12 +42,10 @@ class LikePostRequest(_message.Message):
     def __init__(self, user_id: _Optional[str] = ..., post_id: _Optional[str] = ...) -> None: ...
 
 class LikePostResponse(_message.Message):
-    __slots__ = ("success", "message")
+    __slots__ = ("success",)
     SUCCESS_FIELD_NUMBER: _ClassVar[int]
-    MESSAGE_FIELD_NUMBER: _ClassVar[int]
     success: bool
-    message: str
-    def __init__(self, success: bool = ..., message: _Optional[str] = ...) -> None: ...
+    def __init__(self, success: bool = ...) -> None: ...
 
 class UnlikePostRequest(_message.Message):
     __slots__ = ("user_id", "post_id")
@@ -58,12 +56,10 @@ class UnlikePostRequest(_message.Message):
     def __init__(self, user_id: _Optional[str] = ..., post_id: _Optional[str] = ...) -> None: ...
 
 class UnlikePostResponse(_message.Message):
-    __slots__ = ("success", "message")
+    __slots__ = ("success",)
     SUCCESS_FIELD_NUMBER: _ClassVar[int]
-    MESSAGE_FIELD_NUMBER: _ClassVar[int]
     success: bool
-    message: str
-    def __init__(self, success: bool = ..., message: _Optional[str] = ...) -> None: ...
+    def __init__(self, success: bool = ...) -> None: ...
 
 class GetUserLikedPostsRequest(_message.Message):
     __slots__ = ("user_id", "limit", "offset")
