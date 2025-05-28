@@ -2,64 +2,33 @@
 // @generated from file embeddings/v1/embeddings.proto (package embeddings.v1, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
 import { file_buf_validate_validate } from "../../buf/validate/validate_pb";
 import { file_google_protobuf_field_mask, file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
-import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file embeddings/v1/embeddings.proto.
  */
-export const file_embeddings_v1_embeddings: GenFile = /*@__PURE__*/
+export const file_embeddings_v1_embeddings = /*@__PURE__*/
   fileDesc("Ch5lbWJlZGRpbmdzL3YxL2VtYmVkZGluZ3MucHJvdG8SDWVtYmVkZGluZ3MudjEiLQodR2VuZXJhdGVUZXh0RW1iZWRkaW5nc1JlcXVlc3QSDAoEdGV4dBgBIAEoCSI6Ch5HZW5lcmF0ZVRleHRFbWJlZGRpbmdzUmVzcG9uc2USGAoQZW1iZWRkaW5nX3ZlY3RvchgBIAMoAjKKAQoRRW1iZWRkaW5nc1NlcnZpY2USdQoWR2VuZXJhdGVUZXh0RW1iZWRkaW5ncxIsLmVtYmVkZGluZ3MudjEuR2VuZXJhdGVUZXh0RW1iZWRkaW5nc1JlcXVlc3QaLS5lbWJlZGRpbmdzLnYxLkdlbmVyYXRlVGV4dEVtYmVkZGluZ3NSZXNwb25zZUJNWktnaXRodWIuY29tL3RlY2gtaW5zcGlyZS9hcGktY29udHJhY3RzL2FwaS9nZW4vZ28vZW1iZWRkaW5ncy92MTtlbWJlZGRpbmdzdjFiBnByb3RvMw", [file_buf_validate_validate, file_google_protobuf_field_mask, file_google_protobuf_timestamp]);
-
-/**
- * @generated from message embeddings.v1.GenerateTextEmbeddingsRequest
- */
-export type GenerateTextEmbeddingsRequest = Message<"embeddings.v1.GenerateTextEmbeddingsRequest"> & {
-  /**
-   * @generated from field: string text = 1;
-   */
-  text: string;
-};
 
 /**
  * Describes the message embeddings.v1.GenerateTextEmbeddingsRequest.
  * Use `create(GenerateTextEmbeddingsRequestSchema)` to create a new message.
  */
-export const GenerateTextEmbeddingsRequestSchema: GenMessage<GenerateTextEmbeddingsRequest> = /*@__PURE__*/
+export const GenerateTextEmbeddingsRequestSchema = /*@__PURE__*/
   messageDesc(file_embeddings_v1_embeddings, 0);
-
-/**
- * @generated from message embeddings.v1.GenerateTextEmbeddingsResponse
- */
-export type GenerateTextEmbeddingsResponse = Message<"embeddings.v1.GenerateTextEmbeddingsResponse"> & {
-  /**
-   * @generated from field: repeated float embedding_vector = 1;
-   */
-  embeddingVector: number[];
-};
 
 /**
  * Describes the message embeddings.v1.GenerateTextEmbeddingsResponse.
  * Use `create(GenerateTextEmbeddingsResponseSchema)` to create a new message.
  */
-export const GenerateTextEmbeddingsResponseSchema: GenMessage<GenerateTextEmbeddingsResponse> = /*@__PURE__*/
+export const GenerateTextEmbeddingsResponseSchema = /*@__PURE__*/
   messageDesc(file_embeddings_v1_embeddings, 1);
 
 /**
  * @generated from service embeddings.v1.EmbeddingsService
  */
-export const EmbeddingsService: GenService<{
-  /**
-   * @generated from rpc embeddings.v1.EmbeddingsService.GenerateTextEmbeddings
-   */
-  generateTextEmbeddings: {
-    methodKind: "unary";
-    input: typeof GenerateTextEmbeddingsRequestSchema;
-    output: typeof GenerateTextEmbeddingsResponseSchema;
-  },
-}> = /*@__PURE__*/
+export const EmbeddingsService = /*@__PURE__*/
   serviceDesc(file_embeddings_v1_embeddings, 0);
 
