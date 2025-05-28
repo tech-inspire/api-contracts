@@ -12,7 +12,7 @@ plugins:
   - local: protoc-gen-es
     out: gen/ts
     include_imports: true
-    opt: target=js+ts
+    opt: target=ts
   - remote: buf.build/protocolbuffers/pyi
     out: gen/python
   - remote: buf.build/protocolbuffers/python
