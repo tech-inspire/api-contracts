@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package views.v1;
+
+import "buf/validate/validate.proto";
+
+option go_package = "github.com/tech-inspire/api-contracts/api/gen/go/views/v1;viewsv1";
+
+service ViewsService {
+  // Get current views count for a post
+  rpc GetPostViewsCount(GetViewsCountRequest) returns (GetViewsCountResponse);
+
+  rpc GetPostsViewsCount(GetViewsCountRequest) returns (GetViewsCountResponse);
+
+  // View a post
+  rpc ViewPost(ViewPostRequest) returns (ViewPostResponse);
+}
+
+message GetViewsCountRequest {
+  string post_id = 1 [(buf.validate.field).string.uuid = true];
+}
+
+message GetViewsCountResponse {
+  int64 likes_count = 1;
+}
+
+message GetPostsViewsCountRequest {
+  repeated string post_ids = 1;
+}
+
+message GetPostsViewsCountResponse {
+  // Key: post_id, Value: views_count
+  map<string, int64> views_count = 1;
+}
+
+message ViewPostRequest {
+  string post_id = 2 [(buf.validate.field).string.uuid = true];
+}
+
+message ViewPostResponse {}
+
+message GetUserViewedPostsRequest {
+  string user_id = 1 [(buf.validate.field).string.uuid = true];
+  int32 limit = 2; // max number of posts to return
+  int32 offset = 3; // skip first N posts
+}
+
+message GetUserViewedPostsResponse {
+  repeated string post_ids = 1;
+  int32 limit = 2;
+  int32 offset = 3;
+}
