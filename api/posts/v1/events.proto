@@ -22,3 +22,9 @@ message PostDeletedEvent {
   google.protobuf.Timestamp deleted_at = 1;
   Post post = 2;
 }
+
+message PostImageVariantsGeneratedEvent {
+  google.protobuf.Timestamp created_at = 1;
+  string post_id = 2 [(buf.validate.field).string.uuid = true];
+  repeated ImageVariant new_variants = 3 [(buf.validate.field).repeated.min_items = 1];
+}

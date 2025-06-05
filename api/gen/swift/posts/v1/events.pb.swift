@@ -113,6 +113,31 @@ public struct Posts_V1_PostDeletedEvent: Sendable {
   fileprivate var _post: Posts_V1_Post? = nil
 }
 
+public struct Posts_V1_PostImageVariantsGeneratedEvent: Sendable {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var createdAt: SwiftProtobuf.Google_Protobuf_Timestamp {
+    get {return _createdAt ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
+    set {_createdAt = newValue}
+  }
+  /// Returns true if `createdAt` has been explicitly set.
+  public var hasCreatedAt: Bool {return self._createdAt != nil}
+  /// Clears the value of `createdAt`. Subsequent reads from it will return its default value.
+  public mutating func clearCreatedAt() {self._createdAt = nil}
+
+  public var postID: String = String()
+
+  public var newVariants: [Posts_V1_ImageVariant] = []
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _createdAt: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
+}
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "posts.v1"
@@ -238,6 +263,54 @@ extension Posts_V1_PostDeletedEvent: SwiftProtobuf.Message, SwiftProtobuf._Messa
   public static func ==(lhs: Posts_V1_PostDeletedEvent, rhs: Posts_V1_PostDeletedEvent) -> Bool {
     if lhs._deletedAt != rhs._deletedAt {return false}
     if lhs._post != rhs._post {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Posts_V1_PostImageVariantsGeneratedEvent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".PostImageVariantsGeneratedEvent"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "created_at"),
+    2: .standard(proto: "post_id"),
+    3: .standard(proto: "new_variants"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularMessageField(value: &self._createdAt) }()
+      case 2: try { try decoder.decodeSingularStringField(value: &self.postID) }()
+      case 3: try { try decoder.decodeRepeatedMessageField(value: &self.newVariants) }()
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    // The use of inline closures is to circumvent an issue where the compiler
+    // allocates stack space for every if/case branch local when no optimizations
+    // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
+    // https://github.com/apple/swift-protobuf/issues/1182
+    try { if let v = self._createdAt {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+    } }()
+    if !self.postID.isEmpty {
+      try visitor.visitSingularStringField(value: self.postID, fieldNumber: 2)
+    }
+    if !self.newVariants.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.newVariants, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Posts_V1_PostImageVariantsGeneratedEvent, rhs: Posts_V1_PostImageVariantsGeneratedEvent) -> Bool {
+    if lhs._createdAt != rhs._createdAt {return false}
+    if lhs.postID != rhs.postID {return false}
+    if lhs.newVariants != rhs.newVariants {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

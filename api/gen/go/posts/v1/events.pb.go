@@ -179,6 +179,66 @@ func (x *PostDeletedEvent) GetPost() *Post {
 	return nil
 }
 
+type PostImageVariantsGeneratedEvent struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	PostId        string                 `protobuf:"bytes,2,opt,name=post_id,json=postId,proto3" json:"post_id,omitempty"`
+	NewVariants   []*ImageVariant        `protobuf:"bytes,3,rep,name=new_variants,json=newVariants,proto3" json:"new_variants,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PostImageVariantsGeneratedEvent) Reset() {
+	*x = PostImageVariantsGeneratedEvent{}
+	mi := &file_posts_v1_events_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PostImageVariantsGeneratedEvent) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PostImageVariantsGeneratedEvent) ProtoMessage() {}
+
+func (x *PostImageVariantsGeneratedEvent) ProtoReflect() protoreflect.Message {
+	mi := &file_posts_v1_events_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PostImageVariantsGeneratedEvent.ProtoReflect.Descriptor instead.
+func (*PostImageVariantsGeneratedEvent) Descriptor() ([]byte, []int) {
+	return file_posts_v1_events_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *PostImageVariantsGeneratedEvent) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+func (x *PostImageVariantsGeneratedEvent) GetPostId() string {
+	if x != nil {
+		return x.PostId
+	}
+	return ""
+}
+
+func (x *PostImageVariantsGeneratedEvent) GetNewVariants() []*ImageVariant {
+	if x != nil {
+		return x.NewVariants
+	}
+	return nil
+}
+
 var File_posts_v1_events_proto protoreflect.FileDescriptor
 
 const file_posts_v1_events_proto_rawDesc = "" +
@@ -195,7 +255,12 @@ const file_posts_v1_events_proto_rawDesc = "" +
 	"\x10PostDeletedEvent\x129\n" +
 	"\n" +
 	"deleted_at\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\tdeletedAt\x12\"\n" +
-	"\x04post\x18\x02 \x01(\v2\x0e.posts.v1.PostR\x04postBCZAgithub.com/tech-inspire/api-contracts/api/gen/go/posts/v1;postsv1b\x06proto3"
+	"\x04post\x18\x02 \x01(\v2\x0e.posts.v1.PostR\x04post\"\xc4\x01\n" +
+	"\x1fPostImageVariantsGeneratedEvent\x129\n" +
+	"\n" +
+	"created_at\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x12!\n" +
+	"\apost_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06postId\x12C\n" +
+	"\fnew_variants\x18\x03 \x03(\v2\x16.posts.v1.ImageVariantB\b\xbaH\x05\x92\x01\x02\b\x01R\vnewVariantsBCZAgithub.com/tech-inspire/api-contracts/api/gen/go/posts/v1;postsv1b\x06proto3"
 
 var (
 	file_posts_v1_events_proto_rawDescOnce sync.Once
@@ -209,26 +274,30 @@ func file_posts_v1_events_proto_rawDescGZIP() []byte {
 	return file_posts_v1_events_proto_rawDescData
 }
 
-var file_posts_v1_events_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_posts_v1_events_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_posts_v1_events_proto_goTypes = []any{
-	(*PostCreatedEvent)(nil),      // 0: posts.v1.PostCreatedEvent
-	(*PostUpdatedEvent)(nil),      // 1: posts.v1.PostUpdatedEvent
-	(*PostDeletedEvent)(nil),      // 2: posts.v1.PostDeletedEvent
-	(*timestamppb.Timestamp)(nil), // 3: google.protobuf.Timestamp
-	(*Post)(nil),                  // 4: posts.v1.Post
+	(*PostCreatedEvent)(nil),                // 0: posts.v1.PostCreatedEvent
+	(*PostUpdatedEvent)(nil),                // 1: posts.v1.PostUpdatedEvent
+	(*PostDeletedEvent)(nil),                // 2: posts.v1.PostDeletedEvent
+	(*PostImageVariantsGeneratedEvent)(nil), // 3: posts.v1.PostImageVariantsGeneratedEvent
+	(*timestamppb.Timestamp)(nil),           // 4: google.protobuf.Timestamp
+	(*Post)(nil),                            // 5: posts.v1.Post
+	(*ImageVariant)(nil),                    // 6: posts.v1.ImageVariant
 }
 var file_posts_v1_events_proto_depIdxs = []int32{
-	3, // 0: posts.v1.PostCreatedEvent.created_at:type_name -> google.protobuf.Timestamp
-	4, // 1: posts.v1.PostCreatedEvent.post:type_name -> posts.v1.Post
-	3, // 2: posts.v1.PostUpdatedEvent.updated_at:type_name -> google.protobuf.Timestamp
-	4, // 3: posts.v1.PostUpdatedEvent.post:type_name -> posts.v1.Post
-	3, // 4: posts.v1.PostDeletedEvent.deleted_at:type_name -> google.protobuf.Timestamp
-	4, // 5: posts.v1.PostDeletedEvent.post:type_name -> posts.v1.Post
-	6, // [6:6] is the sub-list for method output_type
-	6, // [6:6] is the sub-list for method input_type
-	6, // [6:6] is the sub-list for extension type_name
-	6, // [6:6] is the sub-list for extension extendee
-	0, // [0:6] is the sub-list for field type_name
+	4, // 0: posts.v1.PostCreatedEvent.created_at:type_name -> google.protobuf.Timestamp
+	5, // 1: posts.v1.PostCreatedEvent.post:type_name -> posts.v1.Post
+	4, // 2: posts.v1.PostUpdatedEvent.updated_at:type_name -> google.protobuf.Timestamp
+	5, // 3: posts.v1.PostUpdatedEvent.post:type_name -> posts.v1.Post
+	4, // 4: posts.v1.PostDeletedEvent.deleted_at:type_name -> google.protobuf.Timestamp
+	5, // 5: posts.v1.PostDeletedEvent.post:type_name -> posts.v1.Post
+	4, // 6: posts.v1.PostImageVariantsGeneratedEvent.created_at:type_name -> google.protobuf.Timestamp
+	6, // 7: posts.v1.PostImageVariantsGeneratedEvent.new_variants:type_name -> posts.v1.ImageVariant
+	8, // [8:8] is the sub-list for method output_type
+	8, // [8:8] is the sub-list for method input_type
+	8, // [8:8] is the sub-list for extension type_name
+	8, // [8:8] is the sub-list for extension extendee
+	0, // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_posts_v1_events_proto_init() }
@@ -243,7 +312,7 @@ func file_posts_v1_events_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_posts_v1_events_proto_rawDesc), len(file_posts_v1_events_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

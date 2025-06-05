@@ -5,7 +5,7 @@
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 import type { Timestamp } from "@bufbuild/protobuf/wkt";
-import type { Post } from "./posts_pb.js";
+import type { ImageVariant, Post } from "./posts_pb.js";
 
 /**
  * Describes the file posts/v1/events.proto.
@@ -74,4 +74,30 @@ export declare type PostDeletedEvent = Message<"posts.v1.PostDeletedEvent"> & {
  * Use `create(PostDeletedEventSchema)` to create a new message.
  */
 export declare const PostDeletedEventSchema: GenMessage<PostDeletedEvent>;
+
+/**
+ * @generated from message posts.v1.PostImageVariantsGeneratedEvent
+ */
+export declare type PostImageVariantsGeneratedEvent = Message<"posts.v1.PostImageVariantsGeneratedEvent"> & {
+  /**
+   * @generated from field: google.protobuf.Timestamp created_at = 1;
+   */
+  createdAt?: Timestamp;
+
+  /**
+   * @generated from field: string post_id = 2;
+   */
+  postId: string;
+
+  /**
+   * @generated from field: repeated posts.v1.ImageVariant new_variants = 3;
+   */
+  newVariants: ImageVariant[];
+};
+
+/**
+ * Describes the message posts.v1.PostImageVariantsGeneratedEvent.
+ * Use `create(PostImageVariantsGeneratedEventSchema)` to create a new message.
+ */
+export declare const PostImageVariantsGeneratedEventSchema: GenMessage<PostImageVariantsGeneratedEvent>;
 

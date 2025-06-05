@@ -11,7 +11,7 @@ import { file_posts_v1_posts } from "./posts_pb.js";
  * Describes the file posts/v1/events.proto.
  */
 export const file_posts_v1_events = /*@__PURE__*/
-  fileDesc("ChVwb3N0cy92MS9ldmVudHMucHJvdG8SCHBvc3RzLnYxImAKEFBvc3RDcmVhdGVkRXZlbnQSLgoKY3JlYXRlZF9hdBgBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASHAoEcG9zdBgCIAEoCzIOLnBvc3RzLnYxLlBvc3QiYAoQUG9zdFVwZGF0ZWRFdmVudBIuCgp1cGRhdGVkX2F0GAEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIcCgRwb3N0GAIgASgLMg4ucG9zdHMudjEuUG9zdCJgChBQb3N0RGVsZXRlZEV2ZW50Ei4KCmRlbGV0ZWRfYXQYASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEhwKBHBvc3QYAiABKAsyDi5wb3N0cy52MS5Qb3N0QkNaQWdpdGh1Yi5jb20vdGVjaC1pbnNwaXJlL2FwaS1jb250cmFjdHMvYXBpL2dlbi9nby9wb3N0cy92MTtwb3N0c3YxYgZwcm90bzM", [file_buf_validate_validate, file_google_protobuf_timestamp, file_posts_v1_posts]);
+  fileDesc("ChVwb3N0cy92MS9ldmVudHMucHJvdG8SCHBvc3RzLnYxImAKEFBvc3RDcmVhdGVkRXZlbnQSLgoKY3JlYXRlZF9hdBgBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASHAoEcG9zdBgCIAEoCzIOLnBvc3RzLnYxLlBvc3QiYAoQUG9zdFVwZGF0ZWRFdmVudBIuCgp1cGRhdGVkX2F0GAEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIcCgRwb3N0GAIgASgLMg4ucG9zdHMudjEuUG9zdCJgChBQb3N0RGVsZXRlZEV2ZW50Ei4KCmRlbGV0ZWRfYXQYASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEhwKBHBvc3QYAiABKAsyDi5wb3N0cy52MS5Qb3N0IqQBCh9Qb3N0SW1hZ2VWYXJpYW50c0dlbmVyYXRlZEV2ZW50Ei4KCmNyZWF0ZWRfYXQYASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEhkKB3Bvc3RfaWQYAiABKAlCCLpIBXIDsAEBEjYKDG5ld192YXJpYW50cxgDIAMoCzIWLnBvc3RzLnYxLkltYWdlVmFyaWFudEIIukgFkgECCAFCQ1pBZ2l0aHViLmNvbS90ZWNoLWluc3BpcmUvYXBpLWNvbnRyYWN0cy9hcGkvZ2VuL2dvL3Bvc3RzL3YxO3Bvc3RzdjFiBnByb3RvMw", [file_buf_validate_validate, file_google_protobuf_timestamp, file_posts_v1_posts]);
 
 /**
  * Describes the message posts.v1.PostCreatedEvent.
@@ -33,4 +33,11 @@ export const PostUpdatedEventSchema = /*@__PURE__*/
  */
 export const PostDeletedEventSchema = /*@__PURE__*/
   messageDesc(file_posts_v1_events, 2);
+
+/**
+ * Describes the message posts.v1.PostImageVariantsGeneratedEvent.
+ * Use `create(PostImageVariantsGeneratedEventSchema)` to create a new message.
+ */
+export const PostImageVariantsGeneratedEventSchema = /*@__PURE__*/
+  messageDesc(file_posts_v1_events, 3);
 
