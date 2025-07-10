@@ -19,12 +19,6 @@ plugins:
     out: gen/python
   - remote: buf.build/grpc/python:v1.70.1
     out: gen/python
-  - remote: buf.build/connectrpc/swift
-    out: gen/swift
-    opt:
-      - GenerateAsyncMethods=true
-      - GenerateCallbackMethods=true
-      - Visibility=Public
   - remote: buf.build/apple/swift
     out: gen/swift
     opt: Visibility=Public
